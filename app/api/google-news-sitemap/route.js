@@ -1,32 +1,32 @@
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { NextResponse } from 'next/server';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-    const baseUrl = 'https://ai-news-website.vercel.app';
+  const baseUrl = 'https://ai-news-website.vercel.app';
 
-    // Aggregate all articles from all feeds
-    let allArticles = [];
+  // Aggregate all articles from all feeds
+  let allArticles = [];
 
-    for (const [category, url] of Object.entries(FEEDS)) {
-        try {
-            if (category === 'general') continue; // Skip general if it duplicates others
-            const feed = await fetchFeed(url);
-            if (feed && feed.items) {
-                const categoryArticles = feed.items.slice(0, 5).map(item => ({
-                    ...item,
-                    category
-                }));
-                allArticles = [...allArticles, ...categoryArticles];
-            }
-        } catch (e) {
-            console.error(`Error fetching ${category} for sitemap`, e);
-        }
+  for (const [category, url] of Object.entries(FEEDS)) {
+    try {
+      if (category === 'general') continue; // Skip general if it duplicates others
+      const feed = await fetchFeed(url);
+      if (feed && feed.items) {
+        const categoryArticles = feed.items.slice(0, 5).map(item => ({
+          ...item,
+          category
+        }));
+        allArticles = [...allArticles, ...categoryArticles];
+      }
+    } catch (e) {
+      console.error(`Error fetching ${category} for sitemap`, e);
     }
+  }
 
-    // Generate XML
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  // Generate XML
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
             xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
       ${allArticles.map(article => `
@@ -45,9 +45,9 @@ export async function GET() {
     </urlset>
   `;
 
-    return new NextResponse(sitemap, {
-        headers: {
-            'Content-Type': 'application/xml',
-        },
-    });
+  return new NextResponse(sitemap, {
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+  });
 }
