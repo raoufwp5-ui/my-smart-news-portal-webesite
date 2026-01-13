@@ -2,6 +2,8 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import { Inter } from 'next/font/google';
 
+import Footer from '@/components/Footer';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -12,14 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300`}>
+            <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 flex flex-col`}>
                 <Navbar />
-                <main className="container mx-auto px-4 py-8">
+                <main className="flex-grow container mx-auto px-4 py-8">
                     {children}
                 </main>
-                <footer className="border-t border-gray-200 dark:border-gray-800 py-8 text-center text-gray-500 text-sm">
-                    <p>© {new Date().getFullYear()} AI News. Powered by Gemini 1.5 Flash.</p>
-                </footer>
+                <Footer />
             </body>
         </html>
     );

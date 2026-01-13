@@ -34,7 +34,7 @@ export async function GET(request) {
             };
 
             try {
-                // AI Rewriting
+                // Content Analysis & Rewriting
                 const prompt = `
           You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
           
@@ -78,9 +78,9 @@ export async function GET(request) {
                     source: basicData.link, // Keep original link
                     date: basicData.pubDate
                 };
-            } catch (aiError) {
-                console.error("AI Generation failed for article:", basicData.title, aiError);
-                // Fallback to original data if AI fails
+            } catch (genError) {
+                console.error("Content generation failed for article:", basicData.title, genError);
+                // Fallback to original data
                 return {
                     ...basicData,
                     tldr: ["Content is currently being updated", "Check back in a few minutes", "Global Brief coverage in progress"],

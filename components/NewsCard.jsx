@@ -16,34 +16,33 @@ export default function NewsCard({ article }) {
         originalSource = "Unknown"
     } = article || {};
 
+    const slug = article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
     return (
-        <div className="group bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
-            <div className="relative h-48 overflow-hidden bg-gray-100 dark:bg-gray-800">
-                {image ? (
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        onError={(e) => { e.target.style.display = 'none'; }}
-                    />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        <span className="text-4xl">📰</span>
-                    </div>
-                )}
-                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full uppercase tracking-wider">
-                    {originalSource}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full group">
+            <Link href={`/article/${slug}?category=${article.category || 'general'}`} className="block relative aspect-video overflow-hidden">
+                <img
+                    src={article.image || '/default-news.jpg'}
+                    alt={article.title}
+                    className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+                    {article.originalSource}
                 </div>
-            </div>
+            </Link>
 
-            <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center text-sm text-gray-500 mb-3 space-x-4">
-                    <span className="flex items-center"><Calendar size={14} className="mr-1" /> {new Date(date).toLocaleDateString()}</span>
+            <div className="p-5 flex flex-col flex-grow">
+                <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-full uppercase tracking-wider">
+                        {new Date(article.pubDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                    </span>
                 </div>
 
-                <h2 className="text-xl font-bold mb-4 line-clamp-2 text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {title}
-                </h2>
+                <Link href={`/article/${slug}?category=${article.category || 'general'}`} className="group-hover:text-blue-600 transition-colors">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 leading-tight">
+                        {article.title}
+                    </h2>
+                </Link>
 
                 <div className="mb-6 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                     <h3 className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">TL;DR</h3>
@@ -63,22 +62,13 @@ export default function NewsCard({ article }) {
                     </p>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-800">
-                    <button
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
+                    <Link
+                        href={`/article/${slug}?category=${article.category || 'general'}`}
+                        className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 flex items-center gap-1"
                     >
-                        {isExpanded ? 'Show Less' : 'Read Analysis'}
-                    </button>
-
-                    <a
-                        href={source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center text-sm text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-                    >
-                        Source <ExternalLink size={14} className="ml-1" />
-                    </a>
+                        Read Full Story <ArrowRight size={16} />
+                    </Link>
                 </div>
             </div>
 
@@ -90,23 +80,23 @@ export default function NewsCard({ article }) {
                         '@context': 'https://schema.org',
                         '@type': 'NewsArticle',
                         headline: title,
-                        image: [image || 'https://ai-news-website.vercel.app/default-news.jpg'],
+                        image: [image || 'https://globalbrief.vercel.app/default-news.jpg'],
                         datePublished: date,
                         dateModified: new Date().toISOString(),
                         author: [{
                             '@type': 'Organization',
                             name: 'Global Brief Staff',
-                            url: 'https://ai-news-website.vercel.app'
+                            url: 'https://globalbrief.vercel.app'
                         }],
                         publisher: {
                             '@type': 'Organization',
                             name: 'Global Brief',
                             logo: {
                                 '@type': 'ImageObject',
-                                url: 'https://ai-news-website.vercel.app/logo.png'
+                                url: 'https://globalbrief.vercel.app/logo.png'
                             }
                         },
-                        description: tldr[0] || content.substring(0, 150)
+                        description: article.tldr ? article.tldr[0] : article.title || content.substring(0, 150)
                     })
                 }}
             />

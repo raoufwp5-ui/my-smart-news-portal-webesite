@@ -34,7 +34,7 @@ export async function GET() {
           <loc>${baseUrl}/${article.category}#${encodeURIComponent(article.title)}</loc>
           <news:news>
             <news:publication>
-              <news:name>AI News Daily</news:name>
+              <news:name>Global Brief</news:name>
               <news:language>en</news:language>
             </news:publication>
             <news:publication_date>${new Date(article.pubDate).toISOString()}</news:publication_date>

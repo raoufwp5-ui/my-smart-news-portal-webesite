@@ -4,10 +4,10 @@ export const revalidate = 3600; // Hourly updates
 
 export function generateMetadata({ params }) {
     const title = params.category.charAt(0).toUpperCase() + params.category.slice(1);
-    const description = `Latest ${title} news rewritten by AI for quick reading. Get the top headlines in Business, Tech, Politics, and Sports.`;
+    const description = `Latest ${title} news and in-depth analysis. Get the top headlines in Business, Tech, Politics, and Sports.`;
 
     return {
-        title: `${title} News | AI News Daily`,
+        title: `${title} News | Global Brief`,
         description: description,
         openGraph: {
             title: `${title} News | AI News Daily`,
@@ -25,7 +25,7 @@ export function generateMetadata({ params }) {
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${title} News | AI News Daily`,
+            title: `${title} News | Global Brief`,
             description: description,
             images: [`https://ai-news-website.vercel.app/og-${params.category}.jpg`],
         },
