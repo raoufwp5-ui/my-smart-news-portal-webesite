@@ -9,18 +9,13 @@
   }
 
   .dark {
-    --background: 10 10 10;
+    --background: 3 7 18;
+    /* Darker bg for better contrast */
     --foreground: 237 237 237;
     color-scheme: dark;
   }
 
   body {
-    @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300;
-  }
-}
-
-@layer components {
-  .nav-link {
-    @apply text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors;
+    @apply antialiased;
   }
 }
