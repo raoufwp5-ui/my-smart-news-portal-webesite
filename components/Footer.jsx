@@ -7,11 +7,11 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                     <div className="col-span-1 md:col-span-1">
-                        <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 block">
-                            AI News
+                        <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white mb-4 block">
+                            Global Brief
                         </Link>
                         <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                            Delivering the latest headlines across Business, Tech, Politics, and Sports, rewritten by advanced AI for quick, engaging consumption.
+                            Global Brief provides in-depth reporting and analysis on the most critical stories shaping our world. Your trusted source for business, technology, politics, and sports coverage.
                         </p>
                     </div>
 
@@ -52,7 +52,7 @@ export default function Footer() {
                             </a>
                         </div>
                         <p className="mt-4 text-xs text-gray-500">
-                            © {new Date().getFullYear()} AI News Daily.
+                            © {new Date().getFullYear()} Global Brief. All rights reserved.
                         </p>
                     </div>
                 </div>

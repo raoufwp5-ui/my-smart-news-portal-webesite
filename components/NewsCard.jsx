@@ -95,12 +95,12 @@ export default function NewsCard({ article }) {
                         dateModified: new Date().toISOString(),
                         author: [{
                             '@type': 'Organization',
-                            name: 'AI News Agent',
+                            name: 'Global Brief Staff',
                             url: 'https://ai-news-website.vercel.app'
                         }],
                         publisher: {
                             '@type': 'Organization',
-                            name: 'AI News Daily',
+                            name: 'Global Brief',
                             logo: {
                                 '@type': 'ImageObject',
                                 url: 'https://ai-news-website.vercel.app/logo.png'

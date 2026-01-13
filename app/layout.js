@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-    title: 'AI News - Smart News Aggregator',
-    description: 'AI-powered news aggregator delivering humanized summaries of the latest business, tech, and political news.',
+    title: 'Global Brief - World News, Business, Tech & Politics',
+    description: 'In-depth reporting and analysis on the latest global trends using primary sources.',
 };
 
 export default function RootLayout({ children }) {

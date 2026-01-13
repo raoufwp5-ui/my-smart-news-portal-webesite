@@ -36,18 +36,31 @@ export async function GET(request) {
             try {
                 // AI Rewriting
                 const prompt = `
-          Rewrite the following news article to make it sound more engaging and human-written. 
-          Also provide a catchy title, a TL;DR summary (3 bullet points), and a short engaging body content (max 150 words).
+          You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
           
-          Original Title: ${basicData.title}
-          Original Content: ${basicData.content}
+          Guidelines:
+          1.  **Originality**: Do NOT simply summarize. Rewrite the story with a unique voice, adding context and analysis.
+          2.  **Structure**:
+              *   **Headline**: SEO-optimized, engaging, professional (no clickbait).
+              *   **Introduction**: Human-style hook (who, what, when, where).
+              *   **Context & Background**: Explain why this matters.
+              *   **Key Facts**: Bullet points for data/dates if needed.
+              *   **Analysis**: Implications and expert perspective.
+              *   **Conclusion**: What happens next.
+          3.  **Tone**: Professional, objective, authoritative. NO "In this article...", NO "Let's dive in...".
+          4.  **No External Links**: Do not include "Read more" links in the body.
+          5.  **Citations**: At the very end, add a line: "(Sources: [Original Publisher Name])".
           
-          Return output ONLY as JSON in this format:
+          Original Source Data:
+          Title: ${basicData.title}
+          Content: ${basicData.content}
+          
+          Return output ONLY as JSON:
           {
-            "title": "New Catchy Title",
-            "tldr": ["Point 1", "Point 2", "Point 3"],
-            "content": "Rewritten engaging content...",
-            "image": "Use the image URL from source if available, else null" 
+            "title": "Your SEO Headline",
+            "tldr": ["Key point 1", "Key point 2", "Key point 3"],
+            "content": "The full article text (markdown supported)...",
+            "image": "Use the image URL if valid, else null" 
           }
         `;
 
@@ -70,7 +83,7 @@ export async function GET(request) {
                 // Fallback to original data if AI fails
                 return {
                     ...basicData,
-                    tldr: ["AI summarization temporarily unavailable", "Read original article for details", "Click source link below"],
+                    tldr: ["Content is currently being updated", "Check back in a few minutes", "Global Brief coverage in progress"],
                     source: basicData.link,
                     date: basicData.pubDate,
                     image: null // You might want to try extracting an image from RSS enclosure if available
