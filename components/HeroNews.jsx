@@ -16,6 +16,10 @@ export default function HeroNews({ article }) {
                     <img
                         src={image}
                         alt={title}
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/default-news.jpg';
+                        }}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                 ) : (
