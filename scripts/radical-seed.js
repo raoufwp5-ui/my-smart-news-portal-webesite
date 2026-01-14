@@ -61,6 +61,10 @@ function cleanText(text) {
         .replace(/&nbsp;/g, ' ')
         .replace(/&quot;/g, '"')
         .replace(/&amp;/g, '&')
+        .replace(/&apos;/g, "'")
+        .replace(/&ndash;/g, '-')
+        .replace(/&mdash;/g, '-')
+        .replace(/[^\x20-\x7E\s\u0600-\u06FF]/g, '') // Remove non-printable and weird artifacts but keep Arabic
         .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
         .trim();
 }
