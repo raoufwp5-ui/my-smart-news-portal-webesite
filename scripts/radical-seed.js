@@ -53,10 +53,22 @@ async function generateWithGemini(prompt) {
     return data.candidates[0].content.parts[0].text;
 }
 
+// Helper to strip HTML and junk
+function cleanText(text) {
+    if (!text) return "";
+    return text
+        .replace(/<[^>]*>?/gm, '') // Remove HTML tags
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, '&')
+        .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+        .trim();
+}
+
 async function seed() {
     if (!GEMINI_KEY) { console.error('❌ GEMINI_API_KEY missing'); return; }
 
-    console.log('🚮 Wiping existing data...');
+    console.log('🚮 Cleaning up for a fresh start...');
     if (fs.existsSync(STORAGE_DIR)) fs.rmSync(STORAGE_DIR, { recursive: true, force: true });
     fs.mkdirSync(STORAGE_DIR, { recursive: true });
 
@@ -65,13 +77,16 @@ async function seed() {
         try {
             const res = await fetch(url);
             const text = await res.text();
-            const items = [...text.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5);
+            const items = [...text.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 6);
 
             for (const match of items) {
                 const itemXml = match[1];
-                const title = (itemXml.match(/<title>([\s\S]*?)<\/title>/) || [])[1]?.replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1') || 'Untitled';
+                const rawTitle = (itemXml.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || 'Untitled';
+                const title = cleanText(rawTitle);
                 const link = (itemXml.match(/<link>([\s\S]*?)<\/link>/) || [])[1]?.replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1') || '#';
-                const description = (itemXml.match(/<description>([\s\S]*?)<\/description>/) || [])[1]?.replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1') || '';
+                const rawDesc = (itemXml.match(/<description>([\s\S]*?)<\/description>/) || [])[1] || '';
+                const description = cleanText(rawDesc);
+
                 const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 60);
 
                 console.log(`  📝 Processing: ${title}`);
@@ -85,21 +100,23 @@ async function seed() {
                     console.warn(`    ⚠️ AI Fallback for ${title}: ${e.message}`);
                     finalData = {
                         title: title,
-                        content: `## ${title}\n\n${description}\n\nRead more at the source.`,
+                        content: `## ${title}\n\n${description || "Latest updates from global news sources regarding this story."}\n\nStay tuned for more in-depth analysis.`,
                         tldr: ["Contextual analysis in progress", "Original source verified", "Global impact being evaluated"],
                         metaDescription: title,
                         keywords: [category, "News"]
                     };
                 }
 
+                // Enhanced Image Logic
                 const image = await extractOGImage(link);
                 const localImage = await downloadMedia(image, slug);
 
                 const final = {
                     ...finalData,
+                    title: cleanText(finalData.title), // Final safety check
                     slug,
                     category,
-                    image: localImage || '/default-news.jpg',
+                    image: localImage || `https://source.unsplash.com/featured/?${category},news&sig=${Math.random()}`,
                     savedAt: new Date().toISOString(),
                     pubDate: new Date().toISOString(),
                     source: link
@@ -117,7 +134,16 @@ async function seed() {
     files.forEach(f => {
         try {
             const d = JSON.parse(fs.readFileSync(path.join(STORAGE_DIR, f)));
-            articles.push({ slug: d.slug, title: d.title, category: d.category, image: d.image, tldr: d.tldr, savedAt: d.savedAt, pubDate: d.pubDate });
+            articles.push({
+                slug: d.slug,
+                title: d.title,
+                category: d.category,
+                image: d.image,
+                tldr: d.tldr,
+                savedAt: d.savedAt,
+                pubDate: d.pubDate,
+                metaDescription: d.metaDescription
+            });
         } catch (e) { }
     });
     fs.writeFileSync(INDEX_FILE, JSON.stringify({ articles }, null, 2));
