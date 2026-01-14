@@ -7,12 +7,18 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 3600;
 
+import { downloadMedia } from '@/lib/mediaHandler';
+
 /**
  * Self-healing logic (Server-side)
- * Re-fetches and re-generates article if missing from local store
+ * Re-fetches, re-generates, and repairs high-quality articles & media
  */
-async function selfHealArticle(slug) {
-    console.log(`🔧 Self-healing triggered: ${slug}`);
+async function selfHealArticle(slug, existingArticle = null) {
+    console.log(`🔧 Self-healing triggered: ${slug} (${existingArticle ? 'Repairing' : 'Fresh Fetch'})`);
+
+    // Check if we already have content but it's too short (Thin content protection)
+    const isThinContent = existingArticle && (existingArticle.content?.length < 1500 || existingArticle.content?.split(' ').length < 300);
+
     try {
         for (const [category, url] of Object.entries(FEEDS)) {
             const feed = await fetchFeed(url);
@@ -21,28 +27,50 @@ async function selfHealArticle(slug) {
             const match = feed.items.find(item => generateSlug(item.title) === slug);
             if (match) {
                 const basicData = {
-                    title: match.title || 'Untitled',
-                    content: match.contentSnippet || match.content || match.description || "",
-                    link: match.link || '#',
-                    pubDate: match.pubDate || new Date().toISOString(),
-                    originalSource: match.creator || "News Source",
+                    title: match.title || existingArticle?.title || 'Untitled',
+                    content: match.contentSnippet || match.content || match.description || existingArticle?.content || "",
+                    link: match.link || existingArticle?.source || '#',
+                    pubDate: match.pubDate || existingArticle?.pubDate || new Date().toISOString(),
+                    originalSource: match.creator || existingArticle?.originalSource || "Global News",
                     category: category
                 };
 
-                let imageUrl = null;
-                let videoUrl = null;
+                let remoteImageUrl = null;
+                let remoteVideoUrl = null;
 
-                if (match.enclosure?.url) imageUrl = match.enclosure.url;
-                else if (match['media:content']?.['$']?.url) imageUrl = match['media:content']['$'].url;
+                // Media Extraction from Feed Item
+                if (match.enclosure?.url) remoteImageUrl = match.enclosure.url;
+                else if (match['media:content']?.['$']?.url) remoteImageUrl = match['media:content']['$'].url;
 
                 if (match.link?.includes('youtube.com/watch')) {
                     const videoId = match.link.split('v=')[1]?.split('&')[0];
-                    if (videoId) videoUrl = `https://www.youtube.com/embed/${videoId}`;
+                    if (videoId) remoteVideoUrl = `https://www.youtube.com/embed/${videoId}`;
                 }
 
-                const prompt = `Rewrite this news as a 400-600 word SEO article with headers. Return strictly JSON.
+                // Force Media Local Preservation
+                const localImage = await downloadMedia(remoteImageUrl || existingArticle?.image, slug, 'image');
+                const localVideo = await downloadMedia(remoteVideoUrl || existingArticle?.videoUrl, slug, 'video');
+
+                // High-Quality AI Expansion (Rules Enforced)
+                const prompt = `You are a Lead AI News Analyst. Reconstruct this news article into a comprehensive, long-form SEO report.
+                Strict Requirements:
+                - Word Count: 400-600 words.
+                - Structure: Professional H1 Title, H2 and H3 Subheadings.
+                - Format: Markdown.
+                - Additional: 3 TL;DR Bullet Points, 5 SEO Keywords, and a 160-char Meta Description.
+                
+                Source Data:
                 Title: ${basicData.title}
-                Text: ${basicData.content.substring(0, 1000)}`;
+                Snippet: ${basicData.content.substring(0, 1500)}
+                
+                Return JSON:
+                {
+                  "title": "Optimized Headline",
+                  "content": "Full markdown content with #, ##, ### headers...",
+                  "tldr": ["Point 1", "Point 2", "Point 3"],
+                  "metaDescription": "...",
+                  "keywords": ["tag1", "tag2", "tag3"]
+                }`;
 
                 const result = await model.generateContent(prompt);
                 const response = await result.response;
@@ -51,25 +79,28 @@ async function selfHealArticle(slug) {
                 const final = {
                     ...basicData,
                     ...aiData,
-                    image: imageUrl || '/default-news.jpg',
-                    videoUrl,
+                    image: localImage || '/default-news.jpg',
+                    videoUrl: localVideo || null,
                     slug
                 };
 
                 saveArticle(final, category);
+                console.log(`✅ Article Healed & Persisted: ${slug}`);
                 return final;
             }
         }
     } catch (e) {
-        console.error("Self-heal failed:", e.message);
+        console.error(`❌ Self-heal critical failure for ${slug}:`, e.message);
     }
-    return null;
+    return existingArticle; // Return what we have if heal fails
 }
 
 export async function generateMetadata({ params }) {
     const { slug } = params;
     let article = await getArticleBySlug(slug);
-    if (!article) article = await selfHealArticle(slug);
+
+    const isThin = article && (article.content?.length < 1500 || !article.image?.startsWith('/media'));
+    if (!article || isThin) article = await selfHealArticle(slug, article);
 
     if (!article) return { title: 'Article Not Found | Global Brief' };
 
@@ -122,8 +153,11 @@ export default async function ArticlePage({ params }) {
     const { slug } = params;
     let article = await getArticleBySlug(slug);
 
-    if (!article) {
-        article = await selfHealArticle(slug);
+    // Trigger healing if missing OR content is too thin
+    const isThin = article && (article.content?.length < 1500 || !article.image?.startsWith('/media'));
+
+    if (!article || isThin) {
+        article = await selfHealArticle(slug, article);
     }
 
     if (!article) {
@@ -149,7 +183,13 @@ export default async function ArticlePage({ params }) {
                             </span>
                             <span className="flex items-center gap-2">
                                 <Calendar size={16} />
-                                {new Date(article.pubDate || article.date).toLocaleDateString(undefined, { dateStyle: 'long' })}
+                                {(() => {
+                                    try {
+                                        return new Date(article.pubDate || article.date || new Date()).toLocaleDateString(undefined, { dateStyle: 'long' });
+                                    } catch (e) {
+                                        return new Date().toLocaleDateString(undefined, { dateStyle: 'long' });
+                                    }
+                                })()}
                             </span>
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black text-white leading-[1.1] mb-8 drop-shadow-2xl">
