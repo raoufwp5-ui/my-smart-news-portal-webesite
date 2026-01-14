@@ -111,10 +111,18 @@ export async function generateMetadata({ params }) {
         const description = article.metaDescription || article.meta_description || (article.tldr ? article.tldr[0] : article.title);
 
         return {
+            metadataBase: new URL('https://my-smart-news-portal-webesite.vercel.app'),
             title: article.title,
             description: description.substring(0, 160),
             keywords: article.keywords?.join(', '),
             openGraph: {
+                title: article.title,
+                description: description,
+                images: [article.image],
+                url: `https://my-smart-news-portal-webesite.vercel.app/article/${slug}`,
+            },
+            twitter: {
+                card: 'summary_large_image',
                 title: article.title,
                 description: description,
                 images: [article.image],

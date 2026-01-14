@@ -26,6 +26,8 @@ export default function NewsCard({ article }) {
         e.target.src = '/default-news.jpg';
     };
 
+    const productionUrl = 'https://my-smart-news-portal-webesite.vercel.app';
+
     return (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full group">
             <Link href={`/article/${slug}`} className="block relative aspect-video overflow-hidden">
@@ -77,20 +79,20 @@ export default function NewsCard({ article }) {
                         '@context': 'https://schema.org',
                         '@type': 'NewsArticle',
                         headline: title,
-                        image: [image || 'https://globalbrief.vercel.app/default-news.jpg'],
+                        image: [image || `${productionUrl}/default-news.jpg`],
                         datePublished: date,
                         dateModified: new Date().toISOString(),
                         author: [{
                             '@type': 'Organization',
                             name: 'Global Brief Staff',
-                            url: 'https://globalbrief.vercel.app'
+                            url: productionUrl
                         }],
                         publisher: {
                             '@type': 'Organization',
                             name: 'Global Brief',
                             logo: {
                                 '@type': 'ImageObject',
-                                url: 'https://globalbrief.vercel.app/logo.png'
+                                url: `${productionUrl}/logo.png`
                             }
                         },
                         description: article.tldr ? article.tldr[0] : article.title || content.substring(0, 150)

@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 export const revalidate = 3600;
 
-const VALID_CATEGORIES = ['business', 'technology', 'politics', 'sports'];
+const VALID_CATEGORIES = ['business', 'technology', 'politics', 'sports', 'general'];
 
 export function generateMetadata({ params }) {
     const { category } = params;
@@ -45,8 +45,21 @@ export default function CategoryPage({ params }) {
 
     const title = category.charAt(0).toUpperCase() + category.slice(1);
 
+    // Structured Data for SEO
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: `${title} News | Global Brief`,
+        description: description,
+        url: `https://my-smart-news-portal-webesite.vercel.app/${category}`,
+    };
+
     return (
         <div>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <header className="mb-10 text-center">
                 <h1 className="text-4xl font-bold mb-4 capitalize text-gray-900 dark:text-gray-100">
                     {title} News

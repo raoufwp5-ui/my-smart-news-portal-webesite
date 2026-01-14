@@ -34,9 +34,9 @@ export async function GET(request) {
             return NextResponse.json({ error: 'No news items available' }, { status: 404 });
         }
 
-        // Process strictly top 5 articles from the feed
-        const articlesToProcess = feed.items.slice(0, 5);
-        console.log(`🔄 Processing strictly 5 articles for ${category}...`);
+        // Process strictly top 8 articles from the feed for high-volume delivery
+        const articlesToProcess = feed.items.slice(0, 8);
+        console.log(`🔄 Processing strictly 8 premium articles for ${category}...`);
 
         await Promise.all(articlesToProcess.map(async (item) => {
             const tempSlug = generateSlug(item.title);
