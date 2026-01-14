@@ -1,14 +1,14 @@
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { NextResponse } from 'next/server';
 import { saveArticle, generateSlug, getArticlesByCategory } from '@/lib/articleStore';
-import { downloadMedia } from '@/lib/mediaHandler';
+import { downloadMedia, extractOGImage } from '@/lib/mediaHandler';
 import { model } from '@/lib/gemini';
 
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
-    console.log('🔵 API /generate-news v3.0 - AI News Engine');
+    console.log('🔵 API /generate-news v4.0 - Advanced Media Engine');
 
     try {
         const { searchParams } = new URL(request.url);
@@ -49,11 +49,19 @@ export async function GET(request) {
                 category
             };
 
-            // Media Preservation
+            // Enhanced Media Scraper
             let remoteImageUrl = null;
             let videoUrl = null;
+
+            // 1. Try RSS direct fields
             if (item.enclosure?.url) remoteImageUrl = item.enclosure.url;
             else if (item['media:content']?.['$']?.url) remoteImageUrl = item['media:content']['$'].url;
+            else if (item['media:thumbnail']?.['$']?.url) remoteImageUrl = item['media:thumbnail']['$'].url;
+
+            // 2. Try OG Scraping if RSS fails
+            if (!remoteImageUrl && item.link) {
+                remoteImageUrl = await extractOGImage(item.link);
+            }
 
             if (item.link?.includes('youtube.com/watch')) {
                 const videoId = item.link.split('v=')[1]?.split('&')[0];

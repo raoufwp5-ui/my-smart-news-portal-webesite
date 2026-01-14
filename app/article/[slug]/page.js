@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = 3600;
 
-import { downloadMedia } from '@/lib/mediaHandler';
+import { extractOGImage, downloadMedia } from '@/lib/mediaHandler';
 
 /**
  * Self-healing logic (Server-side)
@@ -34,9 +34,14 @@ async function selfHealArticle(slug, existingArticle = null) {
                     link: match.link || existingArticle?.source || '#',
                     pubDate: match.pubDate || existingArticle?.pubDate || new Date().toISOString(),
                     originalSource: match.creator || existingArticle?.originalSource || "Global News",
-                    remoteImageUrl: match.enclosure?.url || (match['media:content']?.['$']?.url),
+                    remoteImageUrl: match.enclosure?.url || (match['media:content']?.['$']?.url) || (match['media:thumbnail']?.['$']?.url),
                     remoteVideoUrl: match.link?.includes('youtube.com/watch') ? `https://www.youtube.com/embed/${match.link.split('v=')[1]?.split('&')[0]}` : null
                 };
+
+                // Try scraping if RSS media is missing
+                if (!sourceData.remoteImageUrl && sourceData.link) {
+                    sourceData.remoteImageUrl = await extractOGImage(sourceData.link);
+                }
                 break;
             }
         }
@@ -49,9 +54,14 @@ async function selfHealArticle(slug, existingArticle = null) {
                 link: existingArticle.source || existingArticle.link || '#',
                 pubDate: existingArticle.pubDate || existingArticle.date || new Date().toISOString(),
                 originalSource: existingArticle.originalSource || "Archive",
-                remoteImageUrl: existingArticle.image,
+                remoteImageUrl: existingArticle.image?.startsWith('http') ? existingArticle.image : null,
                 remoteVideoUrl: existingArticle.videoUrl
             };
+
+            // Scraping last resort for archive articles
+            if (!sourceData.remoteImageUrl && sourceData.link && sourceData.link !== '#') {
+                sourceData.remoteImageUrl = await extractOGImage(sourceData.link);
+            }
         }
 
         if (!sourceData) return existingArticle;
