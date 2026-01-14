@@ -147,8 +147,14 @@ export async function generateMetadata({ params }) {
     }
 
     return {
-        title: `${article.title} | Global Brief`,
-        description: article.tldr ? article.tldr[0] : article.title,
+        title: article.title,
+        description: article.meta_description || (article.tldr ? article.tldr[0] : article.title),
+        keywords: article.keywords?.join(', '),
+        openGraph: {
+            title: article.title,
+            description: article.meta_description,
+            images: [article.image],
+        }
     };
 }
 
@@ -246,11 +252,22 @@ export default async function ArticlePage({ params }) {
 
                                 return (
                                     <p key={idx} className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
-                                        {paragraph}
+                                        {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
                                     </p>
                                 );
                             }) : <p className="text-gray-500 italic">Analysis engine processing... Please refer to original source below.</p>}
                         </div>
+
+                        {/* Keywords / Tags */}
+                        {article.keywords && (
+                            <div className="mt-12 flex flex-wrap gap-2">
+                                {article.keywords.map((tag, i) => (
+                                    <span key={i} className="text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-500 px-3 py-1 rounded-full uppercase tracking-widest">
+                                        #{tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
 
                         {/* Meta / Source Footer */}
                         <div className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
