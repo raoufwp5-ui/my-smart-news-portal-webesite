@@ -1,6 +1,198 @@
 {
   "articles": [
     {
+      "slug": "i-watched-the-lakers-bucks-game-courtside-on-apple-vision-pro-it-left-me-wanting-more-cnet",
+      "title": "I Watched the Lakers-Bucks Game Courtside on Apple Vision Pro. It Left Me Wanting More - CNET",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.429Z",
+      "pubDate": "Tue, 13 Jan 2026 14:01:00 GMT",
+      "metaDescription": "I Watched the Lakers-Bucks Game Courtside on Apple Vision Pro. It Left Me Wanting More - CNET"
+    },
+    {
+      "slug": "nvidia-s-new-app-update-includes-dlss-4-5-and-more-control-panel-features-the-verge",
+      "title": "Nvidia’s new app update includes DLSS 4.5 and more Control Panel features - The Verge",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.424Z",
+      "pubDate": "Wed, 14 Jan 2026 14:00:00 GMT",
+      "metaDescription": "Nvidia’s new app update includes DLSS 4.5 and more Control Panel features - The Verge"
+    },
+    {
+      "slug": "signal-s-founder-turns-his-attention-to-ai-s-privacy-problem-gizmodo",
+      "title": "Signal’s Founder Turns His Attention to AI’s Privacy Problem - Gizmodo",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.420Z",
+      "pubDate": "Tue, 13 Jan 2026 21:40:20 GMT",
+      "metaDescription": "Signal’s Founder Turns His Attention to AI’s Privacy Problem - Gizmodo"
+    },
+    {
+      "slug": "gemini-can-now-pull-context-the-rest-of-your-google-apps-if-you-let-it-engadget",
+      "title": "Gemini can now pull context the rest of your Google apps, if you let it - Engadget",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.417Z",
+      "pubDate": "Wed, 14 Jan 2026 16:00:39 GMT",
+      "metaDescription": "Gemini can now pull context the rest of your Google apps, if you let it - Engadget"
+    },
+    {
+      "slug": "apple-may-have-hinted-at-a-high-end-macbook-pro-launch-on-january-28-9to5mac",
+      "title": "Apple may have hinted at a high-end MacBook Pro launch on January 28 - 9to5Mac",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.413Z",
+      "pubDate": "Wed, 14 Jan 2026 11:58:00 GMT",
+      "metaDescription": "Apple may have hinted at a high-end MacBook Pro launch on January 28 - 9to5Mac"
+    },
+    {
+      "slug": "leaker-details-iphone-18-lineup-screen-sizes-dynamic-island-plans-9to5mac",
+      "title": "Leaker details iPhone 18 lineup screen sizes, Dynamic Island plans - 9to5Mac",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.404Z",
+      "pubDate": "Wed, 14 Jan 2026 14:39:00 GMT",
+      "metaDescription": "Leaker details iPhone 18 lineup screen sizes, Dynamic Island plans - 9to5Mac"
+    },
+    {
+      "slug": "samsung-galaxy-s26-ultra-gets-updated-release-date-forbes",
+      "title": "Samsung Galaxy S26 Ultra Gets Updated Release Date - Forbes",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.397Z",
+      "pubDate": "Tue, 13 Jan 2026 19:21:00 GMT",
+      "metaDescription": "Samsung Galaxy S26 Ultra Gets Updated Release Date - Forbes"
+    },
+    {
+      "slug": "popular-pc-franchise-civilization-comes-to-apple-arcade-on-february-5-apple",
+      "title": "Popular PC franchise Civilization comes to Apple Arcade on February 5 - Apple",
+      "category": "technology",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:48:05.389Z",
+      "pubDate": "Wed, 14 Jan 2026 15:04:29 GMT",
+      "metaDescription": "Popular PC franchise Civilization comes to Apple Arcade on February 5 - Apple"
+    },
+    {
+      "slug": "s-p-500-falls-1-under-pressure-by-tech-bank-of-america-wells-fargo-slip-after-earnings-live-updates-cnbc",
+      "title": "S&P 500 falls 1%, under pressure by tech; Bank of America, Wells Fargo slip after earnings: Live updates - CNBC",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.844Z",
+      "pubDate": "Wed, 14 Jan 2026 17:41:00 GMT",
+      "metaDescription": "S&P 500 falls 1%, under pressure by tech; Bank of America, Wells Fargo slip after earnings: Live updates - CNBC"
+    },
+    {
+      "slug": "bofa-tops-estimates-as-trading-beats-and-lending-revenue-rises-yahoo-finance",
+      "title": "BofA Tops Estimates as Trading Beats and Lending Revenue Rises - Yahoo Finance",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.791Z",
+      "pubDate": "Wed, 14 Jan 2026 14:42:32 GMT",
+      "metaDescription": "BofA Tops Estimates as Trading Beats and Lending Revenue Rises - Yahoo Finance"
+    },
+    {
+      "slug": "proposed-billionaires-tax-in-california-rattles-silicon-valley-entangles-gov-newsom-ap-news",
+      "title": "Proposed billionaires’ tax in California rattles Silicon Valley, entangles Gov. Newsom - AP News",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.747Z",
+      "pubDate": "Wed, 14 Jan 2026 05:11:00 GMT",
+      "metaDescription": "Proposed billionaires’ tax in California rattles Silicon Valley, entangles Gov. Newsom - AP News"
+    },
+    {
+      "slug": "meet-bilt-card-2-0-the-richest-rewards-on-rent-mortgage-and-everything-else-bilt-rewards",
+      "title": "Meet Bilt Card 2.0: The Richest Rewards on Rent, Mortgage, and Everything Else - Bilt Rewards",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.726Z",
+      "pubDate": "Wed, 14 Jan 2026 17:04:48 GMT",
+      "metaDescription": "Meet Bilt Card 2.0: The Richest Rewards on Rent, Mortgage, and Everything Else - Bilt Rewards"
+    },
+    {
+      "slug": "luxury-retailer-saks-seeks-bankruptcy-protection-overwhelmed-by-debt-abc-news",
+      "title": "Luxury retailer Saks seeks bankruptcy protection overwhelmed by debt - ABC News",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.697Z",
+      "pubDate": "Wed, 14 Jan 2026 13:18:21 GMT",
+      "metaDescription": "Luxury retailer Saks seeks bankruptcy protection overwhelmed by debt - ABC News"
+    },
+    {
+      "slug": "how-have-prices-changed-in-a-year-npr-checked-114-items-at-walmart-npr",
+      "title": "How have prices changed in a year? NPR checked 114 items at Walmart - NPR",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.691Z",
+      "pubDate": "Wed, 14 Jan 2026 10:01:00 GMT",
+      "metaDescription": "How have prices changed in a year? NPR checked 114 items at Walmart - NPR"
+    },
+    {
+      "slug": "china-announces-record-trade-surplus-as-its-exports-flood-world-markets-the-new-york-times",
+      "title": "China Announces Record Trade Surplus as Its Exports Flood World Markets - The New York Times",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.660Z",
+      "pubDate": "Wed, 14 Jan 2026 15:23:00 GMT",
+      "metaDescription": "China Announces Record Trade Surplus as Its Exports Flood World Markets - The New York Times"
+    },
+    {
+      "slug": "citi-s-m-a-fee-haul-surges-84-to-cap-record-dealmaking-year-bloomberg-com",
+      "title": "Citi’s M&A Fee Haul Surges 84% to Cap Record Dealmaking Year - Bloomberg.com",
+      "category": "business",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "Update in progress"
+      ],
+      "savedAt": "2026-01-14T18:44:57.635Z",
+      "pubDate": "Wed, 14 Jan 2026 13:30:50 GMT",
+      "metaDescription": "Citi’s M&A Fee Haul Surges 84% to Cap Record Dealmaking Year - Bloomberg.com"
+    },
+    {
       "slug": "at-least-6-minnesota-federal-prosecutors-resign-amid-pressure-to-treat-renee-good-killing-as-assault-on-ice-agent-cbs-news",
       "title": "At least 6 Minnesota federal prosecutors resign amid pressure to treat Renee Good killing as assault on ICE agent - CBS News",
       "category": "general",
@@ -69,13 +261,6 @@
       "category": "general",
       "savedAt": "2026-01-14T10:56:09.174Z",
       "pubDate": "Wed, 14 Jan 2026 03:48:00 GMT"
-    },
-    {
-      "slug": "china-announces-record-trade-surplus-as-its-exports-flood-world-markets-the-new-york-times",
-      "title": "China Announces Record Trade Surplus as Its Exports Flood World Markets - The New York Times",
-      "category": "general",
-      "savedAt": "2026-01-14T10:56:09.154Z",
-      "pubDate": "Wed, 14 Jan 2026 05:33:00 GMT"
     }
   ]
 }

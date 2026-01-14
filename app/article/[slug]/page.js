@@ -16,83 +16,90 @@ import { downloadMedia } from '@/lib/mediaHandler';
 async function selfHealArticle(slug, existingArticle = null) {
     console.log(`🔧 Self-healing triggered: ${slug} (${existingArticle ? 'Repairing' : 'Fresh Fetch'})`);
 
-    // Check if we already have content but it's too short (Thin content protection)
-    const isThinContent = existingArticle && (existingArticle.content?.length < 1500 || existingArticle.content?.split(' ').length < 300);
-
     try {
-        for (const [category, url] of Object.entries(FEEDS)) {
+        let sourceData = null;
+        let category = existingArticle?.category || 'general';
+
+        // 1. Try to find in RSS feeds first
+        for (const [cat, url] of Object.entries(FEEDS)) {
             const feed = await fetchFeed(url);
             if (!feed?.items) continue;
 
             const match = feed.items.find(item => generateSlug(item.title) === slug);
             if (match) {
-                const basicData = {
+                category = cat;
+                sourceData = {
                     title: match.title || existingArticle?.title || 'Untitled',
                     content: match.contentSnippet || match.content || match.description || existingArticle?.content || "",
                     link: match.link || existingArticle?.source || '#',
                     pubDate: match.pubDate || existingArticle?.pubDate || new Date().toISOString(),
                     originalSource: match.creator || existingArticle?.originalSource || "Global News",
-                    category: category
+                    remoteImageUrl: match.enclosure?.url || (match['media:content']?.['$']?.url),
+                    remoteVideoUrl: match.link?.includes('youtube.com/watch') ? `https://www.youtube.com/embed/${match.link.split('v=')[1]?.split('&')[0]}` : null
                 };
-
-                let remoteImageUrl = null;
-                let remoteVideoUrl = null;
-
-                // Media Extraction from Feed Item
-                if (match.enclosure?.url) remoteImageUrl = match.enclosure.url;
-                else if (match['media:content']?.['$']?.url) remoteImageUrl = match['media:content']['$'].url;
-
-                if (match.link?.includes('youtube.com/watch')) {
-                    const videoId = match.link.split('v=')[1]?.split('&')[0];
-                    if (videoId) remoteVideoUrl = `https://www.youtube.com/embed/${videoId}`;
-                }
-
-                // Force Media Local Preservation
-                const localImage = await downloadMedia(remoteImageUrl || existingArticle?.image, slug, 'image');
-                const localVideo = await downloadMedia(remoteVideoUrl || existingArticle?.videoUrl, slug, 'video');
-
-                // High-Quality AI Expansion (Rules Enforced)
-                const prompt = `You are a Lead AI News Analyst. Reconstruct this news article into a comprehensive, long-form SEO report.
-                Strict Requirements:
-                - Word Count: 400-600 words.
-                - Structure: Professional H1 Title, H2 and H3 Subheadings.
-                - Format: Markdown.
-                - Additional: 3 TL;DR Bullet Points, 5 SEO Keywords, and a 160-char Meta Description.
-                
-                Source Data:
-                Title: ${basicData.title}
-                Snippet: ${basicData.content.substring(0, 1500)}
-                
-                Return JSON:
-                {
-                  "title": "Optimized Headline",
-                  "content": "Full markdown content with #, ##, ### headers...",
-                  "tldr": ["Point 1", "Point 2", "Point 3"],
-                  "metaDescription": "...",
-                  "keywords": ["tag1", "tag2", "tag3"]
-                }`;
-
-                const result = await model.generateContent(prompt);
-                const response = await result.response;
-                const aiData = JSON.parse(response.text().replace(/```json|```/g, '').trim());
-
-                const final = {
-                    ...basicData,
-                    ...aiData,
-                    image: localImage || '/default-news.jpg',
-                    videoUrl: localVideo || null,
-                    slug
-                };
-
-                saveArticle(final, category);
-                console.log(`✅ Article Healed & Persisted: ${slug}`);
-                return final;
+                break;
             }
         }
+
+        // 2. Fallback to existing article data if not in RSS
+        if (!sourceData && existingArticle) {
+            sourceData = {
+                title: existingArticle.title,
+                content: existingArticle.content || existingArticle.tldr?.join(' ') || "",
+                link: existingArticle.source || existingArticle.link || '#',
+                pubDate: existingArticle.pubDate || existingArticle.date || new Date().toISOString(),
+                originalSource: existingArticle.originalSource || "Archive",
+                remoteImageUrl: existingArticle.image,
+                remoteVideoUrl: existingArticle.videoUrl
+            };
+        }
+
+        if (!sourceData) return existingArticle;
+
+        // 3. Process Media
+        const localImage = await downloadMedia(sourceData.remoteImageUrl, slug, 'image');
+        const localVideo = await downloadMedia(sourceData.remoteVideoUrl, slug, 'video');
+
+        // 4. Transform to Premium Content
+        const prompt = `You are a Lead AI News Analyst. Reconstruct this news article into a comprehensive, long-form SEO report.
+        Strict Requirements:
+        - Word Count: 400-600 words.
+        - Structure: Professional H1 Title, H2 and H3 Subheadings.
+        - Format: Markdown.
+        - Additional: 3 TL;DR Bullet Points, 5 SEO Keywords, and a 160-char Meta Description.
+        
+        Source Data:
+        Title: ${sourceData.title}
+        Snippet: ${sourceData.content.substring(0, 1500)}
+        
+        Return JSON:
+        {
+          "title": "Optimized Headline",
+          "content": "Full markdown content with #, ##, ### headers...",
+          "tldr": ["Point 1", "Point 2", "Point 3"],
+          "metaDescription": "...",
+          "keywords": ["tag1", "tag2", "tag3"]
+        }`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const aiData = JSON.parse(response.text().replace(/```json|```/g, '').trim());
+
+        const final = {
+            ...sourceData,
+            ...aiData,
+            image: localImage || '/default-news.jpg',
+            videoUrl: localVideo || sourceData.remoteVideoUrl || null,
+            slug
+        };
+
+        saveArticle(final, category);
+        return final;
+
     } catch (e) {
         console.error(`❌ Self-heal critical failure for ${slug}:`, e.message);
+        return existingArticle;
     }
-    return existingArticle; // Return what we have if heal fails
 }
 
 export async function generateMetadata({ params }) {
@@ -134,36 +141,7 @@ export async function generateMetadata({ params }) {
     }
 }
 
-// Client-side capable safe components
-function SafeImage({ src, alt, className, style }) {
-    const fallback = '/default-news.jpg';
-    return (
-        <img
-            src={src || fallback}
-            alt={alt}
-            className={className}
-            style={style}
-            onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = fallback;
-            }}
-        />
-    );
-}
-
-function VideoPlayer({ url }) {
-    if (!url) return null;
-    return (
-        <div className="mb-12 aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl border-4 border-gray-100 dark:border-gray-800">
-            <iframe
-                src={url}
-                className="w-full h-full"
-                allowFullScreen
-                title="Video Content"
-            />
-        </div>
-    );
-}
+import { SafeImage, VideoPlayer } from '@/components/ArticleMedia';
 
 export default async function ArticlePage({ params }) {
     const { slug } = params;
