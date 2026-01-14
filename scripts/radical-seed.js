@@ -102,11 +102,11 @@ async function downloadAndSaveImage(url, slug, fallbackCategory) {
 
     // Fallback if download fails or URL is missing
     if (!buffer) {
-        console.log(`    ⚠️  Source image unavailable. Fetching fallback for [${fallbackCategory}]...`);
-        // Use picsum with a seed based on slug to ensure PERMANENT consistency and uniqueness per article
-        // This solves the "repeated image" problem decisively.
-        const fallbackUrl = `https://picsum.photos/seed/${slug}/800/600`;
-        console.log(`    🔗 Fallback URL: ${fallbackUrl}`);
+        console.log(`    ⚠️  Source image unavailable. Fetching relevant fallback for [${fallbackCategory}]...`);
+        // Use LoremFlickr with category keywords for relevance, and a hash-based lock for consistency/uniqueness
+        const lockId = slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        const fallbackUrl = `https://loremflickr.com/800/600/${fallbackCategory},news/all?lock=${lockId}`;
+        console.log(`    🔗 Semantic Fallback: ${fallbackUrl}`);
         buffer = await safeFetch(fallbackUrl, true);
     }
 
@@ -205,15 +205,27 @@ async function seed() {
             // --- AI GENERATION ---
             let finalData = null;
             try {
-                const prompt = `Rewrite this news title: "${title}" into a comprehensive 600-word Markdown news article.
-                Context: This is for a ${category} section.
+                // Updated Prompt for Long-Form, High-Quality Journalism
+                const prompt = `You are a senior investigative journalist for a major global news network (like BBC, CNN, or Reuters).
+                Rewrite this news title: "${title}" into a comprehensive, deep-dive feature article.
+
+                STRICT GUIDELINES:
+                1.  **Length**: MUST be 800 - 1200 words. Do not write short summaries.
+                2.  **Tone**: Professional, objective, authoritative, and engaging.
+                3.  **Structure**:
+                    -   **Headline**: Catchy, SEO-optimized.
+                    -   **Lead Paragraph**: Strong hook, answering Who, What, When, Where, Why.
+                    -   **Deep Analysis**: Use ## subheaders to break down background context, expert opinions, and future implications.
+                    -   **Key Highlights**: A clear list of facts.
+                4.  **Formatting**: Use Markdown (##, ###, **bold**, > blockquotes).
+
                 Output structure (JSON only):
                 {
                     "title": "Engaging Headline",
-                    "content": "Article body in markdown with headers...",
-                    "tldr": ["Key point 1", "Key point 2"],
-                    "metaDescription": "SEO summary",
-                    "keywords": ["tag1", "tag2"]
+                    "content": "Full markdown content with headers...",
+                    "tldr": ["Key point 1", "Key point 2", "Key point 3"],
+                    "metaDescription": "Compelling SEO summary (150-160 chars)",
+                    "keywords": ["tag1", "tag2", "tag3", "tag4", "tag5"]
                 }`;
 
                 const result = await generateWithRetry(prompt);
