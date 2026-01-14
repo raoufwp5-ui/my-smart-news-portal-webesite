@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { Calendar, ExternalLink } from 'lucide-react';
+import { Calendar, ExternalLink, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 export default function NewsCard({ article }) {
