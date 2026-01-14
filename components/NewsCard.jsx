@@ -37,19 +37,19 @@ export default function NewsCard({ article }) {
                     onError={handleImageError}
                     className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-2 right-2 bg-blue-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-tight">
+                <div className="absolute top-2 right-2 bg-red-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-tight">
                     {article.originalSource || 'Global News'}
                 </div>
             </Link>
 
             <div className="p-5 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-full uppercase tracking-wider">
+                    <span className="text-xs font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-2 py-1 rounded-full uppercase tracking-wider">
                         {new Date(article.pubDate || article.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                     </span>
                 </div>
 
-                <Link href={`/article/${slug}`} className="group-hover:text-blue-600 transition-colors">
+                <Link href={`/article/${slug}`} className="group-hover:text-red-600 transition-colors">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 leading-tight">
                         {article.title}
                     </h2>
@@ -64,7 +64,7 @@ export default function NewsCard({ article }) {
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
                     <Link
                         href={`/article/${slug}`}
-                        className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 flex items-center gap-1 transition-all group/link"
+                        className="text-sm font-semibold text-red-600 dark:text-red-400 hover:text-red-700 flex items-center gap-1 transition-all group/link"
                     >
                         Read Full Story <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
                     </Link>

@@ -18,33 +18,33 @@ export default function Footer() {
                     <div>
                         <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Categories</h3>
                         <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                            <li><Link href="/business" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Business</Link></li>
-                            <li><Link href="/technology" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Technology</Link></li>
-                            <li><Link href="/politics" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Politics</Link></li>
-                            <li><Link href="/sports" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sports</Link></li>
+                            <li><Link href="/business" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Business</Link></li>
+                            <li><Link href="/technology" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Technology</Link></li>
+                            <li><Link href="/politics" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Politics</Link></li>
+                            <li><Link href="/sports" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Sports</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Company</h3>
                         <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                            <li><Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About Us</Link></li>
-                            <li><Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</Link></li>
-                            <li><Link href="#" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="/sitemap.xml" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sitemap</Link></li>
+                            <li><Link href="#" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">About Us</Link></li>
+                            <li><Link href="#" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Contact</Link></li>
+                            <li><Link href="#" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Privacy Policy</Link></li>
+                            <li><Link href="/sitemap.xml" className="hover:text-red-600 dark:hover:text-red-400 transition-colors">Sitemap</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Follow Us</h3>
                         <div className="flex space-x-4">
-                            <a href="#" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-600 dark:hover:bg-blue-900/30 dark:hover:text-blue-400 transition-all">
+                            <a href="#" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 transition-all">
                                 <Twitter size={18} />
                             </a>
                             <a href="#" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white transition-all">
                                 <Github size={18} />
                             </a>
-                            <a href="#" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 hover:bg-blue-100 hover:text-blue-800 dark:hover:bg-blue-900/30 dark:hover:text-blue-400 transition-all">
+                            <a href="#" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 hover:bg-red-100 hover:text-red-800 dark:hover:bg-red-900/30 dark:hover:text-red-400 transition-all">
                                 <Facebook size={18} />
                             </a>
                             <a href="#" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 transition-all">

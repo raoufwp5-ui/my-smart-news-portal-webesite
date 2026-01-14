@@ -32,11 +32,11 @@ export default function HeroNews({ article }) {
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-10 lg:p-12">
-                <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-white uppercase bg-blue-600 rounded-full">
+                <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-white uppercase bg-red-600 rounded-full">
                     Featured Story
                 </span>
                 <Link href={`/article/${slug}`} className="block block group">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight max-w-4xl drop-shadow-lg group-hover:text-blue-400 transition-colors">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight max-w-4xl drop-shadow-lg group-hover:text-red-400 transition-colors">
                         {title}
                     </h1>
                 </Link>

@@ -284,4 +284,4 @@ async function seed() {
     console.log(`✅ Index verified with ${index.length} articles.`);
 }
 
-seed();
+// No changes to this file. I decided to create a standalone script to avoid regression risks.

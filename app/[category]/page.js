@@ -71,16 +71,16 @@ export default function CategoryPage({ params }) {
             />
 
             <header className="mb-12 text-center">
-                <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-blue-600 uppercase bg-blue-50 dark:bg-blue-900/20 rounded-full">
+                <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-red-600 uppercase bg-red-50 dark:bg-red-900/20 rounded-full">
                     World Category
                 </div>
                 <h1 className="text-4xl md:text-6xl font-black mb-6 capitalize text-gray-900 dark:text-gray-100 drop-shadow-sm">
-                    {title} <span className="text-blue-600">News</span>
+                    {title} <span className="text-red-600">News</span>
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg mb-8">
                     {description}
                 </p>
-                <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 to-transparent mx-auto rounded-full"></div>
+                <div className="w-32 h-1.5 bg-gradient-to-r from-red-600 to-transparent mx-auto rounded-full"></div>
             </header>
 
             <main>

@@ -152,6 +152,7 @@ export async function generateMetadata({ params }) {
 }
 
 import { SafeImage, VideoPlayer } from '@/components/ArticleMedia';
+import SocialShare from '@/components/SocialShare';
 
 export default async function ArticlePage({ params }) {
     const { slug } = params;
@@ -184,7 +185,7 @@ export default async function ArticlePage({ params }) {
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 container mx-auto">
                         <div className="max-w-4xl">
                             <div className="flex items-center justify-center gap-4 text-white/90 mb-6 text-sm font-bold uppercase tracking-widest">
-                                <span className="bg-blue-600 px-4 py-1.5 rounded-full text-white">
+                                <span className="bg-red-600 px-4 py-1.5 rounded-full text-white">
                                     {article.category || 'News'}
                                 </span>
                                 <span className="flex items-center gap-2">
@@ -210,7 +211,7 @@ export default async function ArticlePage({ params }) {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
 
                         <div className="lg:col-span-8 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-14 border border-gray-100 dark:border-gray-800">
-                            <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
+                            <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
                                 <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> Back to Home
                             </Link>
 
@@ -250,10 +251,12 @@ export default async function ArticlePage({ params }) {
                                 </div>
                             )}
 
+                            <SocialShare title={article.title} slug={slug} />
+
                             {/* Credit Footer */}
                             <div className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">GB</div>
+                                    <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold">GB</div>
                                     <div className="text-sm">
                                         <p className="font-bold">Global Brief Intel</p>
                                         <p className="text-gray-500">Source: {article.originalSource}</p>
@@ -270,7 +273,7 @@ export default async function ArticlePage({ params }) {
                         {/* Sidebar */}
                         <div className="lg:col-span-4 lg:sticky lg:top-10 h-fit">
                             {article.tldr && (
-                                <div className="bg-blue-600 rounded-3xl p-8 text-white shadow-xl">
+                                <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl">
                                     <h3 className="text-xl font-black uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Executive Summary</h3>
                                     <ul className="space-y-4">
                                         {article.tldr.map((pt, i) => (
@@ -299,7 +302,7 @@ export default async function ArticlePage({ params }) {
                 <p className="text-gray-600 dark:text-gray-400 max-w-md mb-8">
                     We're sorry, but this report is currently undergoing maintenance or is being rebuilt by our AI engine.
                 </p>
-                <Link href="/" className="px-8 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all">
+                <Link href="/" className="px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-all">
                     Return to News Feed
                 </Link>
             </div>

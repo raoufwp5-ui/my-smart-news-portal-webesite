@@ -25,7 +25,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link href="/" className="text-2xl font-black text-gray-900 dark:text-white tracking-tight flex items-center gap-2">
-                        <span className="bg-blue-600 text-white px-2 py-1 rounded">GB</span> Global Brief
+                        <span className="bg-red-600 text-white px-2 py-1 rounded">GB</span> Global Brief
                     </Link>
 
                     {/* Desktop Nav */}
@@ -36,7 +36,7 @@ export default function Navbar() {
                                     key={link.name}
                                     href={link.href}
                                     className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive(link.href)
-                                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                                        ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
                                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                                         }`}
                                 >
@@ -72,7 +72,7 @@ export default function Navbar() {
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
                                 className={`block px-3 py-2 rounded-md text-base font-medium ${isActive(link.href)
-                                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                                    ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
                                     : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                     }`}
                             >

@@ -37,7 +37,7 @@ export default function NewsFeed({ category }) {
             <div className="min-h-[50vh] flex flex-col items-center justify-center text-center">
                 <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-200">Something went wrong</h2>
                 <p className="text-gray-600 mb-6">{error}</p>
-                <button onClick={() => window.location.reload()} className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                <button onClick={() => window.location.reload()} className="px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors">
                     Retry Connection
                 </button>
             </div>
@@ -89,8 +89,8 @@ export default function NewsFeed({ category }) {
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`w-10 h-10 rounded-full font-bold transition-all ${page === p
-                                    ? 'bg-blue-600 text-white shadow-lg'
-                                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                                ? 'bg-red-600 text-white shadow-lg'
+                                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
                                 }`}
                         >
                             {p}
