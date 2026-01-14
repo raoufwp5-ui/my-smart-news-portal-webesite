@@ -1,4 +1,7 @@
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link';
 import { Calendar, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 
