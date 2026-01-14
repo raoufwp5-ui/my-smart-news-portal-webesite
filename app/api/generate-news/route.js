@@ -20,11 +20,28 @@ export async function GET(request) {
             return NextResponse.json({ error: "Missing API key" }, { status: 500 });
         }
 
+        // 1. Try to serve local content first (FAST & STABLE)
+        const localData = getArticlesByCategory(category, page, limit);
+        if (localData.total > 0) {
+            console.log(`✅ Serving ${localData.articles.length} local articles for ${category}`);
+            return NextResponse.json({
+                articles: localData.articles,
+                pagination: {
+                    page,
+                    limit,
+                    total: localData.total,
+                    pages: Math.ceil(localData.total / limit)
+                },
+                meta: { category, source: 'local-cache', timestamp: new Date().toISOString() }
+            });
+        }
+
+        // 2. Only fetch from external if no local data exists (Fallback)
         if (!FEEDS[category]) {
             return NextResponse.json({ error: 'Invalid category' }, { status: 400 });
         }
 
-        console.log(`📡 Fetching RSS: ${category}`);
+        console.log(`📡 Cache miss. Fetching RSS: ${category}`);
         let feed = await fetchFeed(FEEDS[category]);
         if (!feed || !feed.items || feed.items.length === 0) {
             feed = await fetchFeed(FEEDS.general);
