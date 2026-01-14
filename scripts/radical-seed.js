@@ -18,10 +18,7 @@ const FEEDS = {
     general: 'https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en'
 };
 
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36';
-
-// Helper: Sleep to avoid rate limits
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
 // Helper: robust fetch with timeout and headers
 async function safeFetch(url, isBinary = false) {
@@ -29,7 +26,17 @@ async function safeFetch(url, isBinary = false) {
     const timeout = setTimeout(() => controller.abort(), 15000); // 15s timeout
     try {
         const res = await fetch(url, {
-            headers: { 'User-Agent': USER_AGENT },
+            headers: {
+                'User-Agent': USER_AGENT,
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Referer': 'https://www.google.com/',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'cross-site',
+                'Sec-Fetch-User': '?1'
+            },
             redirect: 'follow',
             signal: controller.signal
         });
