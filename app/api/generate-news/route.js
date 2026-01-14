@@ -1,7 +1,6 @@
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
-import { model } from '@/lib/gemini';
 import { NextResponse } from 'next/server';
-import { saveArticle, generateSlug } from '@/lib/articleStore';
+import { saveArticle } from '@/lib/articleStore';
 
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
@@ -20,29 +19,85 @@ function getUnsplashImage(category, title) {
     return `https://source.unsplash.com/800x600/?${query}`;
 }
 
-export async function GET(request) {
-    const { searchParams } = new URL(request.url);
-    const category = searchParams.get('category') || 'general';
+// Initialize Gemini with error handling
+async function initializeGemini() {
+    try {
+        const apiKey = process.env.GEMINI_API_KEY;
 
-    if (!FEEDS[category]) {
-        return NextResponse.json({ error: 'Invalid category' }, { status: 400 });
+        if (!apiKey) {
+            console.error('❌ GEMINI_API_KEY is not defined in environment variables');
+            return null;
+        }
+
+        const { GoogleGenerativeAI } = await import("@google/generative-ai");
+        const genAI = new GoogleGenerativeAI(apiKey);
+        return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    } catch (error) {
+        console.error('❌ Failed to initialize Gemini:', error);
+        return null;
     }
+}
+
+export async function GET(request) {
+    console.log('🔵 API /generate-news called');
 
     try {
-        const feed = await fetchFeed(FEEDS[category]);
+        const { searchParams } = new URL(request.url);
+        const category = searchParams.get('category') || 'general';
+
+        console.log(`📂 Category: ${category}`);
+
+        // Validate category
+        if (!FEEDS[category]) {
+            console.error(`❌ Invalid category: ${category}`);
+            return NextResponse.json({
+                error: 'Invalid category',
+                validCategories: Object.keys(FEEDS)
+            }, { status: 400 });
+        }
+
+        // Fetch RSS feed
+        console.log(`📡 Fetching RSS feed for ${category}...`);
+        let feed;
+        try {
+            feed = await fetchFeed(FEEDS[category]);
+        } catch (feedError) {
+            console.error('❌ RSS fetch failed:', feedError);
+            return NextResponse.json({
+                error: 'Failed to fetch news feed',
+                details: feedError.message
+            }, { status: 500 });
+        }
 
         if (!feed || !feed.items || feed.items.length === 0) {
-            return NextResponse.json({ error: 'Failed to fetch news feed' }, { status: 500 });
+            console.error('❌ Empty or invalid feed');
+            return NextResponse.json({
+                error: 'No articles found in feed',
+                category
+            }, { status: 500 });
+        }
+
+        console.log(`✅ Fetched ${feed.items.length} items from RSS`);
+
+        // Initialize Gemini
+        const model = await initializeGemini();
+        const hasGemini = model !== null;
+
+        if (!hasGemini) {
+            console.warn('⚠️ Gemini API not available, using fallback mode');
         }
 
         // Process top 6 articles
         const articles = feed.items.slice(0, 6);
+        console.log(`🔄 Processing ${articles.length} articles...`);
 
-        const processedArticles = await Promise.all(articles.map(async (item) => {
+        const processedArticles = await Promise.all(articles.map(async (item, index) => {
+            console.log(`  📝 Processing article ${index + 1}/${articles.length}: ${item.title?.substring(0, 50)}...`);
+
             const basicData = {
-                title: item.title,
-                content: item.contentSnippet || item.content || "",
-                link: item.link,
+                title: item.title || 'Untitled Article',
+                content: item.contentSnippet || item.content || item.description || "",
+                link: item.link || '#',
                 pubDate: item.pubDate || new Date().toISOString(),
                 originalSource: item.creator || feed.title || "News Source",
                 category: category
@@ -54,14 +109,16 @@ export async function GET(request) {
                 imageUrl = item.enclosure.url;
             } else if (item.image) {
                 imageUrl = item.image;
+            } else if (item['media:content'] && item['media:content']['$'] && item['media:content']['$'].url) {
+                imageUrl = item['media:content']['$'].url;
             } else {
-                // Use Unsplash fallback
                 imageUrl = getUnsplashImage(category, item.title);
             }
 
-            try {
-                const prompt = `
-You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
+            // Try AI generation if available
+            if (hasGemini) {
+                try {
+                    const prompt = `You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
 
 Guidelines:
 1. **Originality**: Do NOT simply summarize. Rewrite the story with a unique voice, adding context and analysis.
@@ -85,52 +142,86 @@ Return output ONLY as JSON:
   "title": "Your SEO Headline",
   "tldr": ["Key point 1", "Key point 2", "Key point 3"],
   "content": "The full article text (markdown supported)..."
-}
-        `;
+}`;
 
-                const result = await model.generateContent(prompt);
-                const responseProxy = await result.response;
-                const text = responseProxy.text();
+                    const result = await model.generateContent(prompt);
+                    const responseProxy = await result.response;
+                    const text = responseProxy.text();
 
-                const jsonStr = text.replace(/```json|```/g, '').trim();
-                const aiData = JSON.parse(jsonStr);
+                    const jsonStr = text.replace(/```json|```/g, '').trim();
+                    const aiData = JSON.parse(jsonStr);
 
-                const articleData = {
-                    ...basicData,
-                    ...aiData,
-                    image: imageUrl,
-                    source: basicData.link,
-                    date: basicData.pubDate,
-                    category: category
-                };
+                    const articleData = {
+                        ...basicData,
+                        ...aiData,
+                        image: imageUrl,
+                        source: basicData.link,
+                        date: basicData.pubDate,
+                        category: category
+                    };
 
-                // Save article to storage
-                saveArticle(articleData, category);
+                    // Save article to storage
+                    try {
+                        saveArticle(articleData, category);
+                    } catch (saveError) {
+                        console.error('⚠️ Failed to save article:', saveError.message);
+                        // Continue anyway - don't fail the request
+                    }
 
-                return articleData;
-            } catch (genError) {
-                console.error("Content generation failed for article:", basicData.title, genError);
+                    console.log(`  ✅ Generated article: ${aiData.title?.substring(0, 50)}...`);
+                    return articleData;
 
-                const fallbackArticle = {
-                    ...basicData,
-                    tldr: ["Breaking news coverage", "Full analysis coming soon", "Stay tuned for updates"],
-                    source: basicData.link,
-                    date: basicData.pubDate,
-                    image: imageUrl,
-                    category: category
-                };
-
-                // Save even fallback articles
-                saveArticle(fallbackArticle, category);
-
-                return fallbackArticle;
+                } catch (genError) {
+                    console.error(`  ⚠️ AI generation failed for "${basicData.title?.substring(0, 30)}...":`, genError.message);
+                    // Fall through to fallback
+                }
             }
+
+            // Fallback article (no AI or AI failed)
+            const fallbackArticle = {
+                ...basicData,
+                title: basicData.title,
+                tldr: [
+                    "Breaking news coverage",
+                    "Full analysis coming soon",
+                    "Stay tuned for updates"
+                ],
+                content: basicData.content || "Full article content is being prepared. Check back soon for detailed coverage.",
+                source: basicData.link,
+                date: basicData.pubDate,
+                image: imageUrl,
+                category: category
+            };
+
+            // Save fallback article
+            try {
+                saveArticle(fallbackArticle, category);
+            } catch (saveError) {
+                console.error('⚠️ Failed to save fallback article:', saveError.message);
+            }
+
+            console.log(`  ⚠️ Using fallback for: ${basicData.title?.substring(0, 50)}...`);
+            return fallbackArticle;
         }));
 
-        return NextResponse.json({ articles: processedArticles });
+        console.log(`✅ Successfully processed ${processedArticles.length} articles`);
+        return NextResponse.json({
+            articles: processedArticles,
+            meta: {
+                category,
+                count: processedArticles.length,
+                hasAI: hasGemini
+            }
+        });
+
     } catch (error) {
-        console.error('API Error:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        console.error('❌ CRITICAL API ERROR:', error);
+        console.error('Stack trace:', error.stack);
+
+        return NextResponse.json({
+            error: 'Internal Server Error',
+            message: error.message,
+            timestamp: new Date().toISOString()
+        }, { status: 500 });
     }
 }
-

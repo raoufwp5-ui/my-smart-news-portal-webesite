@@ -1,39 +1,49 @@
 import NewsFeed from '@/components/NewsFeed';
+import { redirect } from 'next/navigation';
 
-export const revalidate = 3600; // Hourly updates
+export const revalidate = 3600;
+
+const VALID_CATEGORIES = ['business', 'technology', 'politics', 'sports'];
 
 export function generateMetadata({ params }) {
-    const title = params.category.charAt(0).toUpperCase() + params.category.slice(1);
-    const description = `Latest ${title} news and in-depth analysis. Get the top headlines in Business, Tech, Politics, and Sports.`;
+    const { category } = params;
+
+    // Validate category
+    if (!VALID_CATEGORIES.includes(category)) {
+        return {
+            title: 'Category Not Found | Global Brief',
+            description: 'The requested category could not be found.'
+        };
+    }
+
+    const title = category.charAt(0).toUpperCase() + category.slice(1);
+    const description = `Latest ${title} news and in-depth analysis. Breaking news, global stories, and in-depth coverage.`;
 
     return {
         title: `${title} News | Global Brief`,
         description: description,
         openGraph: {
-            title: `${title} News | AI News Daily`,
+            title: `${title} News | Global Brief`,
             description: description,
             type: 'website',
-            url: `https://ai-news-website.vercel.app/${params.category}`,
-            images: [
-                {
-                    url: `https://ai-news-website.vercel.app/og-${params.category}.jpg`, // Ensure you have these images or use a dynamic OG generator
-                    width: 1200,
-                    height: 630,
-                    alt: `${title} News`,
-                },
-            ],
         },
         twitter: {
             card: 'summary_large_image',
             title: `${title} News | Global Brief`,
             description: description,
-            images: [`https://ai-news-website.vercel.app/og-${params.category}.jpg`],
         },
     };
 }
 
 export default function CategoryPage({ params }) {
-    const title = params.category.charAt(0).toUpperCase() + params.category.slice(1);
+    const { category } = params;
+
+    // Validate category - redirect to homepage if invalid
+    if (!VALID_CATEGORIES.includes(category)) {
+        redirect('/');
+    }
+
+    const title = category.charAt(0).toUpperCase() + category.slice(1);
 
     return (
         <div>
@@ -44,7 +54,14 @@ export default function CategoryPage({ params }) {
                 <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
             </header>
 
-            <NewsFeed category={params.category} />
+            <NewsFeed category={category} />
         </div>
     );
+}
+
+// Generate static params for all valid categories
+export async function generateStaticParams() {
+    return VALID_CATEGORIES.map((category) => ({
+        category: category,
+    }));
 }
