@@ -19,11 +19,11 @@ export default function NewsCard({ article }) {
         originalSource = "Unknown"
     } = article || {};
 
-    const slug = article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    const slug = article.slug || article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
     return (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full group">
-            <Link href={`/article/${slug}?category=${article.category || 'general'}`} className="block relative aspect-video overflow-hidden">
+            <Link href={`/article/${slug}`} className="block relative aspect-video overflow-hidden">
                 <img
                     src={article.image || '/default-news.jpg'}
                     alt={article.title}
@@ -41,7 +41,7 @@ export default function NewsCard({ article }) {
                     </span>
                 </div>
 
-                <Link href={`/article/${slug}?category=${article.category || 'general'}`} className="group-hover:text-blue-600 transition-colors">
+                <Link href={`/article/${slug}`} className="group-hover:text-blue-600 transition-colors">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 leading-tight">
                         {article.title}
                     </h2>
@@ -67,7 +67,7 @@ export default function NewsCard({ article }) {
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
                     <Link
-                        href={`/article/${slug}?category=${article.category || 'general'}`}
+                        href={`/article/${slug}`}
                         className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 flex items-center gap-1"
                     >
                         Read Full Story <ArrowRight size={16} />

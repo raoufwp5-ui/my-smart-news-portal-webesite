@@ -1,9 +1,24 @@
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { model } from '@/lib/gemini';
 import { NextResponse } from 'next/server';
+import { saveArticle, generateSlug } from '@/lib/articleStore';
 
-export const maxDuration = 60; // Allow longer timeout for AI generation
+export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
+
+// Generate Unsplash fallback image based on category
+function getUnsplashImage(category, title) {
+    const keywords = {
+        business: 'business,office,finance',
+        technology: 'technology,computer,innovation',
+        politics: 'government,politics,capitol',
+        sports: 'sports,athlete,competition',
+        general: 'news,world,global'
+    };
+
+    const query = keywords[category] || keywords.general;
+    return `https://source.unsplash.com/800x600/?${query}`;
+}
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
@@ -20,74 +35,95 @@ export async function GET(request) {
             return NextResponse.json({ error: 'Failed to fetch news feed' }, { status: 500 });
         }
 
-        // Process top 5 articles to respect rate limits and response time
-        const articles = feed.items.slice(0, 5);
+        // Process top 6 articles
+        const articles = feed.items.slice(0, 6);
 
         const processedArticles = await Promise.all(articles.map(async (item) => {
-            // Basic data from RSS
             const basicData = {
                 title: item.title,
                 content: item.contentSnippet || item.content || "",
                 link: item.link,
-                pubDate: item.pubDate,
-                originalSource: item.creator || feed.title || "News Source"
+                pubDate: item.pubDate || new Date().toISOString(),
+                originalSource: item.creator || feed.title || "News Source",
+                category: category
             };
 
+            // Extract image from RSS or use fallback
+            let imageUrl = null;
+            if (item.enclosure && item.enclosure.url) {
+                imageUrl = item.enclosure.url;
+            } else if (item.image) {
+                imageUrl = item.image;
+            } else {
+                // Use Unsplash fallback
+                imageUrl = getUnsplashImage(category, item.title);
+            }
+
             try {
-                // Content Analysis & Rewriting
                 const prompt = `
-          You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
-          
-          Guidelines:
-          1.  **Originality**: Do NOT simply summarize. Rewrite the story with a unique voice, adding context and analysis.
-          2.  **Structure**:
-              *   **Headline**: SEO-optimized, engaging, professional (no clickbait).
-              *   **Introduction**: Human-style hook (who, what, when, where).
-              *   **Context & Background**: Explain why this matters.
-              *   **Key Facts**: Bullet points for data/dates if needed.
-              *   **Analysis**: Implications and expert perspective.
-              *   **Conclusion**: What happens next.
-          3.  **Tone**: Professional, objective, authoritative. NO "In this article...", NO "Let's dive in...".
-          4.  **No External Links**: Do not include "Read more" links in the body.
-          5.  **Citations**: At the very end, add a line: "(Sources: [Original Publisher Name])".
-          
-          Original Source Data:
-          Title: ${basicData.title}
-          Content: ${basicData.content}
-          
-          Return output ONLY as JSON:
-          {
-            "title": "Your SEO Headline",
-            "tldr": ["Key point 1", "Key point 2", "Key point 3"],
-            "content": "The full article text (markdown supported)...",
-            "image": "Use the image URL if valid, else null" 
-          }
+You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
+
+Guidelines:
+1. **Originality**: Do NOT simply summarize. Rewrite the story with a unique voice, adding context and analysis.
+2. **Structure**:
+    * **Headline**: SEO-optimized, engaging, professional (no clickbait).
+    * **Introduction**: Human-style hook (who, what, when, where).
+    * **Context & Background**: Explain why this matters.
+    * **Key Facts**: Bullet points for data/dates if needed.
+    * **Analysis**: Implications and expert perspective.
+    * **Conclusion**: What happens next.
+3. **Tone**: Professional, objective, authoritative. NO "In this article...", NO "Let's dive in...".
+4. **No External Links**: Do not include "Read more" links in the body.
+5. **Citations**: At the very end, add a line: "(Sources: [Original Publisher Name])".
+
+Original Source Data:
+Title: ${basicData.title}
+Content: ${basicData.content}
+
+Return output ONLY as JSON:
+{
+  "title": "Your SEO Headline",
+  "tldr": ["Key point 1", "Key point 2", "Key point 3"],
+  "content": "The full article text (markdown supported)..."
+}
         `;
 
                 const result = await model.generateContent(prompt);
                 const responseProxy = await result.response;
                 const text = responseProxy.text();
 
-                // Clean markdown code blocks if present
                 const jsonStr = text.replace(/```json|```/g, '').trim();
                 const aiData = JSON.parse(jsonStr);
 
-                return {
+                const articleData = {
                     ...basicData,
-                    ...aiData, // Overwrite with AI generated data
-                    source: basicData.link, // Keep original link
-                    date: basicData.pubDate
-                };
-            } catch (genError) {
-                console.error("Content generation failed for article:", basicData.title, genError);
-                // Fallback to original data
-                return {
-                    ...basicData,
-                    tldr: ["Content is currently being updated", "Check back in a few minutes", "Global Brief coverage in progress"],
+                    ...aiData,
+                    image: imageUrl,
                     source: basicData.link,
                     date: basicData.pubDate,
-                    image: null // You might want to try extracting an image from RSS enclosure if available
+                    category: category
                 };
+
+                // Save article to storage
+                saveArticle(articleData, category);
+
+                return articleData;
+            } catch (genError) {
+                console.error("Content generation failed for article:", basicData.title, genError);
+
+                const fallbackArticle = {
+                    ...basicData,
+                    tldr: ["Breaking news coverage", "Full analysis coming soon", "Stay tuned for updates"],
+                    source: basicData.link,
+                    date: basicData.pubDate,
+                    image: imageUrl,
+                    category: category
+                };
+
+                // Save even fallback articles
+                saveArticle(fallbackArticle, category);
+
+                return fallbackArticle;
             }
         }));
 
@@ -97,3 +133,4 @@ export async function GET(request) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+

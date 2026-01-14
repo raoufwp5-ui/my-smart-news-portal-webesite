@@ -10,7 +10,7 @@ export default function Home() {
                     Latest Headlines
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-                    AI-curated news summaries for the modern reader. Get the essence of the story in seconds.
+                    Breaking news, global stories, and in-depth analysis from around the world.
                 </p>
             </header>
 
