@@ -61,19 +61,26 @@ export default function NewsFeed({ category }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
                 {loading ? (
                     Array(6).fill(0).map((_, i) => <SkeletonLoader key={i} />)
-                ) : (
+                ) : gridArticles.length > 0 ? (
                     gridArticles.map((article, index) => (
                         <div key={index} className="contents">
-                            {/* Logic for inserting ads within grid items would require fragmenting the grid, 
-                   instead simplify by placing ads full width between rows or using css grid logic.
-                   For simplicity here, we'll keep the cleaner grid and just use bottom/top ads 
-                   to maintain design integrity, or use specific positions. 
-               */}
                             <NewsCard article={article} />
-
-                            {/* Inject responsive ad after 2nd item on mobile, or based on index */}
                         </div>
                     ))
+                ) : (
+                    <div className="col-span-full py-20 text-center bg-gray-50 dark:bg-gray-900/50 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800">
+                        <div className="text-5xl mb-4">📰</div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No news found</h3>
+                        <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                            We couldn't find any articles for this category at the moment. Please check back shortly or try another category.
+                        </p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                        >
+                            Refresh Feed
+                        </button>
+                    </div>
                 )}
             </div>
 

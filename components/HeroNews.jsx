@@ -5,6 +5,7 @@ export default function HeroNews({ article }) {
     if (!article) return null;
 
     const { title, tldr, image, date, source } = article;
+    const slug = article.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
     return (
         <section className="mb-12 relative rounded-3xl overflow-hidden group">
@@ -28,21 +29,21 @@ export default function HeroNews({ article }) {
                 <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-wider text-white uppercase bg-blue-600 rounded-full">
                     Featured Story
                 </span>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight max-w-4xl drop-shadow-lg">
-                    {title}
-                </h1>
+                <Link href={`/article/${slug}`} className="block block group">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight max-w-4xl drop-shadow-lg group-hover:text-blue-400 transition-colors">
+                        {title}
+                    </h1>
+                </Link>
                 <div className="text-gray-200 text-sm md:text-base max-w-2xl mb-6 line-clamp-2">
                     {tldr && tldr[0] ? tldr[0] : "Read the full coverage on this developing story."}
                 </div>
 
-                <a
-                    href={source}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <Link
+                    href={`/article/${slug}`}
                     className="inline-flex items-center px-6 py-3 text-sm font-semibold text-white transition-all bg-white/20 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white hover:text-black"
                 >
                     Read Full Story
-                </a>
+                </Link>
             </div>
         </section>
     );
