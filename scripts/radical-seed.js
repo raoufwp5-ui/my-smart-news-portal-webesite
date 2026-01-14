@@ -170,29 +170,30 @@ async function seed() {
         throw new Error('Max retries exceeded for AI generation');
     }
 
-    // Ensure directories exist
-    if (fs.existsSync(STORAGE_DIR)) fs.rmSync(STORAGE_DIR, { recursive: true, force: true });
-    if (fs.existsSync(MEDIA_DIR)) fs.rmSync(MEDIA_DIR, { recursive: true, force: true });
-
-    fs.mkdirSync(STORAGE_DIR, { recursive: true });
-    fs.mkdirSync(MEDIA_DIR, { recursive: true });
+    // Ensure directories exist (Do NOT purge old data - Incremental Mode)
+    if (!fs.existsSync(STORAGE_DIR)) fs.mkdirSync(STORAGE_DIR, { recursive: true });
+    if (!fs.existsSync(MEDIA_DIR)) fs.mkdirSync(MEDIA_DIR, { recursive: true });
 
     for (const [category, url] of Object.entries(FEEDS)) {
         console.log(`\n📡 Scanning ${category}...`);
         const rssText = await safeFetch(url);
         if (!rssText) continue;
 
-        const items = [...rssText.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 4); // Process 4 items per category
+        const items = [...rssText.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5); // Ceiling of 5 items per run
 
         for (const match of items) {
             const itemXml = match[1];
             const rawTitle = (itemXml.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || 'Untitled';
             const title = cleanText(rawTitle);
-            let link = (itemXml.match(/<link>([\s\S]*?)<\/link>/) || [])[1]?.replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1');
 
+            // Deduplication: Check if article already exists
             const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 60);
+            if (fs.existsSync(path.join(STORAGE_DIR, `${slug}.json`))) {
+                console.log(`  ⏭️  Skipping existing: "${title.substring(0, 30)}..."`);
+                continue;
+            }
 
-            console.log(`  📝 Processing: "${title.substring(0, 40)}..."`);
+            let link = (itemXml.match(/<link>([\s\S]*?)<\/link>/) || [])[1]?.replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1');
 
             // --- LINK RESOLUTION ---
             const realUrl = await resolveOriginalUrl(link);
