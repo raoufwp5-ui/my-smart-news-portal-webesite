@@ -73,13 +73,15 @@ export async function generateMetadata({ params }) {
 
     if (!article) return { title: 'Article Not Found | Global Brief' };
 
+    const description = article.metaDescription || article.meta_description || (article.tldr ? article.tldr[0] : article.title);
+
     return {
         title: article.title,
-        description: article.meta_description || (article.tldr ? article.tldr[0] : article.title),
+        description: description.substring(0, 160),
         keywords: article.keywords?.join(', '),
         openGraph: {
             title: article.title,
-            description: article.meta_description,
+            description: description,
             images: [article.image],
         }
     };

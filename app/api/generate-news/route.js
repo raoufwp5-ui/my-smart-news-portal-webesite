@@ -8,11 +8,13 @@ export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
-    console.log('🔵 API /generate-news v2.5 - Persistent Intelligence');
+    console.log('🔵 API /generate-news v3.0 - AI News Engine');
 
     try {
         const { searchParams } = new URL(request.url);
         const category = searchParams.get('category') || 'general';
+        const page = parseInt(searchParams.get('page')) || 1;
+        const limit = 10;
 
         if (!process.env.GEMINI_API_KEY) {
             return NextResponse.json({ error: "Missing API key" }, { status: 500 });
@@ -32,64 +34,53 @@ export async function GET(request) {
             return NextResponse.json({ error: 'No news items available' }, { status: 404 });
         }
 
-        // Process top 6 articles from the feed
-        const articlesToProcess = feed.items.slice(0, 6);
-        console.log(`🔄 Processing ${articlesToProcess.length} advanced SEO articles...`);
+        // Process strictly top 5 articles from the feed
+        const articlesToProcess = feed.items.slice(0, 5);
+        console.log(`🔄 Processing strictly 5 articles for ${category}...`);
 
         await Promise.all(articlesToProcess.map(async (item) => {
             const tempSlug = generateSlug(item.title);
-
             const basicData = {
-                title: item.title || 'Breaking News Update',
+                title: item.title || 'Breaking News',
                 content: item.contentSnippet || item.content || item.description || "",
                 link: item.link || '#',
                 pubDate: item.pubDate || new Date().toISOString(),
-                originalSource: item.creator || feed.title?.split(' - ')[0] || "News Source",
-                category: category
+                originalSource: item.creator || feed.title?.split(' - ')[0] || "World News",
+                category
             };
 
-            // Media Extraction
+            // Media Preservation
             let remoteImageUrl = null;
             let videoUrl = null;
-
-            if (item.enclosure && item.enclosure.url && (item.enclosure.type?.includes('image') || item.enclosure.url.match(/\.(jpg|jpeg|png|webp|gif)/i))) {
-                remoteImageUrl = item.enclosure.url;
-            } else if (item['media:content'] && item['media:content']['$'] && item['media:content']['$'].url) {
-                remoteImageUrl = item['media:content']['$'].url;
-            } else if (item.image) {
-                remoteImageUrl = item.image;
-            } else if (item.description && item.description.includes('<img')) {
-                const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-                if (imgMatch) remoteImageUrl = imgMatch[1];
-            }
+            if (item.enclosure?.url) remoteImageUrl = item.enclosure.url;
+            else if (item['media:content']?.['$']?.url) remoteImageUrl = item['media:content']['$'].url;
 
             if (item.link?.includes('youtube.com/watch')) {
                 const videoId = item.link.split('v=')[1]?.split('&')[0];
                 if (videoId) videoUrl = `https://www.youtube.com/embed/${videoId}`;
             }
 
-            // Download Media (Preservation)
             const localImage = await downloadMedia(remoteImageUrl, tempSlug, 'image');
             const localVideo = await downloadMedia(videoUrl, tempSlug, 'video');
 
-            // Generate Content
+            // Generate Content (Strict Rules)
             try {
-                const prompt = `You are a high-level SEO news analyst. Create a detailed article (400-600 words) from this source.
-                Include:
-                - Subheadings (##)
-                - Professional tone
-                - Meta description
-                - 5 Keywords
+                const prompt = `You are a professional AI News Generator. Create a high-quality SEO article.
+                Strict Rules:
+                1. Length: 400-600 words.
+                2. Structure: Use # Title, ## and ### subheaders.
+                3. SEO: Include metaDescription (char limit 160) and 5 keywords.
+                4. Summary: 3 clear TL;DR bullet points.
                 
-                Title: ${basicData.title}
-                Text: ${basicData.content.substring(0, 2000)}
+                Source Title: ${basicData.title}
+                Context: ${basicData.content.substring(0, 1500)}
                 
                 JSON Format:
                 {
-                  "title": "Optimized Headline",
+                  "title": "Optimized SEO Headline",
+                  "content": "Full markdown content with #, ##, ### headers...",
                   "tldr": ["Point 1", "Point 2", "Point 3"],
-                  "content": "Markdown article text...",
-                  "meta_description": "SEO Description",
+                  "metaDescription": "...",
                   "keywords": ["tag1", "tag2", "tag3"]
                 }`;
 
@@ -104,26 +95,31 @@ export async function GET(request) {
                     videoUrl: localVideo || videoUrl,
                     slug: tempSlug
                 }, category);
-
             } catch (err) {
-                console.warn(`Fallback for error in AI: ${err.message}`);
                 saveArticle({
                     ...basicData,
-                    tldr: ["Update pending"],
+                    tldr: ["Update in progress"],
                     content: basicData.content,
                     image: localImage || remoteImageUrl || '/default-news.jpg',
                     videoUrl: localVideo || videoUrl,
-                    slug: tempSlug
+                    slug: tempSlug,
+                    metaDescription: basicData.title
                 }, category);
             }
         }));
 
-        // Fulfill Article Preservation & Ordering: Return everything stored for this category
-        const allArticles = getArticlesByCategory(category, 50);
+        // Paginated Return (Latest-First)
+        const { articles, total } = getArticlesByCategory(category, page, limit);
 
         return NextResponse.json({
-            articles: allArticles,
-            meta: { category, count: allArticles.length, timestamp: new Date().toISOString() }
+            articles,
+            pagination: {
+                page,
+                limit,
+                total,
+                pages: Math.ceil(total / limit)
+            },
+            meta: { category, timestamp: new Date().toISOString() }
         });
 
     } catch (criticalError) {
