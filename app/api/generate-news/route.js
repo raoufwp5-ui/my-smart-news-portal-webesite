@@ -5,18 +5,26 @@ import { saveArticle } from '@/lib/articleStore';
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
-// Generate Unsplash fallback image based on category
-function getUnsplashImage(category, title) {
+// Generate Unsplash high-quality image based on category and title keywords
+function getUnsplashImage(category, title = "") {
     const keywords = {
-        business: 'business,office,finance',
-        technology: 'technology,computer,innovation',
-        politics: 'government,politics,capitol',
-        sports: 'sports,athlete,competition',
-        general: 'news,world,global'
+        business: 'business,finance,stock-market,office',
+        technology: 'technology,innovation,coding,gadget',
+        politics: 'government,politics,election,capitol',
+        sports: 'sports,athlete,competition,stadium',
+        general: 'news,world,global,journalism'
     };
 
-    const query = keywords[category] || keywords.general;
-    return `https://source.unsplash.com/800x600/?${query}`;
+    // Extract potential extra keywords from title
+    const titleKeywords = title.split(' ')
+        .filter(word => word.length > 5)
+        .slice(0, 2)
+        .join(',');
+
+    const baseQuery = keywords[category] || keywords.general;
+    const query = titleKeywords ? `${baseQuery},${titleKeywords}` : baseQuery;
+
+    return `https://source.unsplash.com/1200x800/?${query}`;
 }
 
 // Initialize Gemini with error handling
@@ -103,35 +111,54 @@ export async function GET(request) {
                 category: category
             };
 
-            // Extract image from RSS or use fallback
+            // Extract image/video from RSS with multiple fallbacks
             let imageUrl = null;
-            if (item.enclosure && item.enclosure.url) {
+            let videoUrl = null;
+
+            // Image Extraction
+            if (item.enclosure && item.enclosure.url && (item.enclosure.type?.includes('image') || item.enclosure.url.match(/\.(jpg|jpeg|png|webp|gif)/i))) {
                 imageUrl = item.enclosure.url;
-            } else if (item.image) {
-                imageUrl = item.image;
             } else if (item['media:content'] && item['media:content']['$'] && item['media:content']['$'].url) {
                 imageUrl = item['media:content']['$'].url;
-            } else {
+            } else if (item['media:thumbnail'] && item['media:thumbnail']['$'] && item['media:thumbnail']['$'].url) {
+                imageUrl = item['media:thumbnail']['$'].url;
+            } else if (item.image) {
+                imageUrl = item.image;
+            } else if (item.description && item.description.includes('<img')) {
+                const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+                if (imgMatch) imageUrl = imgMatch[1];
+            }
+
+            // Video Extraction (YouTube or direct links)
+            if (item.enclosure && item.enclosure.url && item.enclosure.type?.includes('video')) {
+                videoUrl = item.enclosure.url;
+            } else if (item.link && item.link.includes('youtube.com/watch')) {
+                const videoId = item.link.split('v=')[1]?.split('&')[0];
+                if (videoId) videoUrl = `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            // Fallback Image
+            if (!imageUrl) {
                 imageUrl = getUnsplashImage(category, item.title);
             }
 
             // Try AI generation if available
             if (hasGemini) {
                 try {
-                    const prompt = `You are a senior journalist for "Global Brief". Write a comprehensive, original news article (600-900 words) based on the following source.
+                    const prompt = `You are a senior journalist for "Global Brief". Write a comprehensive, original news article based on the following source.
 
 Guidelines:
-1. **Originality**: Do NOT simply summarize. Rewrite the story with a unique voice, adding context and analysis.
-2. **Structure**:
+1. **Length**: Write a SUBSTANTIAL article. Minimum 3 detailed paragraphs (approx 400-600 words).
+2. **Originality**: Do NOT simply summarize. Rewrite the story with a unique voice, adding context and analysis.
+3. **Structure**:
     * **Headline**: SEO-optimized, engaging, professional (no clickbait).
-    * **Introduction**: Human-style hook (who, what, when, where).
-    * **Context & Background**: Explain why this matters.
-    * **Key Facts**: Bullet points for data/dates if needed.
-    * **Analysis**: Implications and expert perspective.
-    * **Conclusion**: What happens next.
-3. **Tone**: Professional, objective, authoritative. NO "In this article...", NO "Let's dive in...".
-4. **No External Links**: Do not include "Read more" links in the body.
-5. **Citations**: At the very end, add a line: "(Sources: [Original Publisher Name])".
+    * **Introduction**: Fast-paced hook (who, what, when, where).
+    * **Deep Dive**: At least 2-3 detailed paragraphs of analysis and context.
+    * **Bullet Points**: Use bullet points for key data or timeline if appropriate.
+    * **Conclusion**: Forward-looking statement or impact analysis.
+4. **Tone**: Professional, objective, authoritative.
+5. **Formatting**: Use Markdown for headers (## and ###).
+6. **Citations**: At the very end, add a line: "(Sources: [Original Publisher Name])".
 
 Original Source Data:
 Title: ${basicData.title}
@@ -141,7 +168,7 @@ Return output ONLY as JSON:
 {
   "title": "Your SEO Headline",
   "tldr": ["Key point 1", "Key point 2", "Key point 3"],
-  "content": "The full article text (markdown supported)..."
+  "content": "The full article text with markdown headers and multiple paragraphs..."
 }`;
 
                     const result = await model.generateContent(prompt);
@@ -155,6 +182,7 @@ Return output ONLY as JSON:
                         ...basicData,
                         ...aiData,
                         image: imageUrl,
+                        videoUrl: videoUrl,
                         source: basicData.link,
                         date: basicData.pubDate,
                         category: category
@@ -190,6 +218,7 @@ Return output ONLY as JSON:
                 source: basicData.link,
                 date: basicData.pubDate,
                 image: imageUrl,
+                videoUrl: videoUrl,
                 category: category
             };
 

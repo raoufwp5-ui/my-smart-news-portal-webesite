@@ -21,23 +21,29 @@ export default function NewsCard({ article }) {
 
     const slug = article.slug || article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
+    const handleImageError = (e) => {
+        e.target.onerror = null; // Prevent infinite loop
+        e.target.src = '/default-news.jpg';
+    };
+
     return (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full group">
             <Link href={`/article/${slug}`} className="block relative aspect-video overflow-hidden">
                 <img
                     src={article.image || '/default-news.jpg'}
                     alt={article.title}
+                    onError={handleImageError}
                     className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
-                    {article.originalSource}
+                <div className="absolute top-2 right-2 bg-blue-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-tight">
+                    {article.originalSource || 'Global News'}
                 </div>
             </Link>
 
             <div className="p-5 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-3">
                     <span className="text-xs font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-full uppercase tracking-wider">
-                        {new Date(article.pubDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                        {new Date(article.pubDate || article.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                     </span>
                 </div>
 
@@ -47,30 +53,18 @@ export default function NewsCard({ article }) {
                     </h2>
                 </Link>
 
-                <div className="mb-6 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-                    <h3 className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">TL;DR</h3>
-                    <ul className="space-y-1">
-                        {Array.isArray(tldr) ? tldr.map((point, i) => (
-                            <li key={i} className="text-sm text-gray-700 dark:text-gray-300 flex items-start">
-                                <span className="mr-2 text-blue-500">•</span>
-                                {point}
-                            </li>
-                        )) : <li className="text-sm text-gray-700 dark:text-gray-300">{tldr}</li>}
-                    </ul>
-                </div>
-
-                <div className="flex-grow">
-                    <p className={`text-gray-600 dark:text-gray-400 leading-relaxed ${!isExpanded ? 'line-clamp-3' : ''}`}>
-                        {content}
+                <div className="flex-grow mb-4">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-3 text-sm">
+                        {Array.isArray(tldr) ? tldr[0] : tldr}
                     </p>
                 </div>
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
                     <Link
                         href={`/article/${slug}`}
-                        className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 flex items-center gap-1"
+                        className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 flex items-center gap-1 transition-all group/link"
                     >
-                        Read Full Story <ArrowRight size={16} />
+                        Read Full Story <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                 </div>
             </div>
