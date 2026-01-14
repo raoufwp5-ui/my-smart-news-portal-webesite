@@ -1,5 +1,5 @@
 export default function robots() {
-    const baseUrl = 'https://ai-news-website.vercel.app'; // Replace with actual domain in prod
+    const baseUrl = 'https://my-smart-news-portal-webesite.vercel.app';
 
     return {
         rules: {

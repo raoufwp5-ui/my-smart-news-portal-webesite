@@ -22,11 +22,12 @@ export default function BreakingNews() {
                 <span className="flex items-center gap-2 bg-red-800 px-3 py-1 rounded text-xs uppercase tracking-widest mr-4 shrink-0 animate-pulse">
                     <AlertCircle size={14} /> Breaking
                 </span>
-                <div className="flex-grow overflow-hidden relative">
-                    <div className="animate-marquee whitespace-nowrap flex gap-8 items-center">
-                        {news.map((item, i) => (
-                            <Link key={i} href={`/article/${item.slug}`} className="hover:underline opacity-90 hover:opacity-100 transition-opacity">
-                                {item.title}  <span className="mx-2 text-red-400">•</span>
+                <div className="flex-grow overflow-hidden relative group">
+                    <div className="animate-marquee whitespace-nowrap flex gap-8 items-center min-w-full">
+                        {[...news, ...news, ...news].map((item, i) => (
+                            <Link key={i} href={`/article/${item.slug}`} className="hover:underline opacity-90 hover:opacity-100 transition-opacity flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 bg-red-400 rounded-full inline-block"></span>
+                                {item.title}
                             </Link>
                         ))}
                     </div>

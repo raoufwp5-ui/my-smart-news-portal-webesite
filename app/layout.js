@@ -7,13 +7,13 @@ import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-    metadataBase: new URL('https://my-smart-news-portal-webesite.vercel.app'),
+    metadataBase: new URL('https://global-brief-news.vercel.app'),
     title: 'Global Brief - World News, Business, Tech & Politics',
     description: 'In-depth reporting and analysis on the latest global trends using primary sources.',
     openGraph: {
         title: 'Global Brief - Premium News Portal',
         description: 'Elite reporting from business, technology, politics, and sports.',
-        url: 'https://my-smart-news-portal-webesite.vercel.app',
+        url: 'https://global-brief-news.vercel.app',
         siteName: 'Global Brief',
         images: [
             {
