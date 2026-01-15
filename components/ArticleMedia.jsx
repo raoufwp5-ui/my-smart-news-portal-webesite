@@ -20,13 +20,44 @@ export function SafeImage({ src, alt, className, style }) {
 
 export function VideoPlayer({ url }) {
     if (!url) return null;
+
+    // Helper to extract Video ID and return Embed URL
+    const getEmbedUrl = (rawUrl) => {
+        try {
+            // Handle YouTube
+            if (rawUrl.includes('youtube.com') || rawUrl.includes('youtu.be')) {
+                let videoId = null;
+
+                if (rawUrl.includes('v=')) {
+                    videoId = rawUrl.split('v=')[1].split('&')[0];
+                } else if (rawUrl.includes('youtu.be/')) {
+                    videoId = rawUrl.split('youtu.be/')[1].split('?')[0];
+                } else if (rawUrl.includes('/embed/')) {
+                    return rawUrl; // Already good
+                }
+
+                if (videoId) {
+                    return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+                }
+            }
+            // Add other providers (Vimeo, etc) here if needed
+
+            return rawUrl; // Return original if no match (hope for the best)
+        } catch (e) {
+            return rawUrl;
+        }
+    };
+
+    const finalUrl = getEmbedUrl(url);
+
     return (
         <div className="mb-12 aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl border-4 border-gray-100 dark:border-gray-800">
             <iframe
-                src={url}
+                src={finalUrl}
                 className="w-full h-full"
                 allowFullScreen
                 title="Video Content"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             />
         </div>
     );
