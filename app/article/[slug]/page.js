@@ -1,4 +1,5 @@
-import { getArticleBySlug, saveArticle, generateSlug } from '@/lib/articleStore';
+import { getArticleBySlug, saveArticle, generateSlug, getRelatedArticles } from '@/lib/articleStore';
+import NewsCard from '@/components/NewsCard';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { model } from '@/lib/gemini';
 import Link from 'next/link';
@@ -171,6 +172,8 @@ export default async function ArticlePage({ params }) {
             notFound();
         }
 
+        const relatedArticles = getRelatedArticles(slug, article.category, 3);
+
         return (
             <article className="min-h-screen bg-white dark:bg-gray-950 pb-20">
                 {/* Header / Hero */}
@@ -273,7 +276,7 @@ export default async function ArticlePage({ params }) {
                         {/* Sidebar */}
                         <div className="lg:col-span-4 lg:sticky lg:top-10 h-fit">
                             {article.tldr && (
-                                <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl">
+                                <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl mb-10">
                                     <h3 className="text-xl font-black uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Executive Summary</h3>
                                     <ul className="space-y-4">
                                         {article.tldr.map((pt, i) => (
@@ -283,6 +286,21 @@ export default async function ArticlePage({ params }) {
                                             </li>
                                         ))}
                                     </ul>
+                                </div>
+                            )}
+
+                            {/* Related News Widget */}
+                            {relatedArticles.length > 0 && (
+                                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-gray-100 dark:border-gray-800">
+                                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+                                        <span className="w-2 h-8 bg-red-600 rounded-full"></span>
+                                        On The Radar
+                                    </h3>
+                                    <div className="space-y-6">
+                                        {relatedArticles.map(rel => (
+                                            <NewsCard key={rel.slug} article={rel} compact={true} />
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                         </div>
