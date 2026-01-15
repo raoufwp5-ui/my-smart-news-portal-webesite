@@ -195,23 +195,63 @@ function cleanText(text) {
 }
 
 async function seed() {
-    if (!GEMINI_KEY) { console.error('❌ GEMINI_API_KEY missing'); return; }
+    // --- MULTI-KEY GEMINI SETUP ---
+    const KEYS = [
+        process.env.GEMINI_API_KEY,
+        process.env.GEMINI_API_KEY_2
+    ].filter(k => k && k.length > 10);
 
-    const genAI = new GoogleGenerativeAI(GEMINI_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    if (KEYS.length === 0) { console.error('❌ No GEMINI_API_KEY found'); return; }
 
-    // Helper: Retry logic for AI generation
-    async function generateWithRetry(prompt, retries = 3) {
+    console.log(`🤖 Loaded ${KEYS.length} Gemini API Keys for rotation.`);
+
+    const models = KEYS.map(key => {
+        const genAI = new GoogleGenerativeAI(key);
+        return genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    });
+
+    let currentKeyIndex = 0;
+
+    // Smart Generator with Key Rotation
+    async function generateContentSmart(prompt, retries = 3) {
         for (let i = 0; i < retries; i++) {
+            // Round-robin selection
+            const modelIndex = currentKeyIndex % models.length;
+            const model = models[modelIndex];
+
             try {
+                // console.log(`    🤖 Using Key #${modelIndex + 1}...`);
                 const result = await model.generateContent(prompt);
-                return result;
+                // On success, rotate/increment for next time
+                currentKeyIndex++;
+                return result.response.text();
+
             } catch (e) {
-                if (e.message.includes('429') || e.message.includes('Quota')) {
-                    const delay = (i + 1) * 20000; // 20s, 40s, 60s wait
-                    console.log(`    ⏳ Rate limited. Waiting ${delay / 1000}s...`);
+                const isRateLimit = e.message.includes('429') || e.message.includes('Quota') || e.message.includes('Too Many Requests');
+
+                if (isRateLimit) {
+                    console.warn(`    ⚠️ Key #${modelIndex + 1} Rate Limited. Switching...`);
+
+                    // Try the OTHER keys immediately without waiting
+                    for (let j = 1; j < models.length; j++) {
+                        const nextIndex = (modelIndex + j) % models.length;
+                        console.log(`    🔄 Failover to Key #${nextIndex + 1}`);
+                        try {
+                            const result = await models[nextIndex].generateContent(prompt);
+                            currentKeyIndex = nextIndex + 1; // Start from here next time
+                            return result.response.text();
+                        } catch (innerE) {
+                            console.warn(`    ⚠️ Key #${nextIndex + 1} also failed.`);
+                        }
+                    }
+
+                    // If ALL keys failed, then we wait
+                    const delay = (i + 1) * 20000;
+                    console.log(`    ⏳ All keys exhausted. Waiting ${delay / 1000}s...`);
                     await sleep(delay);
+
                 } else {
+                    // Non-rate-limit error (e.g. safety filters), likely won't be fixed by rotation
                     throw e;
                 }
             }
@@ -277,8 +317,8 @@ async function seed() {
                     "keywords": ["tag1", "tag2", "tag3", "tag4", "tag5"]
                 }`;
 
-                const result = await generateWithRetry(prompt);
-                const text = result.response.text().replace(/```json|```/g, '').trim();
+                const textRaw = await generateContentSmart(prompt);
+                const text = textRaw.replace(/```json|```/g, '').trim();
                 finalData = JSON.parse(text);
             } catch (e) {
                 console.warn(`    ⚠️ AI Gen failed: ${e.message}`);
@@ -302,7 +342,7 @@ async function seed() {
             };
 
             fs.writeFileSync(path.join(STORAGE_DIR, `${slug}.json`), JSON.stringify(article, null, 2));
-            await sleep(20000); // Politeness delay increased to 20s to prevent Rate Limits
+            await sleep(10000); // 10s delay (Dual Key Mode)
         }
     }
 
