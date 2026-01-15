@@ -64,11 +64,24 @@ export default function NewsFeed({ category }) {
                 {loading ? (
                     Array(6).fill(0).map((_, i) => <SkeletonLoader key={i} />)
                 ) : gridArticles.length > 0 ? (
-                    gridArticles.map((article, index) => (
-                        <div key={index} className="contents">
-                            <NewsCard article={article} />
-                        </div>
-                    ))
+                    gridArticles.map((article, index) => {
+                        const isAdPosition = (index + 1) % 6 === 0;
+                        return (
+                            <div key={index} className="contents">
+                                <NewsCard article={article} />
+                                {isAdPosition && (
+                                    <div className="col-span-full">
+                                        <AdSlot
+                                            adSlot="1234567890"
+                                            adFormat="fluid"
+                                            label="Sponsored Content"
+                                            className="my-4"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })
                 ) : (
                     <div className="col-span-full py-20 text-center bg-gray-50 dark:bg-gray-900/50 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800">
                         <div className="text-5xl mb-4">📰</div>

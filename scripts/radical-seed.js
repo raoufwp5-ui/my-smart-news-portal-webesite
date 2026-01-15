@@ -235,7 +235,7 @@ async function seed() {
 
     const models = KEYS.map(key => {
         const genAI = new GoogleGenerativeAI(key);
-        return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        return genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
     });
 
     let currentKeyIndex = 0;
@@ -326,11 +326,7 @@ async function seed() {
             // --- LINK RESOLUTION ---
             const realUrl = await resolveOriginalUrl(link);
 
-            // --- IMAGE EXTRACTION ---
-            let imageUrl = await extractImageFromUrl(realUrl);
-            const localImagePath = await downloadAndSaveImage(imageUrl, slug, category);
-
-            // --- AI GENERATION (STRICT) ---
+            // --- AI GENERATION (TEXT FIRST - PRIORITY 1) ---
             let finalData = null;
             // Updated Prompt for Long-Form, High-Quality Journalism
             const prompt = `You are a senior investigative journalist for a major global news network (like BBC, CNN, or Reuters).
@@ -356,6 +352,7 @@ async function seed() {
             }`;
 
             // STRICT GENERATION: Will wait FOREVER until successful
+            console.log(`    🧠 Generating Content (Priority)...`);
             const textRaw = await generateContentStrict(prompt);
             const text = textRaw.replace(/```json|```/g, '').trim();
 
@@ -364,6 +361,16 @@ async function seed() {
             } catch (jsonErr) {
                 console.warn('    ⚠️ JSON Parse Error. Retrying article next loop...');
                 continue;
+            }
+
+            // --- IMAGE HANDLING (VISUAL SECOND - PRIORITY 2) ---
+            let localImagePath = '/media/fallback.jpg';
+            try {
+                const imageUrl = await extractImageFromUrl(realUrl);
+                localImagePath = await downloadAndSaveImage(imageUrl, slug, category);
+            } catch (imgErr) {
+                console.warn(`    ⚠️ Image subsystem failed (continuing with text): ${imgErr.message}`);
+                // Fallback is already set
             }
 
             const article = {
@@ -381,8 +388,9 @@ async function seed() {
             // PUBLISH IMMEDIATELY
             commitAndPush(slug);
 
-            // Short rest before next battle to save API
-            await sleep(5000);
+            // Pacing Strategy: 2 Minutes rest to throttle API usage (Green Zone)
+            console.log('⏳ Pacing Strategy: Sleeping 2 minutes to respect API limits...');
+            await sleep(120000);
         }
     }
 

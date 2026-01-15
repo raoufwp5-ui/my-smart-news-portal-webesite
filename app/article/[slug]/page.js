@@ -1,5 +1,6 @@
 import { getArticleBySlug, saveArticle, generateSlug, getRelatedArticles } from '@/lib/articleStore';
 import NewsCard from '@/components/NewsCard';
+import AdSlot from '@/components/AdSlot';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { model } from '@/lib/gemini';
 import Link from 'next/link';
@@ -225,23 +226,38 @@ export default async function ArticlePage({ params }) {
                                 </div>
                             )}
 
+
+                            {/* AD: Top Leaderboard (Above Title) */}
+                            <AdSlot adSlot="1234567890" className="mb-8" label="Sponsor" />
+
                             <VideoPlayer url={article.videoUrl} />
 
-                            {/* Article Text Rendering */}
+                            {/* Article Text Rendering with In-Content Ad */}
                             <div className="prose prose-xl dark:prose-invert max-w-none">
                                 {article.content ? article.content.split('\n').map((paragraph, idx) => {
-                                    if (paragraph.startsWith('## ')) {
-                                        return <h2 key={idx} className="text-3xl font-black mt-14 mb-6">{paragraph.replace('## ', '')}</h2>;
-                                    }
-                                    if (paragraph.startsWith('### ')) {
-                                        return <h3 key={idx} className="text-2xl font-bold mt-10 mb-4">{paragraph.replace('### ', '')}</h3>;
-                                    }
-                                    if (!paragraph.trim()) return null;
-                                    return <p key={idx} className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
-                                        {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
-                                    </p>;
+                                    // Inject Ad after 2nd massive paragraph or header
+                                    const showAd = idx === 4;
+
+                                    return (
+                                        <div key={idx}>
+                                            {showAd && <AdSlot adSlot="9876543210" adFormat="article" label="Advertisement" className="my-8" />}
+
+                                            {paragraph.startsWith('## ') ? (
+                                                <h2 className="text-3xl font-black mt-14 mb-6">{paragraph.replace('## ', '')}</h2>
+                                            ) : paragraph.startsWith('### ') ? (
+                                                <h3 className="text-2xl font-bold mt-10 mb-4">{paragraph.replace('### ', '')}</h3>
+                                            ) : paragraph.trim() ? (
+                                                <p className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
+                                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
+                                                </p>
+                                            ) : null}
+                                        </div>
+                                    );
                                 }) : <p className="text-gray-500 italic">Processing full report...</p>}
                             </div>
+
+                            {/* AD: End of Article (The Farewell Ad) */}
+                            <AdSlot adSlot="5555555555" className="mt-12 mb-8" label="Sponsored" />
 
                             {/* SEO Tags */}
                             {article.keywords && (
@@ -288,6 +304,16 @@ export default async function ArticlePage({ params }) {
                                     </ul>
                                 </div>
                             )}
+
+                            {/* AD: Sticky Sidebar (Desktop Only) */}
+                            <div className="hidden lg:block mt-10 sticky top-24">
+                                <AdSlot
+                                    adSlot="1122334455"
+                                    adFormat="vertical"
+                                    label="Partner"
+                                    className="min-h-[600px]"
+                                />
+                            </div>
 
                             {/* Related News Widget */}
                             {relatedArticles.length > 0 && (
