@@ -3,7 +3,7 @@ import { getAllArticles } from '@/lib/articleStore';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-    const baseUrl = 'https://global-brief.vercel.app';
+    const baseUrl = 'https://my-smart-news-portal-webesite.vercel.app';
     const categories = ['business', 'technology', 'politics', 'sports', 'general'];
     const { articles } = await getAllArticles(1, 1000);
 

@@ -37,7 +37,9 @@ export function VideoPlayer({ url }) {
                 }
 
                 if (videoId) {
-                    return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+                    // origin is crucial for some restricteds videos
+                    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+                    return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&origin=${origin}`;
                 }
             }
             // Add other providers (Vimeo, etc) here if needed
