@@ -3,6 +3,32 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const cheerio = require('cheerio');
+const { execSync } = require('child_process');
+
+// Helper: Commit and Push immediately
+function commitAndPush(slug) {
+    try {
+        console.log(`    📦 Committing article: ${slug}...`);
+        // Configure git if needed (often persistent, but good safety)
+        try { execSync('git config user.name "AutoBot"'); } catch (e) { }
+        try { execSync('git config user.email "bot@news.com"'); } catch (e) { }
+
+        execSync('git add data/articles public/media');
+
+        // GIT LOCK PROTECTION: Pull --rebase before committing
+        try {
+            execSync('git pull --rebase origin main', { stdio: 'ignore' });
+        } catch (e) {
+            console.warn('    ⚠️ Git Pull Rebase warning (continuing)...');
+        }
+
+        execSync(`git commit -m "📰 New Article: ${slug}"`);
+        execSync('git push origin main');
+        console.log('    ✅ Pushed to GitHub!');
+    } catch (e) {
+        console.error('    ❌ Git Push Failed (will retry next time):', e.message);
+    }
+}
 
 // Manual config for standalone use
 const ROOT = process.cwd();
@@ -71,7 +97,6 @@ async function resolveOriginalUrl(googleUrl) {
     }
 }
 
-// 2. Extract Image from HTML
 // 2. Extract Image from HTML (Smart Extraction with Cheerio)
 async function extractImageFromUrl(url) {
     if (!url) return null;
@@ -195,6 +220,9 @@ function cleanText(text) {
 }
 
 async function seed() {
+    const START_TIME = Date.now();
+    const MAX_RUNTIME = 5.5 * 60 * 60 * 1000; // 5.5 Hours
+
     // --- MULTI-KEY GEMINI SETUP ---
     const KEYS = [
         process.env.GEMINI_API_KEY,
@@ -207,14 +235,20 @@ async function seed() {
 
     const models = KEYS.map(key => {
         const genAI = new GoogleGenerativeAI(key);
-        return genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     });
 
     let currentKeyIndex = 0;
 
-    // Smart Generator with Key Rotation
-    async function generateContentSmart(prompt, retries = 3) {
-        for (let i = 0; i < retries; i++) {
+    // Strict Mode Generator: Infinite Retry until Success
+    async function generateContentStrict(prompt) {
+        while (true) { // Infinite Loop until success
+            // Time Check: 5.5 Hours Limit
+            if (Date.now() - START_TIME > MAX_RUNTIME) {
+                console.log('🛑 Max runtime reached (5.5h). Exiting gracefully.');
+                process.exit(0);
+            }
+
             // Round-robin selection
             const modelIndex = currentKeyIndex % models.length;
             const model = models[modelIndex];
@@ -222,41 +256,40 @@ async function seed() {
             try {
                 // console.log(`    🤖 Using Key #${modelIndex + 1}...`);
                 const result = await model.generateContent(prompt);
-                // On success, rotate/increment for next time
-                currentKeyIndex++;
+                currentKeyIndex++; // Rotate on success
                 return result.response.text();
 
             } catch (e) {
                 const isRateLimit = e.message.includes('429') || e.message.includes('Quota') || e.message.includes('Too Many Requests');
 
                 if (isRateLimit) {
-                    console.warn(`    ⚠️ Key #${modelIndex + 1} Rate Limited. Switching...`);
+                    console.warn(`    ⚠️ Key #${modelIndex + 1} Rate Limited.`);
 
-                    // Try the OTHER keys immediately without waiting
+                    // Try the OTHER keys immediately
                     for (let j = 1; j < models.length; j++) {
                         const nextIndex = (modelIndex + j) % models.length;
-                        console.log(`    🔄 Failover to Key #${nextIndex + 1}`);
+                        console.log(`    🔄 Failover to Key #${nextIndex + 1}...`);
                         try {
                             const result = await models[nextIndex].generateContent(prompt);
-                            currentKeyIndex = nextIndex + 1; // Start from here next time
+                            currentKeyIndex = nextIndex + 1;
                             return result.response.text();
                         } catch (innerE) {
-                            console.warn(`    ⚠️ Key #${nextIndex + 1} also failed.`);
+                            console.warn(`    ⚠️ Key #${nextIndex + 1} failed: ${innerE.message}`);
                         }
                     }
 
-                    // If ALL keys failed, then we wait
-                    const delay = (i + 1) * 20000;
-                    console.log(`    ⏳ All keys exhausted. Waiting ${delay / 1000}s...`);
-                    await sleep(delay);
+                    // If ALL keys failed, Rotate start index for next time and WAIT
+                    currentKeyIndex++;
+                    console.log(`    ⏳ All keys exhausted. Waiting 60s for quota reset...`);
+                    await sleep(60000);
 
                 } else {
-                    // Non-rate-limit error (e.g. safety filters), likely won't be fixed by rotation
-                    throw e;
+                    // For Strict Mode, we retry even on other errors to be safe, but wait short time
+                    console.warn(`    ⚠️ Gen Error: ${e.message}. Retrying in 5s...`);
+                    await sleep(5000);
                 }
             }
         }
-        throw new Error('Max retries exceeded for AI generation');
     }
 
     // Ensure directories exist (Do NOT purge old data - Incremental Mode)
@@ -264,6 +297,9 @@ async function seed() {
     if (!fs.existsSync(MEDIA_DIR)) fs.mkdirSync(MEDIA_DIR, { recursive: true });
 
     for (const [category, url] of Object.entries(FEEDS)) {
+        // Time Check
+        if (Date.now() - START_TIME > MAX_RUNTIME) process.exit(0);
+
         console.log(`\n📡 Scanning ${category}...`);
         const rssText = await safeFetch(url);
         if (!rssText) continue;
@@ -271,6 +307,9 @@ async function seed() {
         const items = [...rssText.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5); // Ceiling of 5 items per run
 
         for (const match of items) {
+            // Time Check
+            if (Date.now() - START_TIME > MAX_RUNTIME) process.exit(0);
+
             const itemXml = match[1];
             const rawTitle = (itemXml.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || 'Untitled';
             const title = cleanText(rawTitle);
@@ -291,44 +330,40 @@ async function seed() {
             let imageUrl = await extractImageFromUrl(realUrl);
             const localImagePath = await downloadAndSaveImage(imageUrl, slug, category);
 
-            // --- AI GENERATION ---
+            // --- AI GENERATION (STRICT) ---
             let finalData = null;
+            // Updated Prompt for Long-Form, High-Quality Journalism
+            const prompt = `You are a senior investigative journalist for a major global news network (like BBC, CNN, or Reuters).
+            Rewrite this news title: "${title}" into a comprehensive, deep-dive feature article.
+
+            STRICT GUIDELINES:
+            1.  **Length**: MUST be 600 - 800 words. Do not write short summaries.
+            2.  **Tone**: Professional, objective, authoritative, and engaging.
+            3.  **Structure**:
+                -   **Headline**: Catchy, SEO-optimized.
+                -   **Lead Paragraph**: Strong hook, answering Who, What, When, Where, Why.
+                -   **Deep Analysis**: Use ## subheaders to break down background context, expert opinions, and future implications.
+                -   **Key Highlights**: A clear list of facts.
+            4.  **Formatting**: Use Markdown (##, ###, **bold**, > blockquotes).
+
+            Output structure (JSON only):
+            {
+                "title": "Engaging Headline",
+                "content": "Full markdown content with headers...",
+                "tldr": ["Key point 1", "Key point 2", "Key point 3"],
+                "metaDescription": "Compelling SEO summary (150-160 chars)",
+                "keywords": ["tag1", "tag2", "tag3", "tag4", "tag5"]
+            }`;
+
+            // STRICT GENERATION: Will wait FOREVER until successful
+            const textRaw = await generateContentStrict(prompt);
+            const text = textRaw.replace(/```json|```/g, '').trim();
+
             try {
-                // Updated Prompt for Long-Form, High-Quality Journalism
-                const prompt = `You are a senior investigative journalist for a major global news network (like BBC, CNN, or Reuters).
-                Rewrite this news title: "${title}" into a comprehensive, deep-dive feature article.
-
-                STRICT GUIDELINES:
-                1.  **Length**: MUST be 800 - 1200 words. Do not write short summaries.
-                2.  **Tone**: Professional, objective, authoritative, and engaging.
-                3.  **Structure**:
-                    -   **Headline**: Catchy, SEO-optimized.
-                    -   **Lead Paragraph**: Strong hook, answering Who, What, When, Where, Why.
-                    -   **Deep Analysis**: Use ## subheaders to break down background context, expert opinions, and future implications.
-                    -   **Key Highlights**: A clear list of facts.
-                4.  **Formatting**: Use Markdown (##, ###, **bold**, > blockquotes).
-
-                Output structure (JSON only):
-                {
-                    "title": "Engaging Headline",
-                    "content": "Full markdown content with headers...",
-                    "tldr": ["Key point 1", "Key point 2", "Key point 3"],
-                    "metaDescription": "Compelling SEO summary (150-160 chars)",
-                    "keywords": ["tag1", "tag2", "tag3", "tag4", "tag5"]
-                }`;
-
-                const textRaw = await generateContentSmart(prompt);
-                const text = textRaw.replace(/```json|```/g, '').trim();
                 finalData = JSON.parse(text);
-            } catch (e) {
-                console.warn(`    ⚠️ AI Gen failed: ${e.message}`);
-                finalData = {
-                    title: title,
-                    content: `## ${title}\n\nFull coverage of this event is currently being updated by our editorial team. Please check back shortly for the complete analysis of this developing story within the ${category} sector.`,
-                    tldr: ["Breaking news report.", "Details emerging properly."],
-                    metaDescription: `Breaking news regarding ${title}.`,
-                    keywords: [category, "News"]
-                };
+            } catch (jsonErr) {
+                console.warn('    ⚠️ JSON Parse Error. Retrying article next loop...');
+                continue;
             }
 
             const article = {
@@ -342,7 +377,12 @@ async function seed() {
             };
 
             fs.writeFileSync(path.join(STORAGE_DIR, `${slug}.json`), JSON.stringify(article, null, 2));
-            await sleep(10000); // 10s delay (Dual Key Mode)
+
+            // PUBLISH IMMEDIATELY
+            commitAndPush(slug);
+
+            // Short rest before next battle to save API
+            await sleep(5000);
         }
     }
 
@@ -369,5 +409,3 @@ async function seed() {
 }
 
 seed().catch(console.error);
-
-

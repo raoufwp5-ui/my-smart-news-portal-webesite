@@ -6,10 +6,23 @@ export default function ThemeToggle() {
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
-        const isDark = localStorage.getItem('theme') === 'dark';
-        setDarkMode(isDark);
-        if (isDark) {
-            document.documentElement.classList.add('dark');
+        // 1. Check LocalStorage (User Manual Override)
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme) {
+            setDarkMode(savedTheme === 'dark');
+            if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+        } else {
+            // 2. Smart Auto-Detect (No manual override found)
+            const hour = new Date().getHours();
+            const isNight = hour >= 19 || hour < 6; // 7 PM to 6 AM
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (isNight || prefersDark) {
+                setDarkMode(true);
+                document.documentElement.classList.add('dark');
+                // We don't save to localStorage here to keep it "auto" until user clicks
+            }
         }
     }, []);
 

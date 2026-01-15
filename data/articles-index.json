@@ -1,378 +1,367 @@
 {
   "articles": [
     {
-      "slug": "f-b-i-searches-home-of-washington-post-journalist-in-a-leak-",
-      "title": "F.B.I. Searches Home of Washington Post Journalist in a Leak Investigation - The New York Times",
+      "slug": "apple-sits-out-ai-arms-race-to-play-kingmaker-between-google",
+      "title": "Apple sits out AI arms race to play kingmaker between Google and OpenAI - Financial Times",
+      "category": "technology",
+      "image": "/media/articles/apple-sits-out-ai-arms-race-to-play-kingmaker-between-google-817075.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:35:37.824Z"
+    },
+    {
+      "slug": "art-rooney-ii-has-no-interest-in-rebuilding-ever-nbc-sports",
+      "title": "Art Rooney II has no interest in rebuilding, ever - NBC Sports",
+      "category": "sports",
+      "image": "/media/articles/art-rooney-ii-has-no-interest-in-rebuilding-ever-nbc-sports-098760.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:56:59.363Z"
+    },
+    {
+      "slug": "comer-pledges-contempt-of-congress-for-hillary-clinton-the-h",
+      "title": "Comer pledges contempt of Congress for Hillary Clinton - The Hill",
+      "category": "politics",
+      "image": "/media/articles/comer-pledges-contempt-of-congress-for-hillary-clinton-the-h-671491.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:49:52.113Z"
+    },
+    {
+      "slug": "congresswoman-maxine-dexter-introduces-impeachment-articles-",
+      "title": "Congresswoman Maxine Dexter introduces impeachment articles against DHS Secretary Noem - KATU",
+      "category": "politics",
+      "image": "/media/articles/congresswoman-maxine-dexter-introduces-impeachment-articles--790294.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:18:31.162Z"
+    },
+    {
+      "slug": "danish-official-cites-fundamental-disagreement-with-us-over-",
+      "title": "Danish official cites 'fundamental disagreement' with US over Greenland after White House meeting - France 24",
+      "category": "politics",
+      "image": "/media/articles/danish-official-cites-fundamental-disagreement-with-us-over--529223.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:47:30.116Z"
+    },
+    {
+      "slug": "exclusive-bipartisan-plan-aims-to-create-u-s-reserve-for-cri",
+      "title": "Exclusive: Bipartisan plan aims to create U.S. reserve for critical minerals - Axios",
+      "category": "politics",
+      "image": "/media/articles/exclusive-bipartisan-plan-aims-to-create-u-s-reserve-for-cri-932345.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:20:52.925Z"
+    },
+    {
+      "slug": "family-of-couple-allegedly-killed-by-ex-speaks-out-she-just-",
+      "title": "Family of couple allegedly killed by ex speaks out: 'She just had to get away from him' - ABC News",
       "category": "general",
-      "image": "/media/articles/f-b-i-searches-home-of-washington-post-journalist-in-a-leak--328976.jpg",
+      "image": "/media/articles/family-of-couple-allegedly-killed-by-ex-speaks-out-she-just--525575.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:58:28.215Z"
+      "pubDate": "2026-01-15T12:04:06.398Z"
     },
     {
-      "slug": "white-house-defends-trump-over-middle-finger-gesture-at-heck",
-      "title": "White House defends Trump over middle-finger gesture at heckler - BBC",
+      "slug": "fcc-chair-testifies-on-commission-oversight-c-span",
+      "title": "FCC Chair Testifies on Commission Oversight - C-SPAN",
+      "category": "politics",
+      "image": "/media/articles/fcc-chair-testifies-on-commission-oversight-c-span-387101.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:45:07.809Z"
+    },
+    {
+      "slug": "federal-agent-shoots-man-in-minneapolis-prompting-tense-prot",
+      "title": "Federal Agent Shoots Man in Minneapolis, Prompting Tense Protests - The New York Times",
       "category": "general",
-      "image": "/media/articles/white-house-defends-trump-over-middle-finger-gesture-at-heck-090159.jpg",
+      "image": "/media/articles/federal-agent-shoots-man-in-minneapolis-prompting-tense-prot-784147.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:56:16.403Z"
+      "pubDate": "2026-01-15T11:35:04.905Z"
     },
     {
-      "slug": "trump-administration-indefinitely-pauses-immigrant-visa-proc",
-      "title": "Trump administration indefinitely pauses immigrant visa processing for 75 nations - The Washington Post",
+      "slug": "giants-working-toward-deal-to-hire-john-harbaugh-as-head-coa",
+      "title": "Giants working toward deal to hire John Harbaugh as head coach: Sources - The Athletic - The New York Times",
+      "category": "sports",
+      "image": "/media/articles/giants-working-toward-deal-to-hire-john-harbaugh-as-head-coa-814152.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:52:14.858Z"
+    },
+    {
+      "slug": "here-s-the-latest-on-seahawks-injuries-as-they-prepare-for-p",
+      "title": "Here’s the latest on Seahawks injuries as they prepare for playoff game - The Seattle Times",
+      "category": "sports",
+      "image": "/media/articles/here-s-the-latest-on-seahawks-injuries-as-they-prepare-for-p-240575.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:59:21.285Z"
+    },
+    {
+      "slug": "how-browns-qb-shedeur-sanders-is-impacted-by-oregon-s-dante-",
+      "title": "How Browns QB Shedeur Sanders is impacted by Oregon’s Dante Moore returning to school in 2026: Mary Kay Cabot - Cleveland.com",
+      "category": "sports",
+      "image": "/media/articles/how-browns-qb-shedeur-sanders-is-impacted-by-oregon-s-dante--216295.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:25:36.978Z"
+    },
+    {
+      "slug": "how-tiger-woods-helped-build-the-bridge-to-brooks-koepka-s-p",
+      "title": "How Tiger Woods Helped Build the Bridge to Brooks Koepka’s PGA Tour Return - Sports Illustrated",
+      "category": "sports",
+      "image": "/media/articles/how-tiger-woods-helped-build-the-bridge-to-brooks-koepka-s-p-642051.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:32:42.840Z"
+    },
+    {
+      "slug": "it-s-50-50-racing-boss-hoping-to-shock-barcelona-in-copa-del",
+      "title": "‘It’s 50/50’ - Racing boss hoping to shock Barcelona in Copa del Rey tie - Barca Blaugranes",
+      "category": "sports",
+      "image": "/media/articles/it-s-50-50-racing-boss-hoping-to-shock-barcelona-in-copa-del-358183.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:27:58.892Z"
+    },
+    {
+      "slug": "judge-skeptical-of-dhs-push-to-id-anonymous-accounts-documen",
+      "title": "Judge skeptical of DHS push to ID anonymous accounts documenting ICE - Politico",
       "category": "general",
-      "image": "/media/articles/trump-administration-indefinitely-pauses-immigrant-visa-proc-429595.jpg",
+      "image": "/media/articles/judge-skeptical-of-dhs-push-to-id-anonymous-accounts-documen-383044.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:54:35.906Z"
+      "pubDate": "2026-01-15T12:01:43.705Z"
     },
     {
-      "slug": "report-harrison-nunes-ufc-324-title-clash-ppd-espn",
-      "title": "Report: Harrison-Nunes UFC 324 title clash ppd. - ESPN",
-      "category": "sports",
-      "image": "/media/articles/report-harrison-nunes-ufc-324-title-clash-ppd-espn-627840.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:52:24.136Z"
-    },
-    {
-      "slug": "trump-live-updates-denmark-and-u-s-at-odds-over-greenland-di",
-      "title": "Trump Live Updates: Denmark and U.S. at Odds Over Greenland, Diplomat Says - The New York Times",
+      "slug": "judge-skeptical-on-ice-agents-wearing-masks-in-case-that-cou",
+      "title": "Judge skeptical on ICE agents wearing masks in case that could have national implications - Los Angeles Times",
       "category": "general",
-      "image": "/media/articles/trump-live-updates-denmark-and-u-s-at-odds-over-greenland-di-694134.jpg",
+      "image": "/media/articles/judge-skeptical-on-ice-agents-wearing-masks-in-case-that-cou-667735.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:51:53.306Z"
+      "pubDate": "2026-01-15T12:06:28.435Z"
     },
     {
-      "slug": "ja-morant-talks-about-trade-rumors-reportedly-has-interest-i",
-      "title": "Ja Morant Talks About Trade Rumors, Reportedly Has Interest In Heat - Hoops Rumors",
+      "slug": "liv-golf-ceo-holds-no-ill-will-toward-brooks-koepka-for-his-",
+      "title": "LIV Golf CEO Holds No Ill Will Toward Brooks Koepka for His Exit - Sports Illustrated",
       "category": "sports",
-      "image": "/media/articles/ja-morant-talks-about-trade-rumors-reportedly-has-interest-i-118133.jpg",
+      "image": "/media/articles/liv-golf-ceo-holds-no-ill-will-toward-brooks-koepka-for-his--956549.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:50:12.662Z"
+      "pubDate": "2026-01-15T11:54:37.417Z"
     },
     {
-      "slug": "miami-bidding-to-be-3rd-largest-underdog-to-win-title-in-bcs",
-      "title": "Miami bidding to be 3rd largest underdog to win title in BCS or College Football Playoff era - On3",
+      "slug": "mike-tomlin-s-breaking-point-in-pittsburgh-brian-flores-cand",
+      "title": "Mike Tomlin’s breaking point in Pittsburgh, Brian Flores’ candidacy as Steelers’ next coach - The New York Times",
       "category": "sports",
-      "image": "/media/articles/miami-bidding-to-be-3rd-largest-underdog-to-win-title-in-bcs-644304.jpg",
+      "image": "/media/articles/mike-tomlin-s-breaking-point-in-pittsburgh-brian-flores-cand-500098.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:48:00.819Z"
+      "pubDate": "2026-01-15T11:30:20.835Z"
     },
     {
-      "slug": "fcc-chair-testifies-at-oversight-hearing-c-span",
-      "title": "FCC Chair Testifies at Oversight Hearing - C-SPAN",
-      "category": "politics",
-      "image": "/media/articles/fcc-chair-testifies-at-oversight-hearing-c-span-460519.jpg",
+      "slug": "openai-s-hidden-chatgpt-translate-tool-takes-on-google-trans",
+      "title": "OpenAI's hidden ChatGPT Translate tool takes on Google Translate - BleepingComputer",
+      "category": "technology",
+      "image": "/media/articles/openai-s-hidden-chatgpt-translate-tool-takes-on-google-trans-532757.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:45:48.364Z"
+      "pubDate": "2026-01-15T11:30:53.491Z"
     },
     {
-      "slug": "with-dante-moore-passing-on-the-nfl-draft-a-reset-of-the-jet",
-      "title": "With Dante Moore passing on the NFL Draft, a reset of the Jets’ QB search - The New York Times",
+      "slug": "red-bull-f1-just-revealed-a-never-before-seen-variant-of-the",
+      "title": "Red Bull F1 Just Revealed a Never-Before-Seen Variant of the Ford Mustang on YouTube - Road & Track",
+      "category": "technology",
+      "image": "/media/articles/red-bull-f1-just-revealed-a-never-before-seen-variant-of-the-959180.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:38:00.041Z"
+    },
+    {
+      "slug": "report-brian-daboll-urged-john-harbaugh-to-take-the-giants-j",
+      "title": "Report: Brian Daboll urged John Harbaugh to take the Giants job - NBC Sports",
       "category": "sports",
-      "image": "/media/articles/with-dante-moore-passing-on-the-nfl-draft-a-reset-of-the-jet-222074.jpg",
+      "image": "/media/articles/report-brian-daboll-urged-john-harbaugh-to-take-the-giants-j-074348.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:45:17.275Z"
-    },
-    {
-      "slug": "greenland-denmark-foreign-ministers-meet-with-rubio-vance-at",
-      "title": "Greenland, Denmark foreign ministers meet with Rubio, Vance at White House - NBC News",
-      "category": "politics",
-      "image": "/media/articles/greenland-denmark-foreign-ministers-meet-with-rubio-vance-at-855055.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:43:36.393Z"
-    },
-    {
-      "slug": "steelers-art-rooney-ii-was-willing-to-take-another-run-with-",
-      "title": "Steelers' Art Rooney II was 'willing to take another run' with Mike Tomlin before coach stepped down - Pittsburgh Post-Gazette",
-      "category": "sports",
-      "image": "/media/articles/steelers-art-rooney-ii-was-willing-to-take-another-run-with--296403.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:43:05.269Z"
-    },
-    {
-      "slug": "signal-s-founder-says-chatgpt-can-t-promise-real-privacy-so-",
-      "title": "Signal’s founder says ChatGPT can’t promise real privacy — so he built something that does - TechRadar",
-      "category": "technology",
-      "image": "/media/articles/signal-s-founder-says-chatgpt-can-t-promise-real-privacy-so--163802.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:41:23.837Z"
-    },
-    {
-      "slug": "japanese-opposition-parties-cdp-komeito-have-begun-talks-wit",
-      "title": "Japanese opposition parties CDP, Komeito have begun talks with a view to forming new party, Asahi newspaper says - Forex Factory",
-      "category": "politics",
-      "image": "/media/articles/japanese-opposition-parties-cdp-komeito-have-begun-talks-wit-249620.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:40:52.815Z"
-    },
-    {
-      "slug": "peter-thiel-makes-his-biggest-donation-in-years-to-help-defe",
-      "title": "Peter Thiel makes his biggest donation in years to help defeat California’s billionaire wealth tax - Fortune",
-      "category": "business",
-      "image": "/media/articles/peter-thiel-makes-his-biggest-donation-in-years-to-help-defe-363254.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:39:11.458Z"
-    },
-    {
-      "slug": "trump-ending-federal-funding-to-sanctuary-cities-states-wgn-",
-      "title": "Trump ending federal funding to sanctuary cities, states - WGN-TV",
-      "category": "politics",
-      "image": "/media/articles/trump-ending-federal-funding-to-sanctuary-cities-states-wgn--561988.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:38:41.244Z"
-    },
-    {
-      "slug": "china-announces-record-trade-surplus-as-its-exports-flood-wo",
-      "title": "China Announces Record Trade Surplus as Its Exports Flood World Markets - The New York Times",
-      "category": "business",
-      "image": "/media/articles/china-announces-record-trade-surplus-as-its-exports-flood-wo-934339.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:36:59.874Z"
-    },
-    {
-      "slug": "frustration-mounts-inside-white-house-over-pirro-s-handling-",
-      "title": "Frustration mounts inside White House over Pirro’s handling of Powell investigation - Channel 3000",
-      "category": "politics",
-      "image": "/media/articles/frustration-mounts-inside-white-house-over-pirro-s-handling--723391.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:36:29.105Z"
-    },
-    {
-      "slug": "sen-slotkin-is-under-investigation-by-the-trump-administrati",
-      "title": "Sen. Slotkin is under investigation by the Trump administration for Democrats' video to troops - AP News",
-      "category": "politics",
-      "image": "/media/articles/sen-slotkin-is-under-investigation-by-the-trump-administrati-031943.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:34:17.316Z"
-    },
-    {
-      "slug": "reprompt-attack-hijacked-microsoft-copilot-sessions-for-data",
-      "title": "Reprompt attack hijacked Microsoft Copilot sessions for data theft - BleepingComputer",
-      "category": "technology",
-      "image": "/media/articles/reprompt-attack-hijacked-microsoft-copilot-sessions-for-data-761518.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:32:04.127Z"
-    },
-    {
-      "slug": "leaker-details-iphone-18-lineup-screen-sizes-dynamic-island-",
-      "title": "Leaker details iPhone 18 lineup screen sizes, Dynamic Island plans - 9to5Mac",
-      "category": "technology",
-      "image": "/media/articles/leaker-details-iphone-18-lineup-screen-sizes-dynamic-island--381169.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:29:51.619Z"
-    },
-    {
-      "slug": "new-pixel-10a-leak-reveals-price-exact-launch-date-android-a",
-      "title": "New Pixel 10a leak reveals price, exact launch date - Android Authority",
-      "category": "technology",
-      "image": "/media/articles/new-pixel-10a-leak-reveals-price-exact-launch-date-android-a-775789.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:27:39.607Z"
-    },
-    {
-      "slug": "nvidia-s-new-app-update-includes-dlss-4-5-and-more-control-p",
-      "title": "Nvidia’s new app update includes DLSS 4.5 and more Control Panel features - The Verge",
-      "category": "technology",
-      "image": "/media/articles/nvidia-s-new-app-update-includes-dlss-4-5-and-more-control-p-907344.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:25:27.895Z"
-    },
-    {
-      "slug": "citi-warns-of-potential-economic-slowdown-from-trump-s-credi",
-      "title": "Citi Warns of Potential Economic Slowdown From Trump’s Credit Card Cap - Bloomberg.com",
-      "category": "business",
-      "image": "/media/articles/citi-warns-of-potential-economic-slowdown-from-trump-s-credi-197462.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:23:14.236Z"
-    },
-    {
-      "slug": "china-s-trade-surplus-surges-20-to-a-record-1-2-trillion-eve",
-      "title": "China’s trade surplus surges 20% to a record $1.2 trillion, even with Trump’s tariffs - AP News",
-      "category": "business",
-      "image": "/media/articles/china-s-trade-surplus-surges-20-to-a-record-1-2-trillion-eve-065857.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:21:01.876Z"
+      "pubDate": "2026-01-15T11:23:15.013Z"
     },
     {
       "slug": "saks-global-files-for-bankruptcy-shakes-up-leadership-after-",
       "title": "Saks Global files for bankruptcy, shakes up leadership after a year of struggles - Retail Dive",
       "category": "business",
-      "image": "/media/articles/saks-global-files-for-bankruptcy-shakes-up-leadership-after--893275.jpg",
+      "image": "/media/articles/saks-global-files-for-bankruptcy-shakes-up-leadership-after--963077.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:18:49.339Z"
+      "pubDate": "2026-01-15T11:21:23.847Z"
+    },
+    {
+      "slug": "stellantis-ceo-2026-is-the-year-of-execution-as-wall-street-",
+      "title": "Stellantis CEO: 2026 is the ‘year of execution’ as Wall Street awaits turnaround strategy - CNBC",
+      "category": "business",
+      "image": "/media/articles/stellantis-ceo-2026-is-the-year-of-execution-as-wall-street--389538.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:28:30.255Z"
+    },
+    {
+      "slug": "stock-market-today-oil-precious-metals-prices-drop-nasdaq-fu",
+      "title": "Stock Market Today: Oil, Precious Metals Prices Drop; Nasdaq Futures Inch Up — Live Updates - The Wall Street Journal",
+      "category": "business",
+      "image": "/media/articles/stock-market-today-oil-precious-metals-prices-drop-nasdaq-fu-247063.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:26:07.730Z"
+    },
+    {
+      "slug": "the-first-windows-11-os-update-for-2026-is-now-rolling-out-w",
+      "title": "The first Windows 11 OS update for 2026 is now rolling out with big fixes - Windows Central",
+      "category": "technology",
+      "image": "/media/articles/the-first-windows-11-os-update-for-2026-is-now-rolling-out-w-101661.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:40:22.279Z"
+    },
+    {
+      "slug": "tsmc-smashes-forecasts-with-record-profit-flags-more-u-s-fac",
+      "title": "TSMC smashes forecasts with record profit, flags more U.S. factories - Reuters",
+      "category": "business",
+      "image": "/media/articles/tsmc-smashes-forecasts-with-record-profit-flags-more-u-s-fac-105107.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:23:45.790Z"
+    },
+    {
+      "slug": "u-s-freezes-new-immigrant-visas-for-75-countries-see-the-ful",
+      "title": "U.S. freezes new immigrant visas for 75 countries: See the full list - CNBC",
+      "category": "general",
+      "image": "/media/articles/u-s-freezes-new-immigrant-visas-for-75-countries-see-the-ful-210073.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:42:10.696Z"
+    },
+    {
+      "slug": "us-senate-blocks-effort-to-rein-in-trump-s-venezuela-war-pow",
+      "title": "US Senate Blocks Effort To Rein In Trump's Venezuela War Powers - NDTV",
+      "category": "politics",
+      "image": "/media/articles/us-senate-blocks-effort-to-rein-in-trump-s-venezuela-war-pow-244404.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:42:45.430Z"
     },
     {
       "slug": "verizon-outage-voice-and-data-services-down-for-many-custome",
       "title": "Verizon outage: Voice and data services down for many customers - Engadget",
       "category": "business",
-      "image": "/media/articles/verizon-outage-voice-and-data-services-down-for-many-custome-825920.jpg",
+      "image": "/media/articles/verizon-outage-voice-and-data-services-down-for-many-custome-821054.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:16:37.578Z"
+      "pubDate": "2026-01-15T11:19:01.669Z"
     },
     {
-      "slug": "hillary-clinton-defies-subpoena-skips-deposition-in-congress",
-      "title": "Hillary Clinton defies subpoena , skips deposition in congressional Epstein inquiry - Politico",
+      "slug": "what-are-trump-s-military-options-for-an-attack-on-iran-al-j",
+      "title": "What are Trump’s military options for an attack on Iran? - Al Jazeera",
       "category": "general",
-      "image": "/media/articles/hillary-clinton-defies-subpoena-skips-deposition-in-congress-986646.jpg",
+      "image": "/media/articles/what-are-trump-s-military-options-for-an-attack-on-iran-al-j-926092.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:15:02.964Z"
+      "pubDate": "2026-01-15T11:37:27.093Z"
     },
     {
-      "slug": "weapons-found-on-the-property-of-illinois-surgeon-accused-of",
-      "title": "Weapons found on the property of Illinois surgeon accused of killing ex-wife, Ohio dentist, police say - NBC News",
+      "slug": "windows-11-26h1-gets-fixes-for-start-menu-file-explorer-and-",
+      "title": "Windows 11 26H1 gets fixes for Start menu, File Explorer, and more in build 28020.1371 - Neowin",
+      "category": "technology",
+      "image": "/media/articles/windows-11-26h1-gets-fixes-for-start-menu-file-explorer-and--674995.jpg",
+      "tldr": [
+        "Breaking news report.",
+        "Details emerging properly."
+      ],
+      "pubDate": "2026-01-15T11:33:15.676Z"
+    },
+    {
+      "slug": "woman-killed-by-ice-agent-seemed-at-fault-n-y-republican-say",
+      "title": "Woman Killed by ICE Agent Seemed at Fault, N.Y. Republican Says - The New York Times",
       "category": "general",
-      "image": "/media/articles/weapons-found-on-the-property-of-illinois-surgeon-accused-of-958090.jpg",
+      "image": "/media/articles/woman-killed-by-ice-agent-seemed-at-fault-n-y-republican-say-352259.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:14:59.874Z"
+      "pubDate": "2026-01-15T11:44:33.042Z"
     },
     {
-      "slug": "can-the-ice-agent-who-shot-renee-good-in-minneapolis-be-pros",
-      "title": "Can the ICE Agent Who Shot Renee Good in Minneapolis Be Prosecuted? - The New York Times",
+      "slug": "x-to-stop-grok-ai-from-undressing-images-of-real-people-afte",
+      "title": "X to stop Grok AI from undressing images of real people after backlash - BBC",
       "category": "general",
-      "image": "/media/articles/can-the-ice-agent-who-shot-renee-good-in-minneapolis-be-pros-802753.jpg",
+      "image": "/media/articles/x-to-stop-grok-ai-from-undressing-images-of-real-people-afte-068412.jpg",
       "tldr": [
         "Breaking news report.",
         "Details emerging properly."
       ],
-      "pubDate": "2026-01-14T22:14:56.130Z"
-    },
-    {
-      "slug": "federal-judges-uphold-california-s-new-congressional-maps-th",
-      "title": "Federal Judges Uphold California’s New Congressional Maps - The New York Times",
-      "category": "general",
-      "image": "/media/articles/federal-judges-uphold-california-s-new-congressional-maps-th-592060.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:14:53.112Z"
-    },
-    {
-      "slug": "miami-and-indiana-are-atop-college-football-but-their-nfl-dr",
-      "title": "Miami and Indiana are atop college football, but their NFL Draft histories couldn’t be further apart - The New York Times",
-      "category": "sports",
-      "image": "/media/articles/miami-and-indiana-are-atop-college-football-but-their-nfl-dr-512760.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:14:49.479Z"
-    },
-    {
-      "slug": "ranking-every-nfl-head-coach-by-job-security-after-a-wild-20",
-      "title": "Ranking every NFL head coach by job security after a wild 2026 coaching carousel - SB Nation",
-      "category": "sports",
-      "image": "/media/articles/ranking-every-nfl-head-coach-by-job-security-after-a-wild-20-495379.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:14:46.485Z"
-    },
-    {
-      "slug": "oregon-qb-dante-moore-declines-to-enter-2026-nfl-draft-will-",
-      "title": "Oregon QB Dante Moore declines to enter 2026 NFL Draft, will return to school - NFL.com",
-      "category": "sports",
-      "image": "/media/articles/oregon-qb-dante-moore-declines-to-enter-2026-nfl-draft-will--230394.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:14:43.241Z"
-    },
-    {
-      "slug": "art-rooney-ii-mike-tomlin-indicated-he-doesn-t-plan-to-coach",
-      "title": "Art Rooney II: Mike Tomlin indicated he doesn’t plan to coach in the near future - NBC Sports",
-      "category": "sports",
-      "image": "/media/articles/art-rooney-ii-mike-tomlin-indicated-he-doesn-t-plan-to-coach-671240.jpg",
-      "tldr": [
-        "Breaking news report.",
-        "Details emerging properly."
-      ],
-      "pubDate": "2026-01-14T22:14:40.101Z"
+      "pubDate": "2026-01-15T11:39:49.099Z"
     }
   ]
 }
