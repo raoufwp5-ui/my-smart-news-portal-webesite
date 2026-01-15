@@ -20,6 +20,10 @@ const FEEDS = {
 
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Helper: robust fetch with timeout and headers
 async function safeFetch(url, isBinary = false) {
     const controller = new AbortController();
@@ -282,6 +286,10 @@ async function seed() {
 
     fs.writeFileSync(INDEX_FILE, JSON.stringify({ articles: index }, null, 2));
     console.log(`✅ Index verified with ${index.length} articles.`);
+    fs.writeFileSync(INDEX_FILE, JSON.stringify({ articles: index }, null, 2));
+    console.log(`✅ Index verified with ${index.length} articles.`);
 }
 
-// No changes to this file. I decided to create a standalone script to avoid regression risks.
+seed().catch(console.error);
+
+seed().catch(console.error);
