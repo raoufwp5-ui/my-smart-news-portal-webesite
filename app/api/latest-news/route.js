@@ -11,8 +11,8 @@ export async function GET(request) {
         const limit = parseInt(searchParams.get('limit') || '10');
         const page = parseInt(searchParams.get('page') || '1');
 
-        // Handle "all" or empty category
-        if (category === 'all' || category === 'undefined' || category === 'null') {
+        // Handle "all", "general", or empty category
+        if (category === 'all' || category === 'general' || category === 'undefined' || category === 'null') {
             category = null;
         }
 
@@ -24,9 +24,9 @@ export async function GET(request) {
         const data = JSON.parse(fs.readFileSync(indexFile, 'utf-8'));
         let articles = data.articles;
 
-        // 1. Filter by Category
+        // 1. Filter by Category (Case Insensitive)
         if (category) {
-            articles = articles.filter(a => a.category === category);
+            articles = articles.filter(a => a.category.toLowerCase() === category.toLowerCase());
         }
 
         // 2. Sort by Date (Newest First)

@@ -17,7 +17,7 @@ export default function NewsFeed({ category }) {
         async function fetchNews() {
             setLoading(true);
             try {
-                const res = await fetch(`/api/latest-news?category=${category}&page=${page}`);
+                const res = await fetch(`/api/latest-news?category=${category}&page=${page}&t=${Date.now()}`);
                 if (!res.ok) throw new Error('Failed to fetch data');
                 const data = await res.json();
                 setNews(data.articles || []);
