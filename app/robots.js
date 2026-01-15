@@ -1,5 +1,5 @@
 export default function robots() {
-    const baseUrl = 'https://global-brief-news.vercel.app';
+    const baseUrl = 'https://global-brief.vercel.app';
 
     return {
         rules: {

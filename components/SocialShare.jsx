@@ -4,7 +4,7 @@ import { Facebook, Twitter, Link as LinkIcon, Share2 } from 'lucide-react';
 import { useState } from 'react';
 
 export default function SocialShare({ title, slug }) {
-    const url = typeof window !== 'undefined' ? `${window.location.origin}/article/${slug}` : `https://global-brief-news.vercel.app/article/${slug}`;
+    const url = typeof window !== 'undefined' ? `${window.location.origin}/article/${slug}` : `https://global-brief.vercel.app/article/${slug}`;
     const [copied, setCopied] = useState(false);
 
     const share = (platform) => {

@@ -9,7 +9,7 @@ export default function PrivacyPage() {
             <h1>Privacy Policy</h1>
             <p className="text-sm text-gray-500">Last Updated: {new Date().toLocaleDateString()}</p>
 
-            <p>At Global Brief, accessible from https://global-brief-news.vercel.app, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Global Brief and how we use it.</p>
+            <p>At Global Brief, accessible from https://global-brief.vercel.app, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Global Brief and how we use it.</p>
 
             <h2>Log Files</h2>
             <p>Global Brief follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.</p>

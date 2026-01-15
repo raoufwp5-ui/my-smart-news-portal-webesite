@@ -3,7 +3,7 @@ import { getAllArticles } from '@/lib/articleStore';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-    const baseUrl = 'https://global-brief-news.vercel.app';
+    const baseUrl = 'https://global-brief.vercel.app';
     const articles = await getAllArticles();
 
     // Filter articles from the last 48 hours
