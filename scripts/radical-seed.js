@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+const cheerio = require('cheerio');
 
 // Manual config for standalone use
 const ROOT = process.cwd();
@@ -71,38 +72,70 @@ async function resolveOriginalUrl(googleUrl) {
 }
 
 // 2. Extract Image from HTML
+// 2. Extract Image from HTML (Smart Extraction with Cheerio)
 async function extractImageFromUrl(url) {
     if (!url) return null;
     try {
         const html = await safeFetch(url);
         if (!html) return null;
 
-        // Try standard OG tag
-        let match = html.match(/property=["']og:image["'][^>]*content=["']([^"']+)["']/i) ||
-            html.match(/content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
+        const $ = cheerio.load(html);
+        let foundImage = null;
 
-        // Try Twitter card
-        if (!match) {
-            match = html.match(/name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i) ||
-                html.match(/content=["']([^"']+)["'][^>]*name=["']twitter:image["']/i);
+        // 1. JSON-LD (Highest Priority - "Gold Standard" for News)
+        $('script[type="application/ld+json"]').each((i, el) => {
+            if (foundImage) return; // Stop if already found
+            try {
+                const raw = $(el).html();
+                if (!raw) return;
+                const data = JSON.parse(raw);
+
+                // Start: Intelligent JSON Recursion to find 'image'
+                const findImg = (obj) => {
+                    if (!obj) return null;
+                    if (typeof obj === 'string' && obj.startsWith('http')) return obj;
+                    if (obj.image) return findImg(obj.image);
+                    if (obj.url && typeof obj.url === 'string' && obj.url.startsWith('http')) return obj.url;
+                    if (Array.isArray(obj)) return findImg(obj[0]);
+                    return null;
+                };
+
+                // Prioritize NewsArticle or Article types if possible, but general search works too
+                if (data['@type'] && (data['@type'].includes('Article') || data['@type'].includes('News'))) {
+                    foundImage = findImg(data.image);
+                } else if (!foundImage && data.image) {
+                    foundImage = findImg(data.image);
+                }
+            } catch (e) { /* Ignore JSON parse errors */ }
+        });
+
+        if (foundImage) {
+            console.log(`    🔍 Found Image (JSON-LD): ${foundImage}`);
+            return foundImage;
         }
 
-        if (match && match[1]) {
-            let imgUrl = match[1];
-            // Handle relative URLs
-            if (imgUrl.startsWith('//')) imgUrl = 'https:' + imgUrl;
-            else if (imgUrl.startsWith('/')) imgUrl = new URL(imgUrl, url).href;
+        // 2. Meta Tags (Robust Fallback)
+        foundImage = $('meta[property="og:image"]').attr('content') ||
+            $('meta[name="twitter:image"]').attr('content');
 
-            console.log(`    🔍 Found Image URL: ${imgUrl}`);
-            // Filter out common google/generic images if needed
-            if (imgUrl.includes('googleusercontent') || imgUrl.includes('gstatic')) {
-                console.log(`    ⚠️  Skipping generic Google image: ${imgUrl}`);
+        if (foundImage) {
+            // Fix relative URLs
+            if (foundImage.startsWith('//')) foundImage = 'https:' + foundImage;
+            else if (foundImage.startsWith('/')) foundImage = new URL(foundImage, url).href;
+
+            console.log(`    🔍 Found Image (Meta): ${foundImage}`);
+
+            // Filter out common google/generic images
+            if (foundImage.includes('googleusercontent') || foundImage.includes('gstatic')) {
+                console.log(`    ⚠️  Skipping generic Google image: ${foundImage}`);
                 return null;
             }
-            return imgUrl;
+            return foundImage;
         }
+
     } catch (e) {
-        return null; // Fail silently
+        console.warn(`    ⚠️ Image extraction failed: ${e.message}`);
+        return null;
     }
     return null;
 }
