@@ -289,6 +289,40 @@ export default async function ArticlePage({ params }) {
 
                     </div>
                 </div>
+
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            '@context': 'https://schema.org',
+                            '@type': 'NewsArticle',
+                            headline: article.title,
+                            image: [
+                                article.image.startsWith('http') ? article.image : `https://global-brief-news.vercel.app${article.image}`
+                            ],
+                            datePublished: new Date(article.pubDate || article.date || new Date()).toISOString(),
+                            dateModified: new Date(article.savedAt || new Date()).toISOString(),
+                            author: [{
+                                '@type': 'Person',
+                                name: 'Global Brief Editorial Team',
+                                url: 'https://global-brief-news.vercel.app/about'
+                            }],
+                            publisher: {
+                                '@type': 'Organization',
+                                name: 'Global Brief',
+                                logo: {
+                                    '@type': 'ImageObject',
+                                    url: 'https://global-brief-news.vercel.app/icon.png'
+                                }
+                            },
+                            mainEntityOfPage: {
+                                '@type': 'WebPage',
+                                '@id': `https://global-brief-news.vercel.app/article/${slug}`
+                            },
+                            description: article.metaDescription || article.tldr?.[0] || article.title
+                        })
+                    }}
+                />
             </article>
         );
     } catch (criticalError) {
