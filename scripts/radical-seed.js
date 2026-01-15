@@ -109,11 +109,16 @@ async function extractImageFromUrl(url) {
 
 // 3. Download and Save Image Locally
 async function downloadAndSaveImage(url, slug, fallbackCategory) {
-    let buffer = await safeFetch(url, true);
+    let buffer = null;
 
     // Fallback if download fails or URL is missing
+    if (!url) {
+        console.log(`    ⚠️  Source image unavailable (URL null). Fetching relevant fallback for [${fallbackCategory}]...`);
+    } else {
+        buffer = await safeFetch(url, true);
+    }
+
     if (!buffer) {
-        console.log(`    ⚠️  Source image unavailable. Fetching relevant fallback for [${fallbackCategory}]...`);
         // Use LoremFlickr with category keywords for relevance, and a hash-based lock for consistency/uniqueness
         const lockId = slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
         const fallbackUrl = `https://loremflickr.com/800/600/${fallbackCategory},news/all?lock=${lockId}`;
@@ -264,7 +269,7 @@ async function seed() {
             };
 
             fs.writeFileSync(path.join(STORAGE_DIR, `${slug}.json`), JSON.stringify(article, null, 2));
-            await sleep(10000); // Politeness delay increased to 10s
+            await sleep(20000); // Politeness delay increased to 20s to prevent Rate Limits
         }
     }
 
@@ -292,4 +297,4 @@ async function seed() {
 
 seed().catch(console.error);
 
-seed().catch(console.error);
+
