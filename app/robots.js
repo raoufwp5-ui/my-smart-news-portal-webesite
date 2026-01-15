@@ -1,5 +1,5 @@
 export default function robots() {
-    const baseUrl = 'https://my-smart-news-portal-webesite.vercel.app';
+    const baseUrl = 'https://global-brief-news.vercel.app';
 
     return {
         rules: {
@@ -7,6 +7,9 @@ export default function robots() {
             allow: '/',
             disallow: '/api/',
         },
-        sitemap: `${baseUrl}/sitemap.xml`,
+        sitemap: [
+            `${baseUrl}/sitemap.xml`,
+            `${baseUrl}/sitemap-news.xml`
+        ],
     };
 }
