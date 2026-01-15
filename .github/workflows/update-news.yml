@@ -27,9 +27,11 @@ jobs:
       - name: Run News Seed Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
         run: |
           # Create .env file for the script
           echo "GEMINI_API_KEY=${GEMINI_API_KEY}" >> .env
+          echo "GEMINI_API_KEY_2=${GEMINI_API_KEY_2}" >> .env
           node scripts/radical-seed.js
 
       - name: Commit and Push Changes
