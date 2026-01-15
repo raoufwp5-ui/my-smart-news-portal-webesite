@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     const baseUrl = 'https://global-brief.vercel.app';
     const categories = ['business', 'technology', 'politics', 'sports', 'general'];
-    const articles = await getAllArticles();
+    const { articles } = await getAllArticles(1, 1000);
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

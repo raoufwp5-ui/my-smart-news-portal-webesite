@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
     const baseUrl = 'https://global-brief.vercel.app';
-    const articles = await getAllArticles();
+    const { articles } = await getAllArticles(1, 1000);
 
     // Filter articles from the last 48 hours
     const now = new Date();
