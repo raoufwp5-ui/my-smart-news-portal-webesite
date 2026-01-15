@@ -1,28 +1,17 @@
 {
   "articles": [
     {
-      "slug": "will-ai-boom-go-bust-2026-analysis",
-      "title": "Will the AI Boom Go Bust? The Trillion-Dollar Question Defining 2026",
-      "category": "technology",
-      "image": "/media/articles/ai-boom-bust-2025.jpg",
-      "tldr": [
-        "Tech giants are spending hundreds of billions on AI infrastructure with uncertain returns.",
-        "Energy consumption is a major bottleneck, driving investments in nuclear power.",
-        "\"Model Collapse\" and geopolitical tensions pose significant ongoing risks to growth."
-      ],
-      "pubDate": "2026-01-16T09:00:00Z"
-    },
-    {
       "slug": "fifa-world-cup-2026-stadiums-revolution",
       "title": "FIFA World Cup 2026: A $15 Billion Revolution Across Three Nations",
       "category": "sports",
-      "image": "/media/articles/fifa-2026-stadiums.jpg",
+      "image": "/media/articles/1768515255720-5c39de2b53d4c4303e446e0a16628c0b-1765099078.webp",
       "tldr": [
         "The 2026 World Cup features 48 teams playing across USA, Canada, and Mexico.",
         "Investments are focused on upgrading existing 'Smart Stadiums' rather than building new ones.",
         "Mexico's Estadio Azteca makes history as the first three-time host venue."
       ],
-      "pubDate": "2026-06-01T10:00:00Z"
+      "pubDate": "2026-06-01T10:00:00Z",
+      "metaDescription": "An inside look at the $15 billion preparations for the 2026 FIFA World Cup. From smart stadiums in LA to historic renovations in Mexico City."
     },
     {
       "slug": "crypto-regulation-2026-reset",
@@ -34,7 +23,21 @@
         "Institutional investors are dominating the market via ETFs and Tokenized Assets (RWA).",
         "Privacy battles heat up as governments ban anonymous coins and enforce surveillance."
       ],
-      "pubDate": "2026-02-15T08:30:00Z"
+      "pubDate": "2026-02-15T08:30:00Z",
+      "metaDescription": "Analysis of the 2026 cryptocurrency landscape. How global regulation and institutional adoption are reshaping Bitcoin, DeFi, and the future of finance."
+    },
+    {
+      "slug": "will-ai-boom-go-bust-2026-analysis",
+      "title": "Will the AI Boom Go Bust? The Trillion-Dollar Question Defining 2026",
+      "category": "technology",
+      "image": "/media/articles/ai-boom-bust-2025.jpg",
+      "tldr": [
+        "Tech giants are spending hundreds of billions on AI infrastructure with uncertain returns.",
+        "Energy consumption is a major bottleneck, driving investments in nuclear power.",
+        "\"Model Collapse\" and geopolitical tensions pose significant ongoing risks to growth."
+      ],
+      "pubDate": "2026-01-16T09:00:00Z",
+      "metaDescription": "An in-depth analysis of the AI industry in 2026. Is the trillion-dollar investment a bubble about to burst, or the foundation of a new world?"
     }
   ]
 }
