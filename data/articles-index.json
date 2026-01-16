@@ -316,16 +316,6 @@
       "scheduledFor": null
     },
     {
-      "slug": "test-scheduled-article",
-      "title": "Test Scheduled Article",
-      "category": "tech",
-      "image": "/default-news.jpg",
-      "savedAt": "2026-01-16T20:05:52.880Z",
-      "pubDate": "2026-01-16T20:05:52.880Z",
-      "status": "published",
-      "scheduledFor": null
-    },
-    {
       "slug": "will-ai-boom-go-bust-2026-analysis",
       "title": "Will the AI Boom Go Bust? The Trillion-Dollar Question Defining 2026",
       "category": "technology",
