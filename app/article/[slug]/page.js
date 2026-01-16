@@ -182,6 +182,8 @@ export default async function ArticlePage({ params }) {
                     <SafeImage
                         src={article.image}
                         alt={article.title}
+                        priority={true}
+                        quality={100}
                         className="w-full h-full object-cover opacity-60 scale-105"
                         style={{ filter: 'blur(15px)' }}
                     />
@@ -196,7 +198,12 @@ export default async function ArticlePage({ params }) {
                                     <Calendar size={16} />
                                     {(() => {
                                         try {
-                                            return new Date(article.pubDate || article.date || new Date()).toLocaleDateString(undefined, { dateStyle: 'long' });
+                                            const pubDate = new Date(article.pubDate || article.date || new Date());
+                                            const now = new Date();
+                                            if (pubDate > now) {
+                                                return `Future Insight • ${pubDate.getFullYear()}`;
+                                            }
+                                            return pubDate.toLocaleDateString(undefined, { dateStyle: 'long' });
                                         } catch (e) {
                                             return new Date().toLocaleDateString(undefined, { dateStyle: 'long' });
                                         }
@@ -224,32 +231,36 @@ export default async function ArticlePage({ params }) {
 
                             {/* Article Text Rendering with In-Content Ad & Smart Video Injection */}
                             <div className="prose prose-xl dark:prose-invert max-w-none">
-                                {article.content ? article.content.split('\n').map((paragraph, idx) => {
-                                    // Inject Video after 2nd paragraph
-                                    const showVideo = idx === 2 && article.videoUrl;
+                                {article.content ? article.content.split('\n\n').map((paragraph, idx) => {
+                                    // Inject Video after 2nd REAL paragraph block (index 1)
+                                    const showVideo = idx === 1 && article.videoUrl;
 
-                                    // Inject Ad after 6th paragraph
-                                    const showAd = idx === 6;
+                                    // Inject Ad after 5th paragraph block
+                                    const showAd = idx === 5;
 
                                     return (
                                         <div key={idx}>
+                                            {paragraph.trim().startsWith('##') ? (
+                                                // Headers
+                                                <div dangerouslySetInnerHTML={{
+                                                    __html: paragraph
+                                                        .replace(/^## (.*$)/gm, '<h2 class="text-3xl font-black mt-14 mb-6">$1</h2>')
+                                                        .replace(/^### (.*$)/gm, '<h3 class="text-2xl font-bold mt-10 mb-4">$1</h3>')
+                                                }} />
+                                            ) : (
+                                                // Regular Paragraphs with markdown bold support
+                                                <p className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
+                                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>').replace(/<strong/g, '<span').replace(/<\/strong>/g, '</span>').split('\n').map((line, i) => <span key={i} className="block mb-2">{line}</span>)}
+                                                </p>
+                                            )}
+
                                             {showVideo && (
-                                                <div className="my-10">
+                                                <div className="my-12">
                                                     <VideoPlayer url={article.videoUrl} />
                                                 </div>
                                             )}
 
                                             {showAd && <AdSlot adSlot="9876543210" adFormat="article" label="Advertisement" className="my-8" />}
-
-                                            {paragraph.startsWith('## ') ? (
-                                                <h2 className="text-3xl font-black mt-14 mb-6">{paragraph.replace('## ', '')}</h2>
-                                            ) : paragraph.startsWith('### ') ? (
-                                                <h3 className="text-2xl font-bold mt-10 mb-4">{paragraph.replace('### ', '')}</h3>
-                                            ) : paragraph.trim() ? (
-                                                <p className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
-                                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
-                                                </p>
-                                            ) : null}
                                         </div>
                                     );
                                 }) : <p className="text-gray-500 italic">Processing full report...</p>}
