@@ -12,7 +12,7 @@ export async function GET() {
 
     const recentArticles = articles.filter(article => {
         const pubDate = new Date(article.pubDate || article.date);
-        return pubDate > twoDaysAgo;
+        return pubDate > twoDaysAgo && pubDate <= now;
     });
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
