@@ -1,4 +1,5 @@
 import { getArticleBySlug, saveArticle, generateSlug, getRelatedArticles } from '@/lib/articleStore';
+import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/schema';
 import NewsCard from '@/components/NewsCard';
 import AdSlot from '@/components/AdSlot';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
@@ -347,34 +348,13 @@ export default async function ArticlePage({ params }) {
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            '@context': 'https://schema.org',
-                            '@type': 'NewsArticle',
-                            headline: article.title,
-                            image: [
-                                article.image.startsWith('http') ? article.image : `https://global-brief.vercel.app${article.image}`
-                            ],
-                            datePublished: new Date(article.pubDate || article.date || new Date()).toISOString(),
-                            dateModified: new Date(article.savedAt || new Date()).toISOString(),
-                            author: [{
-                                '@type': 'Person',
-                                name: 'Global Brief Editorial Team',
-                                url: 'https://global-brief.vercel.app/about'
-                            }],
-                            publisher: {
-                                '@type': 'Organization',
-                                name: 'Global Brief',
-                                logo: {
-                                    '@type': 'ImageObject',
-                                    url: 'https://global-brief.vercel.app/icon.png'
-                                }
-                            },
-                            mainEntityOfPage: {
-                                '@type': 'WebPage',
-                                '@id': `https://global-brief.vercel.app/article/${slug}`
-                            },
-                            description: article.metaDescription || article.tldr?.[0] || article.title
-                        })
+                        __html: JSON.stringify(generateArticleSchema(article, slug))
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(generateBreadcrumbSchema(slug, article.title))
                     }}
                 />
             </article>
