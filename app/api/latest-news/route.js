@@ -24,13 +24,19 @@ export async function GET(request) {
         const data = JSON.parse(fs.readFileSync(indexFile, 'utf-8'));
         let articles = data.articles;
 
-        // 1. Filter by Category (Case Insensitive)
-        if (category) {
-            articles = articles.filter(a => a.category.toLowerCase() === category.toLowerCase());
-        }
+        // 1. Filter by Status (Published Only) & Category
+        articles = articles.filter(a => {
+            const isPublished = (a.status || 'published') === 'published';
+            const matchesCategory = category ? a.category.toLowerCase() === category.toLowerCase() : true;
+            return isPublished && matchesCategory;
+        });
 
         // 2. Sort by Date (Newest First)
-        articles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        articles.sort((a, b) => {
+            const dateA = new Date(a.pubDate || a.savedAt || 0);
+            const dateB = new Date(b.pubDate || b.savedAt || 0);
+            return dateB - dateA;
+        });
 
         // 3. Pagination
         const total = articles.length;
