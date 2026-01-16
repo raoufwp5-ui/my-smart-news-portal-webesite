@@ -1,7 +1,7 @@
 import { getAllArticles } from '@/lib/articleStore';
 
 export async function GET() {
-    const articles = await getAllArticles();
+    const { articles } = await getAllArticles(1, 100);
     const baseUrl = 'https://global-brief.vercel.app';
     const now = new Date();
 
