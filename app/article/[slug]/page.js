@@ -219,27 +219,26 @@ export default async function ArticlePage({ params }) {
                                 <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> Back to Home
                             </Link>
 
-                            {/* Main Media */}
-                            {article.image && (
-                                <div className="mb-12 rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-800">
-                                    <SafeImage src={article.image} alt="Report Visual" className="w-full h-full object-cover" />
-                                </div>
-                            )}
-
-
                             {/* AD: Top Leaderboard (Above Title) */}
                             <AdSlot adSlot="1234567890" className="mb-8" label="Sponsor" />
 
-                            <VideoPlayer url={article.videoUrl} />
-
-                            {/* Article Text Rendering with In-Content Ad */}
+                            {/* Article Text Rendering with In-Content Ad & Smart Video Injection */}
                             <div className="prose prose-xl dark:prose-invert max-w-none">
                                 {article.content ? article.content.split('\n').map((paragraph, idx) => {
-                                    // Inject Ad after 2nd massive paragraph or header
-                                    const showAd = idx === 4;
+                                    // Inject Video after 2nd paragraph
+                                    const showVideo = idx === 2 && article.videoUrl;
+
+                                    // Inject Ad after 6th paragraph
+                                    const showAd = idx === 6;
 
                                     return (
                                         <div key={idx}>
+                                            {showVideo && (
+                                                <div className="my-10">
+                                                    <VideoPlayer url={article.videoUrl} />
+                                                </div>
+                                            )}
+
                                             {showAd && <AdSlot adSlot="9876543210" adFormat="article" label="Advertisement" className="my-8" />}
 
                                             {paragraph.startsWith('## ') ? (
