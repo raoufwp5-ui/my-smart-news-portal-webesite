@@ -1,0 +1,49 @@
+name: Auto News Updater
+
+on:
+  # schedule:
+  #   - cron: '0 */2 * * *' # Run every 2 hours (PAUSED manually to avoid conflict with Publishing Schedule)
+  workflow_dispatch: # Allow manual trigger button
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Need write permission to push changes
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run News Seed Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+        run: |
+          # Create .env file for the script
+          echo "GEMINI_API_KEY=${GEMINI_API_KEY}" >> .env
+          echo "GEMINI_API_KEY_2=${GEMINI_API_KEY_2}" >> .env
+          node scripts/radical-seed.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'NewsBot'
+          git config --global user.email 'bot@noreply.github.com'
+          
+          # Check if there are changes
+          if [[ -n $(git status -s) ]]; then
+            git add data/ public/media/
+            git commit -m "🤖 Auto-update: New articles fetched [skip ci]"
+            git push
+          else
+            echo "No changes to push"
+          fi
