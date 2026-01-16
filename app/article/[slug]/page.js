@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, AlertCircle } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 3600;
+export const revalidate = 0; // Force fresh fetch for premium content update
 
 import { extractOGImage, downloadMedia } from '@/lib/mediaHandler';
 
@@ -75,7 +75,7 @@ async function selfHealArticle(slug, existingArticle = null) {
         // 4. Transform to Premium Content
         const prompt = `You are a Lead AI News Analyst. Reconstruct this news article into a comprehensive, long-form SEO report.
         Strict Requirements:
-        - Word Count: 400-600 words.
+        - Word Count: 1200+ words (Deep Dive).
         - Structure: Professional H1 Title, H2 and H3 Subheadings.
         - Format: Markdown.
         - Additional: 3 TL;DR Bullet Points, 5 SEO Keywords, and a 160-char Meta Description.
