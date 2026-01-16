@@ -211,7 +211,7 @@ export default async function ArticlePage({ params }) {
                                     })()}
                                 </span>
                             </div>
-                            <h1 className="text-4xl md:text-6xl font-black text-white leading-[1.1] mb-8 drop-shadow-2xl">
+                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-8 drop-shadow-2xl">
                                 {article.title}
                             </h1>
                         </div>
@@ -222,8 +222,8 @@ export default async function ArticlePage({ params }) {
                 <div className="container mx-auto px-4 -mt-24 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
 
-                        <div className="lg:col-span-8 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-14 border border-gray-100 dark:border-gray-800">
-                            <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
+                        <div className="lg:col-span-8 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-5 md:p-14 border border-gray-100 dark:border-gray-800">
+                            <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-8 md:mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
                                 <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> Back to Home
                             </Link>
 

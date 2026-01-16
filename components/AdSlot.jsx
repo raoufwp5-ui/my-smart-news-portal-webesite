@@ -31,7 +31,7 @@ export default function AdSlot({
     // Placeholder for Dev/No-ID
     if (PUB_ID.includes('XXX')) {
         return (
-            <div className={`flex flex-col items-center justify-center p-4 bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg mx-auto ${className}`}>
+            <div className={`flex flex-col items-center justify-center p-2 bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg mx-auto ${className}`}>
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">{label}</span>
                 <span className="text-gray-500 font-medium">AdSpace: {adFormat}</span>
             </div>
