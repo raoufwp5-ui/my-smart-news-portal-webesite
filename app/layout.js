@@ -31,6 +31,15 @@ export const metadata = {
         description: 'Elite reporting from business, technology, politics, and sports.',
         images: ['/default-news.jpg'],
     },
+    icons: {
+        icon: '/favicon.ico',
+        shortcut: '/favicon.ico',
+        apple: '/apple-touch-icon.png',
+        other: {
+            rel: 'apple-touch-icon-precomposed',
+            url: '/apple-touch-icon.png',
+        },
+    },
 };
 
 export default function RootLayout({ children }) {
