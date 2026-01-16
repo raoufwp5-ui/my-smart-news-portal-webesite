@@ -290,7 +290,7 @@ export default async function ArticlePage({ params }) {
                         </div>
 
                         {/* Sidebar */}
-                        <div className="lg:col-span-4 lg:sticky lg:top-10 h-fit">
+                        <div className="lg:col-span-4 h-full">
                             {article.tldr && (
                                 <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl mb-10">
                                     <h3 className="text-xl font-black uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Executive Summary</h3>
@@ -305,19 +305,9 @@ export default async function ArticlePage({ params }) {
                                 </div>
                             )}
 
-                            {/* AD: Sticky Sidebar (Desktop Only) */}
-                            <div className="hidden lg:block mt-10 sticky top-24">
-                                <AdSlot
-                                    adSlot="1122334455"
-                                    adFormat="vertical"
-                                    label="Partner"
-                                    className="min-h-[600px]"
-                                />
-                            </div>
-
                             {/* Related News Widget */}
                             {relatedArticles.length > 0 && (
-                                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-gray-100 dark:border-gray-800">
+                                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-6 border border-gray-100 dark:border-gray-800 mb-10">
                                     <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
                                         <span className="w-2 h-8 bg-red-600 rounded-full"></span>
                                         On The Radar
@@ -329,6 +319,16 @@ export default async function ArticlePage({ params }) {
                                     </div>
                                 </div>
                             )}
+
+                            {/* AD: Sticky Sidebar (Desktop Only) */}
+                            <div className="hidden lg:block sticky top-24">
+                                <AdSlot
+                                    adSlot="1122334455"
+                                    adFormat="vertical"
+                                    label="Partner"
+                                    className="min-h-[600px]"
+                                />
+                            </div>
                         </div>
 
                     </div>
