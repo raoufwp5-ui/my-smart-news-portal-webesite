@@ -66,6 +66,7 @@
     "image": "/media/articles/neuralink-2026-demo.jpg",
     "videoUrl": "https://www.youtube.com/watch?v=GqA42M4RtxE",
     "status": "scheduled",
+    "wordCount": 1200,
     "scheduledFor": "2026-01-18T09:00:00.000Z",
     "id": "neuralink-demo-1",
     "slug": "neuralink-telepathy-launch-2026"

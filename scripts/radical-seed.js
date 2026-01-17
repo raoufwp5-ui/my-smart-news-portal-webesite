@@ -299,6 +299,7 @@ async function seed() {
 
             const article = {
                 ...finalData,
+                wordCount: finalData.content ? finalData.content.split(/\s+/).length : 0,
                 id: Math.random().toString(36).substr(2, 9),
                 slug,
                 category,
