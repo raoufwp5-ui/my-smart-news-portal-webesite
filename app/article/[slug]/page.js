@@ -5,8 +5,14 @@ import AdSlot from '@/components/AdSlot';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { model } from '@/lib/gemini';
 import Link from 'next/link';
-import { ArrowLeft, Clock, Calendar, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Share2, MessageCircle, Twitter, Facebook, Linkedin, Send, Link as LinkIcon, Calendar } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import fs from 'fs';
+import path from 'path';
+import AuthorCard from '@/components/AuthorCard';
+import authors from '@/data/authors.json';
+import { SafeImage, VideoPlayer } from '@/components/ArticleMedia';
+import SocialShare from '@/components/SocialShare';
 
 export const revalidate = 0; // Force fresh fetch for premium content update
 
@@ -154,10 +160,6 @@ export async function generateMetadata({ params }) {
     }
 }
 
-// ... imports
-import AuthorCard from '@/components/AuthorCard';
-import authors from '@/data/authors.json';
-
 // Helper to resolve author
 function getAuthorForArticle(article) {
     if (article.authorId) {
@@ -191,25 +193,6 @@ export default async function ArticlePage({ params }) {
             notFound();
         }
 
-        // ... imports
-        import AuthorCard from '@/components/AuthorCard';
-        import authors from '@/data/authors.json';
-
-        // Helper to resolve author
-        function getAuthorForArticle(article) {
-            if (article.authorId) {
-                return authors.find(a => a.id === article.authorId);
-            }
-            // Fallback by category
-            const cat = article.category?.toLowerCase();
-            if (cat === 'technology' || cat === 'tech') return authors.find(a => a.id === 'sarah-vance');
-            if (cat === 'politics') return authors.find(a => a.id === 'marcus-thorne');
-            if (cat === 'business' || cat === 'economy') return authors.find(a => a.id === 'elena-corves');
-            if (cat === 'sports') return authors.find(a => a.id === 'coach-mike');
-            if (cat === 'health' || cat === 'science') return authors.find(a => a.id === 'dr-aris');
-
-            return authors[0]; // Default to Sarah
-        }
 
         // ... existing code ...
 
