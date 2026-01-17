@@ -178,6 +178,9 @@ export default async function ArticlePage({ params }) {
 
         return (
             <article className="min-h-screen bg-white dark:bg-gray-950 pb-20">
+                {/* Sticky Share (Desktop) */}
+                <SocialShare title={article.title} slug={slug} variant="vertical" />
+
                 {/* Header / Hero */}
                 <div className="w-full h-[500px] relative bg-gray-900 overflow-hidden">
                     <SafeImage
