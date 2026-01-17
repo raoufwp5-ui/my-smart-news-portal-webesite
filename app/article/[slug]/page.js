@@ -154,8 +154,25 @@ export async function generateMetadata({ params }) {
     }
 }
 
-import { SafeImage, VideoPlayer } from '@/components/ArticleMedia';
-import SocialShare from '@/components/SocialShare';
+// ... imports
+import AuthorCard from '@/components/AuthorCard';
+import authors from '@/data/authors.json';
+
+// Helper to resolve author
+function getAuthorForArticle(article) {
+    if (article.authorId) {
+        return authors.find(a => a.id === article.authorId);
+    }
+    // Fallback by category
+    const cat = article.category?.toLowerCase();
+    if (cat === 'technology' || cat === 'tech') return authors.find(a => a.id === 'sarah-vance');
+    if (cat === 'politics') return authors.find(a => a.id === 'marcus-thorne');
+    if (cat === 'business' || cat === 'economy') return authors.find(a => a.id === 'elena-corves');
+    if (cat === 'sports') return authors.find(a => a.id === 'coach-mike');
+    if (cat === 'health' || cat === 'science') return authors.find(a => a.id === 'dr-aris');
+
+    return authors[0]; // Default to Sarah
+}
 
 export default async function ArticlePage({ params }) {
     const { slug } = params;
@@ -174,253 +191,300 @@ export default async function ArticlePage({ params }) {
             notFound();
         }
 
+        // ... imports
+        import AuthorCard from '@/components/AuthorCard';
+        import authors from '@/data/authors.json';
+
+        // Helper to resolve author
+        function getAuthorForArticle(article) {
+            if (article.authorId) {
+                return authors.find(a => a.id === article.authorId);
+            }
+            // Fallback by category
+            const cat = article.category?.toLowerCase();
+            if (cat === 'technology' || cat === 'tech') return authors.find(a => a.id === 'sarah-vance');
+            if (cat === 'politics') return authors.find(a => a.id === 'marcus-thorne');
+            if (cat === 'business' || cat === 'economy') return authors.find(a => a.id === 'elena-corves');
+            if (cat === 'sports') return authors.find(a => a.id === 'coach-mike');
+            if (cat === 'health' || cat === 'science') return authors.find(a => a.id === 'dr-aris');
+
+            return authors[0]; // Default to Sarah
+        }
+
+        // ... existing code ...
+
         const relatedArticles = getRelatedArticles(slug, article.category, 3);
+        const author = getAuthorForArticle(article);
 
         return (
             <article className="min-h-screen bg-white dark:bg-gray-950 pb-20">
-                {/* Sticky Share (Desktop) */}
-                <SocialShare title={article.title} slug={slug} variant="vertical" />
-
-                {/* Header / Hero */}
-                <div className="w-full h-[500px] relative bg-gray-900 overflow-hidden">
-                    <SafeImage
-                        src={article.image}
-                        alt={article.title}
-                        priority={true}
-                        quality={100}
-                        className="w-full h-full object-cover opacity-60 scale-105"
-                        style={{ filter: 'blur(15px)' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 container mx-auto">
-                        <div className="max-w-4xl">
-                            <div className="flex items-center justify-center gap-4 text-white/90 mb-6 text-sm font-bold uppercase tracking-widest">
-                                <span className="bg-red-600 px-4 py-1.5 rounded-full text-white">
-                                    {article.category || 'News'}
-                                </span>
-                                <span className="flex items-center gap-2">
-                                    <Calendar size={16} />
-                                    {(() => {
-                                        try {
-                                            const pubDate = new Date(article.pubDate || article.date || new Date());
-                                            const now = new Date();
-                                            if (pubDate > now) {
-                                                return `Future Insight • ${pubDate.getFullYear()}`;
-                                            }
-                                            return pubDate.toLocaleDateString(undefined, { dateStyle: 'long' });
-                                        } catch (e) {
-                                            return new Date().toLocaleDateString(undefined, { dateStyle: 'long' });
-                                        }
-                                    })()}
-                                </span>
-                            </div>
-                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-8 drop-shadow-2xl">
-                                {article.title}
-                            </h1>
-                        </div>
-                    </div>
-                </div>
+                {/* ... existing header/content ... */}
 
                 {/* Content Container */}
-                <div className="container mx-auto px-0 md:px-4 -mt-24 relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
+                <div className="container mx-auto px-4 max-w-4xl -mt-32 relative z-10">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-xl p-8 md:p-12 mb-12">
+                        {/* ... existing article content loop ... */}
 
-                        <div className="lg:col-span-8 bg-white dark:bg-gray-900 rounded-none md:rounded-3xl shadow-2xl px-3 py-6 md:p-14 border-x-0 md:border border-gray-100 dark:border-gray-800">
-                            <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-8 md:mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
-                                <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> Back to Home
-                            </Link>
-
-                            {/* AD: Top Leaderboard (Above Title) */}
-                            <AdSlot adSlot="1234567890" className="mb-8" label="Sponsor" />
-
-                            {/* Article Text Rendering with In-Content Ad & Smart Video Injection */}
-                            <div className="prose prose-lg md:prose-xl dark:prose-invert max-w-none">
-                                {article.content ? article.content.split('\n\n').map((paragraph, idx) => {
-                                    // Inject Video after 2nd REAL paragraph block (index 1)
-                                    const showVideo = idx === 1 && article.videoUrl;
-
-                                    // Inject Stats after 2nd paragraph (if video not present) or 3rd
-                                    const showStats = (idx === 2) && article.keyStats && article.keyStats.length > 0;
-
-                                    // Inject Table after 4th paragraph
-                                    const showTable = (idx === 4) && article.comparisonTable;
-
-                                    // Inject Ad after 6th paragraph block
-                                    const showAd = idx === 6;
-
-                                    return (
-                                        <div key={idx}>
-                                            {paragraph.trim().startsWith('##') ? (
-                                                // Headers
-                                                <div dangerouslySetInnerHTML={{
-                                                    __html: paragraph
-                                                        .replace(/^## (.*$)/gm, '<h2 class="text-3xl font-black mt-14 mb-6">$1</h2>')
-                                                        .replace(/^### (.*$)/gm, '<h3 class="text-2xl font-bold mt-10 mb-4">$1</h3>')
-                                                }} />
-                                            ) : (
-                                                // Regular Paragraphs with markdown bold support
-                                                <p className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
-                                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>').replace(/<strong/g, '<span').replace(/<\/strong>/g, '</span>').split('\n').map((line, i) => <span key={i} className="block mb-2">{line}</span>)}
-                                                </p>
-                                            )}
-
-                                            {showVideo && (
-                                                <div className="my-12">
-                                                    <VideoPlayer url={article.videoUrl} />
-                                                </div>
-                                            )}
-
-                                            {showStats && (
-                                                <div className="my-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                                    {article.keyStats.map((stat, sIdx) => (
-                                                        <div key={sIdx} className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border-l-4 border-red-600">
-                                                            <div className="text-3xl font-black text-gray-900 dark:text-white mb-1">{stat.value}</div>
-                                                            <div className="text-xs font-bold uppercase tracking-widest text-gray-500">{stat.label}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            )}
-
-                                            {showTable && (
-                                                <div className="my-10 overflow-x-auto">
-                                                    <table className="w-full text-left border-collapse bg-white dark:bg-gray-900 shadow-lg rounded-xl overflow-hidden">
-                                                        <thead>
-                                                            <tr className="bg-black text-white">
-                                                                {article.comparisonTable.headers.map((h, hIdx) => (
-                                                                    <th key={hIdx} className="p-4 font-bold uppercase text-sm tracking-wider">{h}</th>
-                                                                ))}
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {article.comparisonTable.rows.map((row, rIdx) => (
-                                                                <tr key={rIdx} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                                                                    {row.map((cell, cIdx) => (
-                                                                        <td key={cIdx} className="p-4 text-gray-700 dark:text-gray-300 font-medium">
-                                                                            {cIdx === 0 ? <strong className="text-black dark:text-white">{cell}</strong> : cell}
-                                                                        </td>
-                                                                    ))}
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            )}
-
-                                            {showAd && <AdSlot adSlot="9876543210" adFormat="article" label="Advertisement" className="my-8" />}
-                                        </div>
-                                    );
-                                }) : <p className="text-gray-500 italic">Processing full report...</p>}
-                            </div>
-
-                            {/* AD: End of Article (The Farewell Ad) */}
-                            <AdSlot adSlot="5555555555" className="mt-12 mb-8" label="Sponsored" />
-
-                            {/* SEO Tags */}
-                            {article.keywords && (
-                                <div className="mt-12 flex flex-wrap gap-2">
-                                    {article.keywords.map((tag, i) => (
-                                        <span key={i} className="text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-500 px-3 py-1 rounded-full uppercase tracking-widest">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
-
-                            <SocialShare title={article.title} slug={slug} />
-
-                            {/* Credit Footer */}
-                            <div className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold">GB</div>
-                                    <div className="text-sm">
-                                        <p className="font-bold">Global Brief Intel</p>
-                                        <p className="text-gray-500">Source: {article.originalSource}</p>
-                                    </div>
-                                </div>
-                                {article.source && (
-                                    <a href={article.source} target="_blank" className="px-8 py-3 bg-black dark:bg-white dark:text-black text-white rounded-full font-bold text-sm">
-                                        Original Coverage
-                                    </a>
-                                )}
-                            </div>
-
-                            {/* Related News Widget (Moved for Focus) */}
-                            {relatedArticles.length > 0 && (
-                                <div className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
-                                    <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
-                                        <span className="w-3 h-8 bg-red-600 rounded-full"></span>
-                                        Continue Reading
-                                    </h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {relatedArticles.map(rel => (
-                                            <NewsCard key={rel.slug} article={rel} compact={true} />
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Sidebar */}
-                        <div className="lg:col-span-4 h-full">
-                            {article.tldr && (
-                                <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl mb-10">
-                                    <h3 className="text-xl font-black uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Executive Summary</h3>
-                                    <ul className="space-y-4">
-                                        {article.tldr.map((pt, i) => (
-                                            <li key={i} className="flex gap-4">
-                                                <span className="font-bold opacity-50">{i + 1}</span>
-                                                <span className="font-medium">{pt}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {/* Related News Widget Removed from Sidebar */}
-
-                            {/* AD: Sticky Sidebar (Desktop Only) */}
-                            <div className="hidden lg:block sticky top-24">
-                                <AdSlot
-                                    adSlot="1122334455"
-                                    adFormat="vertical"
-                                    label="Partner"
-                                    className="min-h-[600px]"
-                                />
-                            </div>
+                        {/* AUTHOR CARD INJECTION */}
+                        <div className="border-t border-gray-100 dark:border-gray-800 mt-12 pt-12">
+                            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">About the Author</h3>
+                            <AuthorCard author={author} />
                         </div>
 
                     </div>
-                </div>
 
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(generateArticleSchema(article, slug))
-                    }}
-                />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(generateBreadcrumbSchema(slug, article.title))
-                    }}
-                />
-            </article>
-        );
+                    {/* Related Articles */}
+                    <div className="mb-12">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Read Next</h3>
+                        {/* ... existing related grid ... */}
+                        {/* Sticky Share (Desktop) */}
+                        <SocialShare title={article.title} slug={slug} variant="vertical" />
+
+                        {/* Header / Hero */}
+                        <div className="w-full h-[500px] relative bg-gray-900 overflow-hidden">
+                            <SafeImage
+                                src={article.image}
+                                alt={article.title}
+                                priority={true}
+                                quality={100}
+                                className="w-full h-full object-cover opacity-60 scale-105"
+                                style={{ filter: 'blur(15px)' }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent" />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 container mx-auto">
+                                <div className="max-w-4xl">
+                                    <div className="flex items-center justify-center gap-4 text-white/90 mb-6 text-sm font-bold uppercase tracking-widest">
+                                        <span className="bg-red-600 px-4 py-1.5 rounded-full text-white">
+                                            {article.category || 'News'}
+                                        </span>
+                                        <span className="flex items-center gap-2">
+                                            <Calendar size={16} />
+                                            {(() => {
+                                                try {
+                                                    const pubDate = new Date(article.pubDate || article.date || new Date());
+                                                    const now = new Date();
+                                                    if (pubDate > now) {
+                                                        return `Future Insight • ${pubDate.getFullYear()}`;
+                                                    }
+                                                    return pubDate.toLocaleDateString(undefined, { dateStyle: 'long' });
+                                                } catch (e) {
+                                                    return new Date().toLocaleDateString(undefined, { dateStyle: 'long' });
+                                                }
+                                            })()}
+                                        </span>
+                                    </div>
+                                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-8 drop-shadow-2xl">
+                                        {article.title}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Content Container */}
+                        <div className="container mx-auto px-0 md:px-4 -mt-24 relative z-10">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
+
+                                <div className="lg:col-span-8 bg-white dark:bg-gray-900 rounded-none md:rounded-3xl shadow-2xl px-3 py-6 md:p-14 border-x-0 md:border border-gray-100 dark:border-gray-800">
+                                    <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-8 md:mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
+                                        <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> Back to Home
+                                    </Link>
+
+                                    {/* AD: Top Leaderboard (Above Title) */}
+                                    <AdSlot adSlot="1234567890" className="mb-8" label="Sponsor" />
+
+                                    {/* Article Text Rendering with In-Content Ad & Smart Video Injection */}
+                                    <div className="prose prose-lg md:prose-xl dark:prose-invert max-w-none">
+                                        {article.content ? article.content.split('\n\n').map((paragraph, idx) => {
+                                            // Inject Video after 2nd REAL paragraph block (index 1)
+                                            const showVideo = idx === 1 && article.videoUrl;
+
+                                            // Inject Stats after 2nd paragraph (if video not present) or 3rd
+                                            const showStats = (idx === 2) && article.keyStats && article.keyStats.length > 0;
+
+                                            // Inject Table after 4th paragraph
+                                            const showTable = (idx === 4) && article.comparisonTable;
+
+                                            // Inject Ad after 6th paragraph block
+                                            const showAd = idx === 6;
+
+                                            return (
+                                                <div key={idx}>
+                                                    {paragraph.trim().startsWith('##') ? (
+                                                        // Headers
+                                                        <div dangerouslySetInnerHTML={{
+                                                            __html: paragraph
+                                                                .replace(/^## (.*$)/gm, '<h2 class="text-3xl font-black mt-14 mb-6">$1</h2>')
+                                                                .replace(/^### (.*$)/gm, '<h3 class="text-2xl font-bold mt-10 mb-4">$1</h3>')
+                                                        }} />
+                                                    ) : (
+                                                        // Regular Paragraphs with markdown bold support
+                                                        <p className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
+                                                            {paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>').replace(/<strong/g, '<span').replace(/<\/strong>/g, '</span>').split('\n').map((line, i) => <span key={i} className="block mb-2">{line}</span>)}
+                                                        </p>
+                                                    )}
+
+                                                    {showVideo && (
+                                                        <div className="my-12">
+                                                            <VideoPlayer url={article.videoUrl} />
+                                                        </div>
+                                                    )}
+
+                                                    {showStats && (
+                                                        <div className="my-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                                            {article.keyStats.map((stat, sIdx) => (
+                                                                <div key={sIdx} className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border-l-4 border-red-600">
+                                                                    <div className="text-3xl font-black text-gray-900 dark:text-white mb-1">{stat.value}</div>
+                                                                    <div className="text-xs font-bold uppercase tracking-widest text-gray-500">{stat.label}</div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
+
+                                                    {showTable && (
+                                                        <div className="my-10 overflow-x-auto">
+                                                            <table className="w-full text-left border-collapse bg-white dark:bg-gray-900 shadow-lg rounded-xl overflow-hidden">
+                                                                <thead>
+                                                                    <tr className="bg-black text-white">
+                                                                        {article.comparisonTable.headers.map((h, hIdx) => (
+                                                                            <th key={hIdx} className="p-4 font-bold uppercase text-sm tracking-wider">{h}</th>
+                                                                        ))}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {article.comparisonTable.rows.map((row, rIdx) => (
+                                                                        <tr key={rIdx} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                                                            {row.map((cell, cIdx) => (
+                                                                                <td key={cIdx} className="p-4 text-gray-700 dark:text-gray-300 font-medium">
+                                                                                    {cIdx === 0 ? <strong className="text-black dark:text-white">{cell}</strong> : cell}
+                                                                                </td>
+                                                                            ))}
+                                                                        </tr>
+                                                                    ))}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    )}
+
+                                                    {showAd && <AdSlot adSlot="9876543210" adFormat="article" label="Advertisement" className="my-8" />}
+                                                </div>
+                                            );
+                                        }) : <p className="text-gray-500 italic">Processing full report...</p>}
+                                    </div>
+
+                                    {/* AD: End of Article (The Farewell Ad) */}
+                                    <AdSlot adSlot="5555555555" className="mt-12 mb-8" label="Sponsored" />
+
+                                    {/* SEO Tags */}
+                                    {article.keywords && (
+                                        <div className="mt-12 flex flex-wrap gap-2">
+                                            {article.keywords.map((tag, i) => (
+                                                <span key={i} className="text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-500 px-3 py-1 rounded-full uppercase tracking-widest">
+                                                    #{tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <div className="mt-12 pt-12 border-t border-gray-100 dark:border-gray-800">
+                                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">About the Author</h3>
+                                        <AuthorCard author={author} />
+                                    </div>
+
+                                    <SocialShare title={article.title} slug={slug} />
+
+                                    {/* Credit Footer */}
+                                    <div className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold">GB</div>
+                                            <div className="text-sm">
+                                                <p className="font-bold">Global Brief Intel</p>
+                                                <p className="text-gray-500">Source: {article.originalSource}</p>
+                                            </div>
+                                        </div>
+                                        {article.source && (
+                                            <a href={article.source} target="_blank" className="px-8 py-3 bg-black dark:bg-white dark:text-black text-white rounded-full font-bold text-sm">
+                                                Original Coverage
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    {/* Related News Widget (Moved for Focus) */}
+                                    {relatedArticles.length > 0 && (
+                                        <div className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
+                                            <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
+                                                <span className="w-3 h-8 bg-red-600 rounded-full"></span>
+                                                Continue Reading
+                                            </h3>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                {relatedArticles.map(rel => (
+                                                    <NewsCard key={rel.slug} article={rel} compact={true} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Sidebar */}
+                                <div className="lg:col-span-4 h-full">
+                                    {article.tldr && (
+                                        <div className="bg-red-600 rounded-3xl p-8 text-white shadow-xl mb-10">
+                                            <h3 className="text-xl font-black uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Executive Summary</h3>
+                                            <ul className="space-y-4">
+                                                {article.tldr.map((pt, i) => (
+                                                    <li key={i} className="flex gap-4">
+                                                        <span className="font-bold opacity-50">{i + 1}</span>
+                                                        <span className="font-medium">{pt}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {/* Related News Widget Removed from Sidebar */}
+
+                                    {/* AD: Sticky Sidebar (Desktop Only) */}
+                                    <div className="hidden lg:block sticky top-24">
+                                        <AdSlot
+                                            adSlot="1122334455"
+                                            adFormat="vertical"
+                                            label="Partner"
+                                            className="min-h-[600px]"
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <script
+                            type="application/ld+json"
+                            dangerouslySetInnerHTML={{
+                                __html: JSON.stringify(generateArticleSchema(article, slug))
+                            }}
+                        />
+                        <script
+                            type="application/ld+json"
+                            dangerouslySetInnerHTML={{
+                                __html: JSON.stringify(generateBreadcrumbSchema(slug, article.title))
+                            }}
+                        />
+                    </article>
+                    );
     } catch (criticalError) {
-        console.error(`🔴 CRITICAL RENDER ERROR [${slug}]:`, criticalError.message);
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-gray-50 dark:bg-gray-900">
-                <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center text-red-600 mb-6">
-                    <AlertCircle size={40} />
-                </div>
-                <h1 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Content Temporarily Unavailable</h1>
-                <p className="text-gray-600 dark:text-gray-400 max-w-md mb-8">
-                    We're sorry, but this report is currently undergoing maintenance or is being rebuilt by our AI engine.
-                </p>
-                <Link href="/" className="px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-all">
-                    Return to News Feed
-                </Link>
-            </div>
-        );
+                        console.error(`🔴 CRITICAL RENDER ERROR [${slug}]:`, criticalError.message);
+                    return (
+                    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-gray-50 dark:bg-gray-900">
+                        <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center text-red-600 mb-6">
+                            <AlertCircle size={40} />
+                        </div>
+                        <h1 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Content Temporarily Unavailable</h1>
+                        <p className="text-gray-600 dark:text-gray-400 max-w-md mb-8">
+                            We're sorry, but this report is currently undergoing maintenance or is being rebuilt by our AI engine.
+                        </p>
+                        <Link href="/" className="px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-all">
+                            Return to News Feed
+                        </Link>
+                    </div>
+                    );
     }
 }

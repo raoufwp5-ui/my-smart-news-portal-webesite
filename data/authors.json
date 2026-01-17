@@ -1,0 +1,62 @@
+[
+    {
+        "id": "sarah-vance",
+        "name": "Sarah Vance",
+        "role": "Senior Tech Editor",
+        "category": "technology",
+        "bio": "Living in 2030. Former Systems Architect covering the AI revolution, neural interfaces, and the post-silicon era.",
+        "avatar": "/media/authors/sarah-vance.jpg",
+        "social": {
+            "twitter": "https://x.com/sarahvance_tech",
+            "linkedin": "https://linkedin.com/in/sarahvance"
+        }
+    },
+    {
+        "id": "marcus-thorne",
+        "name": "Marcus Thorne",
+        "role": "Political Analyst",
+        "category": "politics",
+        "bio": "Connecting policy with history. 20 years in geopolitical journalism, focusing on how legislation shapes the future.",
+        "avatar": "/media/authors/marcus-thorne.jpg",
+        "social": {
+            "twitter": "https://x.com/mthorne_geo",
+            "linkedin": "https://linkedin.com/in/marcusthorne"
+        }
+    },
+    {
+        "id": "elena-corves",
+        "name": "Elena Corves",
+        "role": "Economics Lead",
+        "category": "business",
+        "bio": "Ex-Wall Street analyst decoding the post-cash economy. Specialist in CBDCs, crypto markets, and macro-trends.",
+        "avatar": "/media/authors/elena-corves.jpg",
+        "social": {
+            "twitter": "https://x.com/elena_macro",
+            "linkedin": "https://linkedin.com/in/elenacorves"
+        }
+    },
+    {
+        "id": "coach-mike",
+        "name": "Mike 'The Coach' Reynolds",
+        "role": "Sports Columnist",
+        "category": "sports",
+        "bio": "Purist. Believes in grass, grit, and the human element of the game. Vocal critic of AI over-officiating.",
+        "avatar": "/media/authors/coach-mike.jpg",
+        "social": {
+            "twitter": "https://x.com/coachmike_sports",
+            "linkedin": "https://linkedin.com/in/mikereynolds"
+        }
+    },
+    {
+        "id": "dr-aris",
+        "name": "Dr. Aris Vlachopoulos",
+        "role": "Science Editor",
+        "category": "health",
+        "bio": "PhD in Bioethics. Asking the uncomfortable questions about medical progress, gene editing, and human longevity.",
+        "avatar": "/media/authors/dr-aris.jpg",
+        "social": {
+            "twitter": "https://x.com/dr_aris_bio",
+            "linkedin": "https://linkedin.com/in/arisvlachopoulos"
+        }
+    }
+]

@@ -303,6 +303,16 @@ async function seed() {
                 id: Math.random().toString(36).substr(2, 9),
                 slug,
                 category,
+                // AUTHOR ASSIGNMENT
+                authorId: (() => {
+                    const cat = category.toLowerCase();
+                    if (cat === 'technology' || cat === 'tech') return 'sarah-vance';
+                    if (cat === 'politics') return 'marcus-thorne';
+                    if (cat === 'business' || cat === 'economy') return 'elena-corves';
+                    if (cat === 'sports') return 'coach-mike';
+                    if (cat === 'health' || cat === 'science') return 'dr-aris';
+                    return 'sarah-vance'; // Default
+                })(),
                 image: localImagePath,
                 originalUrl: realUrl,
                 savedAt: new Date().toISOString(),
