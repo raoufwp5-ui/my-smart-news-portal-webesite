@@ -239,8 +239,14 @@ export default async function ArticlePage({ params }) {
                                     // Inject Video after 2nd REAL paragraph block (index 1)
                                     const showVideo = idx === 1 && article.videoUrl;
 
-                                    // Inject Ad after 5th paragraph block
-                                    const showAd = idx === 5;
+                                    // Inject Stats after 2nd paragraph (if video not present) or 3rd
+                                    const showStats = (idx === 2) && article.keyStats && article.keyStats.length > 0;
+
+                                    // Inject Table after 4th paragraph
+                                    const showTable = (idx === 4) && article.comparisonTable;
+
+                                    // Inject Ad after 6th paragraph block
+                                    const showAd = idx === 6;
 
                                     return (
                                         <div key={idx}>
@@ -261,6 +267,42 @@ export default async function ArticlePage({ params }) {
                                             {showVideo && (
                                                 <div className="my-12">
                                                     <VideoPlayer url={article.videoUrl} />
+                                                </div>
+                                            )}
+
+                                            {showStats && (
+                                                <div className="my-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                                    {article.keyStats.map((stat, sIdx) => (
+                                                        <div key={sIdx} className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border-l-4 border-red-600">
+                                                            <div className="text-3xl font-black text-gray-900 dark:text-white mb-1">{stat.value}</div>
+                                                            <div className="text-xs font-bold uppercase tracking-widest text-gray-500">{stat.label}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {showTable && (
+                                                <div className="my-10 overflow-x-auto">
+                                                    <table className="w-full text-left border-collapse bg-white dark:bg-gray-900 shadow-lg rounded-xl overflow-hidden">
+                                                        <thead>
+                                                            <tr className="bg-black text-white">
+                                                                {article.comparisonTable.headers.map((h, hIdx) => (
+                                                                    <th key={hIdx} className="p-4 font-bold uppercase text-sm tracking-wider">{h}</th>
+                                                                ))}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {article.comparisonTable.rows.map((row, rIdx) => (
+                                                                <tr key={rIdx} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                                                    {row.map((cell, cIdx) => (
+                                                                        <td key={cIdx} className="p-4 text-gray-700 dark:text-gray-300 font-medium">
+                                                                            {cIdx === 0 ? <strong className="text-black dark:text-white">{cell}</strong> : cell}
+                                                                        </td>
+                                                                    ))}
+                                                                </tr>
+                                                            ))}
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             )}
 
