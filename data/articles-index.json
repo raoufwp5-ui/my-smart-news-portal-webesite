@@ -351,6 +351,20 @@
       "scheduledFor": null
     },
     {
+      "slug": "end-of-cash-economy-2026",
+      "title": "The Day Cash Died: Why 2026 Marks the End of Physical Money",
+      "category": "business",
+      "image": "/media/articles/cashless-society-ruins.jpg",
+      "tldr": [
+        "Sweden becomes the first 100% cashless nation, sparking a global shift toward government-backed Digital Currencies (CBDCs).",
+        "Privacy advocates warn of 'Programmable Money,' where governments could restrict spending based on carbon footprint or social scores.",
+        "The 'Unbanked' population faces economic erasure as smartphones become the only gateway to participate in society."
+      ],
+      "pubDate": "2026-01-18T11:00:00.000Z",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T11:00:00.000Z"
+    },
+    {
       "slug": "fifa-ai-referees-2026",
       "title": "The Whistle Blows for Humans: AI Referees Take Over World Cup 2026",
       "category": "sports",
