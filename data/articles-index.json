@@ -25,8 +25,8 @@
         "Underground 'Cashless Resistance' markets emerge, trading in silver coins and barter to escape surveillance."
       ],
       "pubDate": "2026-01-17T22:00:00.000Z",
-      "status": "published",
-      "scheduledFor": null
+      "status": "scheduled",
+      "scheduledFor": "2026-01-17T22:00:00.000Z"
     },
     {
       "slug": "global-sleep-crisis-2026",
@@ -39,8 +39,8 @@
         "Governments begin mandating 'Digital Curfews' for ISPs to force citizens offline after midnight."
       ],
       "pubDate": "2026-01-17T20:00:00.000Z",
-      "status": "published",
-      "scheduledFor": null
+      "status": "scheduled",
+      "scheduledFor": "2026-01-17T20:00:00.000Z"
     },
     {
       "slug": "6g-networks-speed-benefits-2026",

@@ -5,8 +5,8 @@
     "image": "/media/articles/global-sleep-crisis-2026.jpg",
     "savedAt": "2026-01-17T20:00:00.000Z",
     "ticketId": "MANUAL-002",
-    "status": "published",
-    "scheduledFor": null,
+    "status": "scheduled",
+    "scheduledFor": "2026-01-17T20:00:00.000Z",
     "title": "The Global Sleep Crisis: Why 40% of Humanity Is 'Functionally Zombie' in 2026",
     "tldr": [
         "World Health Organization declares 'Chronic Sleep Deprivation' a bigger killer than smoking in 2026.",

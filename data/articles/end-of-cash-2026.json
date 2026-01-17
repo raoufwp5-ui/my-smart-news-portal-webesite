@@ -5,8 +5,8 @@
     "image": "/media/articles/end-of-cash-2026.jpg",
     "savedAt": "2026-01-17T22:00:00.000Z",
     "ticketId": "MANUAL-003",
-    "status": "published",
-    "scheduledFor": null,
+    "status": "scheduled",
+    "scheduledFor": "2026-01-17T22:00:00.000Z",
     "title": "The End of Cash: US Digital Dollar and Digital Euro Go to War in 2026",
     "tldr": [
         "The Federal Reserve officially launches the 'US Digital Dollar' (CBDC), phasing out paper bills in federal transactions.",
