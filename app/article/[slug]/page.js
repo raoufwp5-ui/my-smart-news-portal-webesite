@@ -233,6 +233,36 @@ export default async function ArticlePage({ params }) {
 
                     </div>
 
+                    {/* JSON-LD Schema for E-E-A-T */}
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                "@context": "https://schema.org",
+                                "@type": "NewsArticle",
+                                "headline": article.title,
+                                "image": [article.image],
+                                "datePublished": article.pubDate || article.savedAt,
+                                "dateModified": article.lastModified || article.savedAt,
+                                "author": [{
+                                    "@type": "Person",
+                                    "name": author ? author.name : "Global Brief Staff",
+                                    "jobTitle": author ? author.role : "Journalist",
+                                    "url": author ? `https://global-brief.vercel.app/author/${author.id}` : "https://global-brief.vercel.app"
+                                }],
+                                "publisher": {
+                                    "@type": "Organization",
+                                    "name": "Global Brief",
+                                    "logo": {
+                                        "@type": "ImageObject",
+                                        "url": "https://global-brief.vercel.app/logo.png"
+                                    }
+                                },
+                                "description": article.metaDescription || article.tldr?.[0]
+                            })
+                        }}
+                    />
+
                     {/* Related Articles */}
                     <div className="mb-12">
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Read Next</h3>
