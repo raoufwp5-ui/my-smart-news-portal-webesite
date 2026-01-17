@@ -351,6 +351,20 @@
       "scheduledFor": null
     },
     {
+      "slug": "fifa-ai-referees-2026",
+      "title": "The Whistle Blows for Humans: AI Referees Take Over World Cup 2026",
+      "category": "sports",
+      "image": "/media/articles/ai-referee-owl.jpg",
+      "tldr": [
+        "FIFA's 'Omni-Ref' AI system replaces human decision-making for the 2026 World Cup, boasting 99.8% accuracy.",
+        "The technology uses 56 cameras and an 'Intent Engine' to judge subjective calls like handballs and fouls instantly.",
+        "While game speed has increased, fans and traditionalists fear the sport is becoming 'sterile' and losing its emotional core."
+      ],
+      "pubDate": "2026-01-18T10:00:00.000Z",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T10:00:00.000Z"
+    },
+    {
       "slug": "neuralink-telepathy-launch-2026",
       "title": "Neuralink 2026: The Year Telepathy Became a Product",
       "category": "technology",
