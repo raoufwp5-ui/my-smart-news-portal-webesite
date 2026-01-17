@@ -56,7 +56,7 @@ export default function SocialShare({ title, slug, variant = 'horizontal' }) {
     const isVertical = variant === 'vertical';
 
     const containerClass = isVertical
-        ? "flex flex-col gap-4 fixed left-8 top-1/3 z-50 hidden xl:flex"
+        ? "flex flex-col gap-4 fixed right-8 top-1/3 z-50 hidden xl:flex"
         : "flex items-center gap-2 my-6 pt-6 border-t border-gray-100 dark:border-gray-800 flex-wrap";
 
     const buttonClass = (colorClass) => `
