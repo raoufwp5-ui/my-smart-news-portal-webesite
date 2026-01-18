@@ -1,6 +1,66 @@
 {
   "articles": [
     {
+      "slug": "great-green-wall-complete-2026",
+      "title": "The Great Green Wall: Africa Completes the Eighth Wonder of the World",
+      "category": "health",
+      "image": "/media/articles/green-wall.jpg",
+      "tldr": [
+        "The 8,000km Great Green Wall across Africa is declared complete, stopping the spread of the Sahara Desert.",
+        "The project has restored 100 million hectares of land and created 10 million green jobs, revitalizing the Sahel economy.",
+        "Acting as a massive carbon sink, the Wall is hailed as a global model for combating climate change through large-scale rewilding."
+      ],
+      "pubDate": "2026-01-18T18:00:00.000Z",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T18:00:00.000Z",
+      "authorId": "dr-aris"
+    },
+    {
+      "slug": "eu-digital-detox-law-2026",
+      "title": "The Right to Go Dark: EU's 'Digital Detox' Bill Bans After-Hours Work Emails",
+      "category": "business",
+      "image": "/media/articles/digital-detox.jpg",
+      "tldr": [
+        "New EU law bans work emails after 6 PM, with massive fines for companies that violate the 'Right to Disconnect'.",
+        "Tech giants argue the move hurts competitiveness, while proponents cite the need to combat the 'Digital-Induced Anxiety' epidemic.",
+        "Cultural trends shift as 'Dumbphone Tourism' booms, with Gen Z paying premium prices for disconnected, smartphone-free vacations."
+      ],
+      "pubDate": "2026-01-18T16:00:00.000Z",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T16:00:00.000Z",
+      "authorId": "elena-corves"
+    },
+    {
+      "slug": "artemis-base-camp-moon-landing-2026",
+      "title": "Artemis Base Camp: NASA and SpaceX Establish Humanity's First Permanent Lunar Outpost",
+      "category": "technology",
+      "image": "/media/articles/lunar-base.jpg",
+      "tldr": [
+        "NASA and SpaceX successfully establish 'Artemis Base Camp', the first permanent human habitat on the Moon's South Pole.",
+        "The base uses 'Mooncrete' radiation shielding and algae bioreactors to sustain a permanent crew, aiming to mine Helium-3 for clean energy.",
+        "The mission marks the official transition of humanity into a multi-planetary species, setting the stage for Mars missions in the 2030s."
+      ],
+      "pubDate": "2026-01-18T14:00:00.000Z",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T14:00:00.000Z",
+      "authorId": "dr-aris"
+    },
+    {
+      "slug": "arctic-trade-route-2026",
+      "title": "The New Suez: Arctic Trade Route Opens Year-Round, Sparking Global Power Scramble",
+      "category": "politics",
+      "image": "/media/articles/arctic-ship.jpg",
+      "tldr": [
+        "The Northern Sea Route stays ice-free year-round for the first time, cutting Asia-Europe shipping times by 50%.",
+        "Russia and China solidify dominance over the route, establishing tolls and military infrastructure, while the West scrambles to catch up.",
+        "Environmentalists warn of a 'feedback loop' as ship emissions accelerate polar ice melt, despite the route's massive economic efficiency."
+      ],
+      "pubDate": "2026-01-18T12:00:00.000Z",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T12:00:00.000Z",
+      "authorId": "marcus-thorne"
+    },
+    {
       "slug": "6g-networks-speed-benefits-2026",
       "title": "6G Networks in 2026: The Terahertz Revolution Changing Everything",
       "category": "technology",
@@ -12,8 +72,7 @@
       ],
       "pubDate": "2026-03-10T09:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "africa-fintech-startups-2026",
@@ -27,8 +86,7 @@
       ],
       "pubDate": "2026-05-10T10:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "ai-companions-mental-health-2026",
@@ -42,8 +100,7 @@
       ],
       "pubDate": "2026-01-15T18:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "ai-in-classrooms-pros-cons-2026",
@@ -57,8 +114,7 @@
       ],
       "pubDate": "2026-09-05T08:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "best-affordable-electric-cars-2026",
@@ -72,8 +128,7 @@
       ],
       "pubDate": "2026-02-28T16:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "biometric-payments-security-2026",
@@ -87,8 +142,20 @@
       ],
       "pubDate": "2026-03-30T08:30:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
+    },
+    {
+      "slug": "cancer-vaccine-revolution-2026",
+      "title": "The End of Chemotherapy: Personalized mRNA Vaccines Cure First 10,000 Patients",
+      "category": "politics",
+      "image": "/media/articles/cancer-cure-bell.jpg",
+      "tldr": [
+        "FDA approves widespread use of personalized mRNA cancer vaccines after 'Vax-C' initiative cures 10,000 patients.",
+        "The treatment replaces toxic chemotherapy with a precise immune system 'instruction script,' achieving a 92% survival rate.",
+        "A global divide emerges as wealthy nations access the cure ($4,000) while developing nations rely on traditional chemo ($150,000)."
+      ],
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T12:00:00.000Z"
     },
     {
       "slug": "crispr-diabetes-cure-approved-2026",
@@ -102,8 +169,7 @@
       ],
       "pubDate": "2026-05-15T11:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "crypto-regulation-2026-reset",
@@ -117,8 +183,7 @@
       ],
       "pubDate": "2026-02-15T08:30:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "digital-euro-privacy-concerns-2026",
@@ -132,8 +197,7 @@
       ],
       "pubDate": "2026-06-01T08:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "end-of-cash-digital-dollar-euro-2026",
@@ -147,8 +211,20 @@
       ],
       "pubDate": "2026-01-17T22:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-17T22:00:00.000Z",
-      "authorId": "elena-corves"
+      "scheduledFor": "2026-01-17T22:00:00.000Z"
+    },
+    {
+      "slug": "end-of-cash-economy-2026",
+      "title": "The Day Cash Died: Why 2026 Marks the End of Physical Money",
+      "category": "business",
+      "image": "/media/articles/cashless-society-ruins.jpg",
+      "tldr": [
+        "Sweden becomes the first 100% cashless nation, sparking a global shift toward government-backed Digital Currencies (CBDCs).",
+        "Privacy advocates warn of 'Programmable Money,' where governments could restrict spending based on carbon footprint or social scores.",
+        "The 'Unbanked' population faces economic erasure as smartphones become the only gateway to participate in society."
+      ],
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T11:00:00.000Z"
     },
     {
       "slug": "esports-olympics-2026-saudi-arabia",
@@ -162,8 +238,20 @@
       ],
       "pubDate": "2026-07-25T15:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "coach-mike"
+      "scheduledFor": null
+    },
+    {
+      "slug": "fifa-ai-referees-2026",
+      "title": "The Whistle Blows for Humans: AI Referees Take Over World Cup 2026",
+      "category": "sports",
+      "image": "/media/articles/ai-referee-owl.jpg",
+      "tldr": [
+        "FIFA's 'Omni-Ref' AI system replaces human decision-making for the 2026 World Cup, boasting 99.8% accuracy.",
+        "The technology uses 56 cameras and an 'Intent Engine' to judge subjective calls like handballs and fouls instantly.",
+        "While game speed has increased, fans and traditionalists fear the sport is becoming 'sterile' and losing its emotional core."
+      ],
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T10:00:00.000Z"
     },
     {
       "slug": "fifa-world-cup-2026-stadiums-revolution",
@@ -177,8 +265,7 @@
       ],
       "pubDate": "2026-06-01T10:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "coach-mike"
+      "scheduledFor": null
     },
     {
       "slug": "fractional-executive-jobs-2026",
@@ -192,8 +279,7 @@
       ],
       "pubDate": "2026-02-10T08:45:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "global-sleep-crisis-2026",
@@ -207,8 +293,7 @@
       ],
       "pubDate": "2026-01-17T20:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-17T20:00:00.000Z",
-      "authorId": "sarah-vance"
+      "scheduledFor": "2026-01-17T20:00:00.000Z"
     },
     {
       "slug": "great-green-wall-progress-2026",
@@ -222,8 +307,7 @@
       ],
       "pubDate": "2026-04-22T12:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "marcus-thorne"
+      "scheduledFor": null
     },
     {
       "slug": "hydrogen-economy-growth-2026",
@@ -237,8 +321,7 @@
       ],
       "pubDate": "2026-08-05T13:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "iter-commercial-fusion-timeline-2026",
@@ -252,8 +335,20 @@
       ],
       "pubDate": "2026-07-12T10:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
+    },
+    {
+      "slug": "neuralink-telepathy-launch-2026",
+      "title": "Neuralink 2026: The Year Telepathy Became a Product",
+      "category": "technology",
+      "image": "/media/articles/neuralink-2026-demo.jpg",
+      "tldr": [
+        "Neuralink's 'N1-Link v4' launches publicly, allowing paralyzed users to control devices via thought at unprecedented speeds.",
+        "A controversial $299/mo 'Telepathy Pro' subscription offers features like 'Silent Voice' calls and emotional state transmission.",
+        "A geopolitical divide opens: The US embraces the tech, the EU bans it for privacy, and China deploys it for industrial worker optimization."
+      ],
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T09:00:00.000Z"
     },
     {
       "slug": "quantum-computing-breaks-encryption-2026",
@@ -267,8 +362,7 @@
       ],
       "pubDate": "2026-10-20T11:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "remote-work-laws-2026-global",
@@ -282,8 +376,7 @@
       ],
       "pubDate": "2026-01-20T09:15:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "elena-corves"
+      "scheduledFor": null
     },
     {
       "slug": "smart-city-surveillance-ethics-2026",
@@ -297,8 +390,7 @@
       ],
       "pubDate": "2026-11-05T16:20:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "spacex-mars-mission-cargo-2026",
@@ -312,8 +404,7 @@
       ],
       "pubDate": "2026-04-22T14:30:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "voyager-station-hotel-opening-2026",
@@ -327,8 +418,7 @@
       ],
       "pubDate": "2026-12-01T09:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "vr-gaming-adoption-rates-2026",
@@ -342,8 +432,7 @@
       ],
       "pubDate": "2026-11-10T17:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "water-crisis-solutions-2026",
@@ -357,8 +446,7 @@
       ],
       "pubDate": "2026-06-15T10:30:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "marcus-thorne"
+      "scheduledFor": null
     },
     {
       "slug": "will-ai-boom-go-bust-2026-analysis",
@@ -372,69 +460,7 @@
       ],
       "pubDate": "2026-01-16T09:00:00Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
-    },
-    {
-      "slug": "cancer-vaccine-revolution-2026",
-      "title": "The End of Chemotherapy: Personalized mRNA Vaccines Cure First 10,000 Patients",
-      "category": "politics",
-      "image": "/media/articles/cancer-cure-bell.jpg",
-      "tldr": [
-        "FDA approves widespread use of personalized mRNA cancer vaccines after 'Vax-C' initiative cures 10,000 patients.",
-        "The treatment replaces toxic chemotherapy with a precise immune system 'instruction script,' achieving a 92% survival rate.",
-        "A global divide emerges as wealthy nations access the cure ($4,000) while developing nations rely on traditional chemo ($150,000)."
-      ],
-      "pubDate": "2026-01-18T12:00:00.000Z",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-18T12:00:00.000Z",
-      "wordCount": 1180,
-      "authorId": "marcus-thorne"
-    },
-    {
-      "slug": "end-of-cash-economy-2026",
-      "title": "The Day Cash Died: Why 2026 Marks the End of Physical Money",
-      "category": "business",
-      "image": "/media/articles/cashless-society-ruins.jpg",
-      "tldr": [
-        "Sweden becomes the first 100% cashless nation, sparking a global shift toward government-backed Digital Currencies (CBDCs).",
-        "Privacy advocates warn of 'Programmable Money,' where governments could restrict spending based on carbon footprint or social scores.",
-        "The 'Unbanked' population faces economic erasure as smartphones become the only gateway to participate in society."
-      ],
-      "pubDate": "2026-01-18T11:00:00.000Z",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-18T11:00:00.000Z",
-      "authorId": "elena-corves"
-    },
-    {
-      "slug": "fifa-ai-referees-2026",
-      "title": "The Whistle Blows for Humans: AI Referees Take Over World Cup 2026",
-      "category": "sports",
-      "image": "/media/articles/ai-referee-owl.jpg",
-      "tldr": [
-        "FIFA's 'Omni-Ref' AI system replaces human decision-making for the 2026 World Cup, boasting 99.8% accuracy.",
-        "The technology uses 56 cameras and an 'Intent Engine' to judge subjective calls like handballs and fouls instantly.",
-        "While game speed has increased, fans and traditionalists fear the sport is becoming 'sterile' and losing its emotional core."
-      ],
-      "pubDate": "2026-01-18T10:00:00.000Z",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-18T10:00:00.000Z",
-      "authorId": "coach-mike"
-    },
-    {
-      "slug": "neuralink-telepathy-launch-2026",
-      "title": "Neuralink 2026: The Year Telepathy Became a Product",
-      "category": "technology",
-      "image": "/media/articles/neuralink-2026-demo.jpg",
-      "tldr": [
-        "Neuralink's 'N1-Link v4' launches publicly, allowing paralyzed users to control devices via thought at unprecedented speeds.",
-        "A controversial $299/mo 'Telepathy Pro' subscription offers features like 'Silent Voice' calls and emotional state transmission.",
-        "A geopolitical divide opens: The US embraces the tech, the EU bans it for privacy, and China deploys it for industrial worker optimization."
-      ],
-      "pubDate": "2026-01-18T09:00:00.000Z",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-18T09:00:00.000Z",
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     },
     {
       "slug": "zurich-accord-ai-safety-2026",
@@ -448,8 +474,7 @@
       ],
       "pubDate": "2026-01-17T17:00:00.000Z",
       "status": "published",
-      "scheduledFor": null,
-      "authorId": "sarah-vance"
+      "scheduledFor": null
     }
   ]
 }
