@@ -25,36 +25,36 @@ export async function GET() {
         const articleUrl = `${baseUrl}/article/${article.slug}`;
         const pubDate = new Date(article.pubDate || article.date).toUTCString();
 
-        // 1. Fetch Full Content from Disk
-        let description = article.tldr ? article.tldr[0] : (article.metaDescription || '');
+        // 1. Fetch Full Content from Disk for Long Excerpt
+        let longExcerpt = '';
+        let shortSummary = article.metaDescription || (article.tldr ? article.tldr[0] : '');
+
         try {
             const filePath = importPath.default.join(articlesDir, `${article.slug}.json`);
             if (importFs.default.existsSync(filePath)) {
                 const fullData = JSON.parse(importFs.default.readFileSync(filePath, 'utf8'));
                 if (fullData.content) {
-                    // 2. Strip Markdown & Truncate
+                    // Strip Markdown & Truncate
                     let cleanText = fullData.content
-                        .replace(/#{1,6}\s?/g, '') // Remove Headers
-                        .replace(/(\*\*|__)(.*?)\1/g, '$2') // Remove Bold
-                        .replace(/(\*|_)(.*?)\1/g, '$2') // Remove Italic
-                        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove Links
-                        .replace(/!\[[^\]]*\]\([^)]+\)/g, '') // Remove Images
-                        .replace(/>\s?/g, '') // Remove Blockquotes
-                        .replace(/`{1,3}[^`]*`{1,3}/g, '') // Remove Code
-                        .replace(/\n+/g, ' ') // Collapse newlines
+                        .replace(/#{1,6}\s?/g, '')
+                        .replace(/(\*\*|__)(.*?)\1/g, '$2')
+                        .replace(/(\*|_)(.*?)\1/g, '$2')
+                        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+                        .replace(/!\[[^\]]*\]\([^)]+\)/g, '')
+                        .replace(/>\s?/g, '')
+                        .replace(/`{1,3}[^`]*`{1,3}/g, '')
+                        .replace(/\n+/g, ' ')
                         .trim();
 
-                    // Get first 60 words for standard description, but Flipboard might want more.
-                    // User requested ~300 words.
                     const words = cleanText.split(/\s+/);
                     if (words.length > 50) {
-                        description = words.slice(0, 300).join(' ') + '...';
+                        longExcerpt = words.slice(0, 300).join(' ') + '...';
+                    } else {
+                        longExcerpt = cleanText;
                     }
                 }
             }
-        } catch (e) {
-            // Fallback to basic description
-        }
+        } catch (e) { }
 
         // Ensure image URL is absolute
         let imageUrl = article.image || '';
@@ -68,7 +68,13 @@ export async function GET() {
             <link>${articleUrl}</link>
             <guid isPermaLink="true">${articleUrl}</guid>
             <pubDate>${pubDate}</pubDate>
-            <description><![CDATA[${description} <br/><a href="${articleUrl}">Read full article at Global Brief</a>]]></description>
+            <description><![CDATA[${shortSummary}]]></description>
+            <content:encoded><![CDATA[
+                ${imageUrl ? `<img src="${imageUrl}" alt="${article.title}" style="width:100%; max-width:600px; margin-bottom:20px;" />` : ''}
+                <p>${longExcerpt}</p>
+                <br/>
+                <p><a href="${articleUrl}">Read the full story at Global Brief</a></p>
+            ]]></content:encoded>
             ${imageUrl ? `<enclosure url="${imageUrl}" type="image/jpeg" />` : ''}
             <category>${article.category || 'News'}</category>
         </item>`;
