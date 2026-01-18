@@ -12,7 +12,8 @@
       ],
       "pubDate": "2026-03-10T09:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "africa-fintech-startups-2026",
@@ -26,7 +27,8 @@
       ],
       "pubDate": "2026-05-10T10:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "ai-companions-mental-health-2026",
@@ -40,7 +42,8 @@
       ],
       "pubDate": "2026-01-15T18:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "ai-in-classrooms-pros-cons-2026",
@@ -54,7 +57,8 @@
       ],
       "pubDate": "2026-09-05T08:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "best-affordable-electric-cars-2026",
@@ -68,7 +72,8 @@
       ],
       "pubDate": "2026-02-28T16:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "biometric-payments-security-2026",
@@ -82,7 +87,8 @@
       ],
       "pubDate": "2026-03-30T08:30:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "crispr-diabetes-cure-approved-2026",
@@ -96,7 +102,8 @@
       ],
       "pubDate": "2026-05-15T11:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "crypto-regulation-2026-reset",
@@ -110,7 +117,8 @@
       ],
       "pubDate": "2026-02-15T08:30:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "digital-euro-privacy-concerns-2026",
@@ -124,7 +132,8 @@
       ],
       "pubDate": "2026-06-01T08:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "end-of-cash-digital-dollar-euro-2026",
@@ -138,7 +147,8 @@
       ],
       "pubDate": "2026-01-17T22:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-17T22:00:00.000Z"
+      "scheduledFor": "2026-01-17T22:00:00.000Z",
+      "authorId": "elena-corves"
     },
     {
       "slug": "esports-olympics-2026-saudi-arabia",
@@ -152,7 +162,8 @@
       ],
       "pubDate": "2026-07-25T15:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "coach-mike"
     },
     {
       "slug": "fifa-world-cup-2026-stadiums-revolution",
@@ -166,7 +177,8 @@
       ],
       "pubDate": "2026-06-01T10:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "coach-mike"
     },
     {
       "slug": "fractional-executive-jobs-2026",
@@ -180,7 +192,8 @@
       ],
       "pubDate": "2026-02-10T08:45:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "global-sleep-crisis-2026",
@@ -194,7 +207,8 @@
       ],
       "pubDate": "2026-01-17T20:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-17T20:00:00.000Z"
+      "scheduledFor": "2026-01-17T20:00:00.000Z",
+      "authorId": "sarah-vance"
     },
     {
       "slug": "great-green-wall-progress-2026",
@@ -208,7 +222,8 @@
       ],
       "pubDate": "2026-04-22T12:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "marcus-thorne"
     },
     {
       "slug": "hydrogen-economy-growth-2026",
@@ -222,7 +237,8 @@
       ],
       "pubDate": "2026-08-05T13:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "iter-commercial-fusion-timeline-2026",
@@ -236,7 +252,8 @@
       ],
       "pubDate": "2026-07-12T10:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "quantum-computing-breaks-encryption-2026",
@@ -250,7 +267,8 @@
       ],
       "pubDate": "2026-10-20T11:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "remote-work-laws-2026-global",
@@ -264,7 +282,8 @@
       ],
       "pubDate": "2026-01-20T09:15:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "elena-corves"
     },
     {
       "slug": "smart-city-surveillance-ethics-2026",
@@ -278,7 +297,8 @@
       ],
       "pubDate": "2026-11-05T16:20:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "spacex-mars-mission-cargo-2026",
@@ -292,7 +312,8 @@
       ],
       "pubDate": "2026-04-22T14:30:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "voyager-station-hotel-opening-2026",
@@ -306,7 +327,8 @@
       ],
       "pubDate": "2026-12-01T09:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "vr-gaming-adoption-rates-2026",
@@ -320,7 +342,8 @@
       ],
       "pubDate": "2026-11-10T17:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "water-crisis-solutions-2026",
@@ -334,7 +357,8 @@
       ],
       "pubDate": "2026-06-15T10:30:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "marcus-thorne"
     },
     {
       "slug": "will-ai-boom-go-bust-2026-analysis",
@@ -348,7 +372,8 @@
       ],
       "pubDate": "2026-01-16T09:00:00Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     },
     {
       "slug": "cancer-vaccine-revolution-2026",
@@ -363,7 +388,8 @@
       "pubDate": "2026-01-18T12:00:00.000Z",
       "status": "scheduled",
       "scheduledFor": "2026-01-18T12:00:00.000Z",
-      "wordCount": 1180
+      "wordCount": 1180,
+      "authorId": "marcus-thorne"
     },
     {
       "slug": "end-of-cash-economy-2026",
@@ -377,7 +403,8 @@
       ],
       "pubDate": "2026-01-18T11:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-18T11:00:00.000Z"
+      "scheduledFor": "2026-01-18T11:00:00.000Z",
+      "authorId": "elena-corves"
     },
     {
       "slug": "fifa-ai-referees-2026",
@@ -391,7 +418,8 @@
       ],
       "pubDate": "2026-01-18T10:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-18T10:00:00.000Z"
+      "scheduledFor": "2026-01-18T10:00:00.000Z",
+      "authorId": "coach-mike"
     },
     {
       "slug": "neuralink-telepathy-launch-2026",
@@ -405,7 +433,8 @@
       ],
       "pubDate": "2026-01-18T09:00:00.000Z",
       "status": "scheduled",
-      "scheduledFor": "2026-01-18T09:00:00.000Z"
+      "scheduledFor": "2026-01-18T09:00:00.000Z",
+      "authorId": "sarah-vance"
     },
     {
       "slug": "zurich-accord-ai-safety-2026",
@@ -419,7 +448,8 @@
       ],
       "pubDate": "2026-01-17T17:00:00.000Z",
       "status": "published",
-      "scheduledFor": null
+      "scheduledFor": null,
+      "authorId": "sarah-vance"
     }
   ]
 }
