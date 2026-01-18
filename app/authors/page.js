@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Twitter, Linkedin, User } from 'lucide-react';
+import AuthorAvatar from '@/components/AuthorAvatar';
 import authors from '@/data/authors.json';
 
 export const metadata = {
@@ -30,14 +31,10 @@ export default function AuthorsIndex() {
                         <div key={author.id} className="bg-white dark:bg-gray-900 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:-translate-y-2 transition-transform duration-300 group">
                             <div className="h-32 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-700 relative">
                                 <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white dark:border-gray-900 shadow-md overflow-hidden bg-white">
-                                    <img
+                                    <AuthorAvatar
                                         src={author.avatar}
-                                        alt={author.name}
+                                        name={author.name}
                                         className="w-full h-full object-cover"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = `https://ui-avatars.com/api/?name=${author.name.replace(' ', '+')}&background=random`
-                                        }}
                                     />
                                 </div>
                             </div>
