@@ -70,12 +70,12 @@ export async function GET() {
             <pubDate>${pubDate}</pubDate>
             <description><![CDATA[${shortSummary}]]></description>
             <content:encoded><![CDATA[
-                ${imageUrl ? `<img src="${imageUrl}" alt="${article.title}" style="width:100%; max-width:600px; margin-bottom:20px;" />` : ''}
+                ${imageUrl ? `<img src="${imageUrl}" alt="${article.title}" />` : ''}
                 <p>${longExcerpt}</p>
                 <br/>
                 <p><a href="${articleUrl}">Read the full story at Global Brief</a></p>
             ]]></content:encoded>
-            ${imageUrl ? `<enclosure url="${imageUrl}" type="image/jpeg" />` : ''}
+            ${imageUrl ? `<enclosure url="${imageUrl}" type="image/jpeg" length="0" />` : ''}
             <category>${article.category || 'News'}</category>
         </item>`;
     }).join('');
