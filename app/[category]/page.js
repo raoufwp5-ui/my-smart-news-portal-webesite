@@ -1,5 +1,6 @@
 import NewsFeed from '@/components/NewsFeed';
 import { redirect } from 'next/navigation';
+import categoryData from '@/data/categories.json';
 
 export const revalidate = 3600;
 
@@ -9,7 +10,6 @@ export function generateMetadata({ params }) {
     try {
         const { category } = params;
 
-        // Validate category
         if (!category || !VALID_CATEGORIES.includes(category)) {
             return {
                 title: 'Category Not Found | Global Brief',
@@ -17,23 +17,24 @@ export function generateMetadata({ params }) {
             };
         }
 
-        const title = category.charAt(0).toUpperCase() + category.slice(1);
-        const description = `Latest ${title} news and in-depth analysis. Breaking news, global stories, and in-depth coverage.`;
+        const data = categoryData[category] || {};
+        const title = data.title || (category.charAt(0).toUpperCase() + category.slice(1));
+        const description = data.description || `Latest ${title} news and in-depth analysis.`;
 
         return {
-            metadataBase: new URL('https://my-smart-news-portal-webesite.vercel.app'),
-            title: `${title} News | Global Brief`,
+            metadataBase: new URL('https://global-brief.vercel.app'),
+            title: `${title} | Global Brief`,
             description: description,
             openGraph: {
-                title: `${title} News | Global Brief`,
+                title: `${title} | Global Brief`,
                 description: description,
-                url: `https://my-smart-news-portal-webesite.vercel.app/${category}`,
+                url: `https://global-brief.vercel.app/${category}`,
                 siteName: 'Global Brief',
                 type: 'website',
             },
             twitter: {
                 card: 'summary_large_image',
-                title: `${title} News | Global Brief`,
+                title: `${title} | Global Brief`,
                 description: description,
             },
         };
@@ -46,21 +47,36 @@ export function generateMetadata({ params }) {
 export default function CategoryPage({ params }) {
     const { category } = params || {};
 
-    // Validate category - redirect to homepage if invalid or missing
     if (!category || !VALID_CATEGORIES.includes(category)) {
         redirect('/');
     }
 
-    const title = category.charAt(0).toUpperCase() + category.slice(1);
-    const description = `Latest ${title} news and in-depth analysis for ${title}.`;
+    const data = categoryData[category] || {};
+    const title = data.title || (category.charAt(0).toUpperCase() + category.slice(1));
+    const description = data.description || `Leading coverage of ${category}.`;
+    const intro = data.intro || "Essential reporting.";
 
     // Structured Data for SEO
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: `${title} News | Global Brief`,
+        name: `${title}`,
         description: description,
-        url: `https://my-smart-news-portal-webesite.vercel.app/${category}`,
+        url: `https://global-brief.vercel.app/${category}`,
+        breadcrumb: {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://global-brief.vercel.app"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": title,
+                "item": `https://global-brief.vercel.app/${category}`
+            }]
+        }
     };
 
     return (
@@ -70,17 +86,17 @@ export default function CategoryPage({ params }) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            <header className="mb-12 text-center">
+            <header className="mb-12 text-center max-w-4xl mx-auto">
                 <div className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-red-600 uppercase bg-red-50 dark:bg-red-900/20 rounded-full">
-                    World Category
+                    {intro}
                 </div>
-                <h1 className="text-4xl md:text-6xl font-black mb-6 capitalize text-gray-900 dark:text-gray-100 drop-shadow-sm">
-                    {title} <span className="text-red-600">News</span>
+                <h1 className="text-4xl md:text-6xl font-black mb-6 text-gray-900 dark:text-gray-100 drop-shadow-sm">
+                    {title}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg mb-8">
+                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
                     {description}
                 </p>
-                <div className="w-32 h-1.5 bg-gradient-to-r from-red-600 to-transparent mx-auto rounded-full"></div>
+                <div className="w-32 h-1.5 bg-red-600 mx-auto rounded-full"></div>
             </header>
 
             <main>

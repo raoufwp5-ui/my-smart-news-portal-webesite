@@ -1,0 +1,27 @@
+{
+    "business": {
+        "title": "Global Business & Economy",
+        "intro": "Navigate the shifts in the Global Economy.",
+        "description": "Stay ahead of the market with our in-depth coverage of the 2026 economic landscape. From the rise of Central Bank Digital Currencies (CBDCs) and the 'End of Cash' to the booming fractional executive gig economy, we analyze the forces reshaping wealth. Discover how emerging markets in Africa and Southeast Asia are challenging the status quo, and what the 'Great Pivot' to hydrogen energy means for global trade routes and corporate strategy."
+    },
+    "technology": {
+        "title": "Future Tech & Innovation",
+        "intro": "Decoding the post-silicon era.",
+        "description": "Explore the cutting-edge developments defining 2026, from the rollout of 6G Terahertz networks to the ethical dilemmas of Neuralink's telepathy tech. We dive deep into the 'Quantum Hard Fork', the impact of AI tutors in classrooms, and the race to establish permanent lunar bases. Our expert analysis separates the hype from the hardware, ensuring you understand the technologies building the next civilization."
+    },
+    "politics": {
+        "title": "Geopolitics & Policy",
+        "intro": "Understanding the laws that shape tomorrow.",
+        "description": "The world map is being redrawn. Track the critical policy shifts of 2026, including the EU's strict 'Digital Detox' labor laws, the scramble for control over the new Arctic Trade Route, and the implementation of the historic Zurich Accord on AI safety. We provide neutral, fact-based reporting on how governments are responding to climate change, migration, and the new digital arms race, giving you the context behind the headlines."
+    },
+    "sports": {
+        "title": "Global Sports & eSports",
+        "intro": "The game has changed forever.",
+        "description": "Witness the evolution of competition. We cover the biggest stories in sports, from the data-driven revolution of FIFA's AI referees to the cultural explosion of the 2026 eSports Olympics in Riyadh. Whether it's the 48-team World Cup across North America or the personalized training regimes of the future, we analyze how technology and tradition are colliding to create a new era of athlete performance and fan engagement."
+    },
+    "general": {
+        "title": "Global Brief News",
+        "intro": "Essential stories from around the world.",
+        "description": "Your daily briefing on the most important stories crossing our desk. We curate a mix of breaking news, cultural trends, and human-interest pieces that don't fit into a single box. From 'Dumbphone Tourism' trends to breakthrough medical cures, get the broader picture of a changing world with reporting that respects your intelligence and your time."
+    }
+}
