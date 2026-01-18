@@ -6,8 +6,8 @@ const cheerio = require('cheerio');
 const { execSync } = require('child_process');
 
 // --- CONSTANTS ---
-const MAX_ARTICLES = 1; // ONE BY ONE mode
-const SCHEDULE_HOURS = [17, 18, 19, 20, 21, 22, 23]; // Evenings for TODAY
+const MAX_ARTICLES = 4; // Complete the daily quota
+const SCHEDULE_HOURS = [12, 14, 16, 18, 20, 22]; // Spread throughout the rest of today
 
 // Helper: Commit and Push BATCH (Once at the end)
 function commitAndPushBatch(count) {
