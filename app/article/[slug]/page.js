@@ -5,7 +5,7 @@ import AdSlot from '@/components/AdSlot';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { model } from '@/lib/gemini';
 import Link from 'next/link';
-import { ArrowLeft, Share2, MessageCircle, Twitter, Facebook, Linkedin, Send, Link as LinkIcon, Calendar } from 'lucide-react';
+import { ArrowLeft, Share2, MessageCircle, Twitter, Facebook, Linkedin, Send, Link as LinkIcon, Calendar, AlertCircle } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import fs from 'fs';
 import path from 'path';

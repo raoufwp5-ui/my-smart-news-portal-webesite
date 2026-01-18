@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Twitter, Linkedin, User } from 'lucide-react';
 import Image from 'next/image';
+import AuthorAvatar from './AuthorAvatar';
 
 export default function AuthorCard({ author }) {
     if (!author) return null;
@@ -12,14 +13,11 @@ export default function AuthorCard({ author }) {
                 <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-sm relative">
                     {author.avatar ? (
                         // Using a reliable placeholder for now if local image missing, or standard Image if present
-                        <img
+                        // Using a reliable placeholder for now if local image missing, or standard Image if present
+                        <AuthorAvatar
                             src={author.avatar}
-                            alt={author.name}
+                            name={author.name}
                             className="w-full h-full object-cover"
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = `https://ui-avatars.com/api/?name=${author.name.replace(' ', '+')}&background=random`
-                            }}
                         />
                     ) : (
                         <div className="w-full h-full bg-gray-200 flex items-center justify-center">
