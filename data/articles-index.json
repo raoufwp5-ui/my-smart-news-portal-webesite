@@ -161,12 +161,52 @@
       "description": "Why have one job when you can have five? The 'Fractional Executive' trend is taking over the corporate world in 2026. CEOs are now freelancers. Here is why."
     },
     {
-      "title": "The Great Carbon Crash: Trillions Wiped Out in 48 Hours",
-      "slug": "carbon-credit-market-crash-2026",
-      "category": "economy",
-      "image": "/media/articles/global-carbon-crash-2026.jpg",
-      "pubDate": "2026-01-19T14:00:00Z",
-      "description": "Market Panic 2026: The Carbon Credit bubble has burst. Analysis of the VCM collapse, the whistleblower report, and what it means for the global economy."
+      "title": "Feeding the World: Tokyo's 100-Story Vertical Farm Harvests First Crop",
+      "slug": "tokyo-vertical-farm-first-crop-2026",
+      "category": "environment",
+      "image": "/media/articles/tokyo-vertical-farm-2026.jpg",
+      "pubDate": "2026-01-20T22:00:00Z",
+      "description": "Agriculture goes vertical. Tokyo's new 100-story farm is feeding the city with zero pesticides and 95% less water. Is this the future of food?"
+    },
+    {
+      "title": "Dubai's Sky-High Commute: First Regulatory Approval for Flying Taxis",
+      "slug": "dubai-flying-taxi-approval-2026",
+      "category": "technology",
+      "image": "/media/articles/dubai-flying-taxi-2026.jpg",
+      "pubDate": "2026-01-20T20:00:00Z",
+      "description": "Traffic is a thing of the past in Dubai. The city becomes the first to approve commercial flying taxis. Learn about the routes and pricing."
+    },
+    {
+      "title": "The Memory Shot: Phase 3 Alzheimer's Vaccine Shows 94% Efficacy",
+      "slug": "alzheimers-vaccine-phase-3-success-2026",
+      "category": "health",
+      "image": "/media/articles/alzheimers-vaccine-2026.jpg",
+      "pubDate": "2026-01-20T18:00:00Z",
+      "description": "A historic day for medicine. The Phase 3 results for the world's first Alzheimer's vaccine are in, and they are miraculous. 94% efficacy."
+    },
+    {
+      "title": "Infinite Energy: ITER Fusion Reactor Achieves First Net Gain",
+      "slug": "iter-fusion-net-energy-gain-2026",
+      "category": "science",
+      "image": "/media/articles/iter-fusion-2026.jpg",
+      "pubDate": "2026-01-20T14:00:00Z",
+      "description": "Fusion power is real. The ITER reactor in France has achieved net energy gain for the first time. The age of unlimited clean energy has begun."
+    },
+    {
+      "title": "Alcaraz vs. Drone: Man Beats Machine at Australian Open",
+      "slug": "alcaraz-beats-drone-australian-open-2026",
+      "category": "sports",
+      "image": "/media/articles/alcaraz-drone-2026.jpg",
+      "pubDate": "2026-01-20T12:00:00Z",
+      "description": "Man vs Machine on the tennis court. Carlos Alcaraz takes on the world's most advanced tennis robot at the Australian Open. See who won."
+    },
+    {
+      "title": "Cold War Ends on Ice: The New Arctic Treaty Signed in Reykjavik",
+      "slug": "arctic-treaty-signed-reykjavik-2026",
+      "category": "politics",
+      "image": "/media/articles/arctic-treaty-2026.jpg",
+      "pubDate": "2026-01-19T18:00:00Z",
+      "description": "History in Reykjavik. The superpowers have signed a new Arctic Treaty, preventing war over the melting polar ice caps. Full analysis of the terms."
     },
     {
       "title": "The Loneliness Epidemic: Why 1 in 3 People Have an AI 'Partner' in 2026",
@@ -184,14 +224,6 @@
       "description": "The Arctic is open for business. In 2026, the Northern Sea Route reshapes global trade, cutting shipping times by half but fueling geopolitical tension."
     },
     {
-      "title": "Cold War Ends on Ice: The New Arctic Treaty Signed in Reykjavik",
-      "slug": "arctic-treaty-signed-reykjavik-2026",
-      "category": "politics",
-      "image": "/media/articles/arctic-treaty-2026.jpg",
-      "pubDate": "2026-01-19T18:00:00Z",
-      "description": "History in Reykjavik. The superpowers have signed a new Arctic Treaty, preventing war over the melting polar ice caps. Full analysis of the terms."
-    },
-    {
       "title": "Artemis Base Camp: NASA and SpaceX Establish Humanity's First Permanent Lunar Outpost",
       "slug": "artemis-base-camp-moon-landing-2026",
       "category": "technology",
@@ -204,6 +236,14 @@
       "category": "technology",
       "image": "/media/articles/cancer-cure-bell.jpg",
       "description": "The age of chemotherapy is over. 2026 sees the first mass cure of cancer using mRNA vaccines. Explore the science, the cost, and the medical revolution."
+    },
+    {
+      "title": "The Great Carbon Crash: Trillions Wiped Out in 48 Hours",
+      "slug": "carbon-credit-market-crash-2026",
+      "category": "economy",
+      "image": "/media/articles/global-carbon-crash-2026.jpg",
+      "pubDate": "2026-01-19T14:00:00Z",
+      "description": "Market Panic 2026: The Carbon Credit bubble has burst. Analysis of the VCM collapse, the whistleblower report, and what it means for the global economy."
     },
     {
       "title": "The End of Cash: US Digital Dollar and Digital Euro Go to War in 2026",
@@ -248,12 +288,36 @@
       "description": "Africa completes the Great Green Wall, an 8,000km belt of trees that stops the Sahara, creates millions of jobs, and fights climate change."
     },
     {
-      "title": "World Cup 2026: Mexico Shocks France in Historic Opener",
-      "slug": "world-cup-2026-mexico-france-opener",
-      "category": "sports",
-      "image": "/media/articles/world-cup-opener-2026.jpg",
-      "pubDate": "2026-01-19T16:00:00Z",
-      "description": "The 2026 World Cup has begun with a bang. Host nation Mexico stuns France 2-1 at the Azteca. Read the full match report and player ratings."
+      "title": "The End of Anonymity? UN Mandates Global Biometric ID for Travel",
+      "slug": "un-global-biometric-id-mandate-2026",
+      "category": "politics",
+      "image": "/media/articles/global-digital-id-2026.jpg",
+      "pubDate": "2026-01-20T16:00:00Z",
+      "description": "Travel is changing forever. The UN has mandated a global biometric ID system to replace passports. What does this mean for your privacy?"
+    },
+    {
+      "title": "SpaceX IPO: The $5 Trillion Valuation That Broke Wall Street",
+      "slug": "spacex-ipo-valuation-2026",
+      "category": "economy",
+      "image": "/media/articles/spacex-ipo-2026.jpg",
+      "pubDate": "2026-01-20T10:00:00Z",
+      "description": "History on Wall Street. SpaceX goes public (SPCX) and immediately becomes the most valuable company on Earth. Analysis of the $5T valuation."
+    },
+    {
+      "title": "The Right to Disconnect: New Remote Work Laws Sweeping the Globe in 2026",
+      "slug": "remote-work-laws-2026-global",
+      "category": "business",
+      "image": "/media/articles/1768682845659-Gemini_Generated_Image_r4vzc6r4vzc6r4vz.png",
+      "pubDate": "2026-01-20T09:15:00Z",
+      "description": "Your boss can no longer text you at 8 PM. In 2026, the 'Right to Disconnect' becomes law in the UK, Australia, and parts of the US. We explain what this means for your job."
+    },
+    {
+      "title": "Quantum Internet Goes Live: NYC to London in Zero Seconds",
+      "slug": "quantum-internet-goes-live-2026",
+      "category": "technology",
+      "image": "/media/articles/quantum-internet-2026.jpg",
+      "pubDate": "2026-01-20T08:00:00Z",
+      "description": "The future of connectivity. The Quantum Internet is live, offering instant, unhackable communication between NYC and London. What this means for the world."
     },
     {
       "title": "Neural Link: The First Commercial Telepathy Headset Launches",
@@ -271,12 +335,12 @@
       "description": "Neuralink launches the N1-Link v4, turning telepathy into a consumer product. Analyze the $299 subscription, the privacy risks, and the new human divide."
     },
     {
-      "title": "The Right to Disconnect: New Remote Work Laws Sweeping the Globe in 2026",
-      "slug": "remote-work-laws-2026-global",
-      "category": "business",
-      "image": "/media/articles/1768682845659-Gemini_Generated_Image_r4vzc6r4vzc6r4vz.png",
-      "pubDate": "2026-01-20T09:15:00Z",
-      "description": "Your boss can no longer text you at 8 PM. In 2026, the 'Right to Disconnect' becomes law in the UK, Australia, and parts of the US. We explain what this means for your job."
+      "title": "World Cup 2026: Mexico Shocks France in Historic Opener",
+      "slug": "world-cup-2026-mexico-france-opener",
+      "category": "sports",
+      "image": "/media/articles/world-cup-opener-2026.jpg",
+      "pubDate": "2026-01-19T16:00:00Z",
+      "description": "The 2026 World Cup has begun with a bang. Host nation Mexico stuns France 2-1 at the Azteca. Read the full match report and player ratings."
     },
     {
       "title": "Will the AI Boom Go Bust? The Trillion-Dollar Question Defining 2026",
