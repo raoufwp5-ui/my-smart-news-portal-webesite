@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import NewsCard from '@/components/NewsCard';
 import SkeletonLoader from '@/components/SkeletonLoader';
-import AdSlot from '@/components/AdSlot';
+import AdsterraSlot from '@/components/AdsterraSlot';
 import HeroNews from '@/components/HeroNews';
 
 export default function NewsFeed({ category }) {
@@ -57,7 +57,7 @@ export default function NewsFeed({ category }) {
                 heroArticle && <HeroNews article={heroArticle} />
             )}
 
-            {!loading && <AdSlot position="Top Banner" />}
+            {/* Top Banner delegated to parent page */}
 
             {/* Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
@@ -71,10 +71,8 @@ export default function NewsFeed({ category }) {
                                 <NewsCard article={article} />
                                 {isAdPosition && (
                                     <div className="col-span-full">
-                                        <AdSlot
-                                            adSlot="1234567890"
-                                            adFormat="fluid"
-                                            label="Sponsored Content"
+                                        <AdsterraSlot
+                                            type="native"
                                             className="my-4"
                                         />
                                     </div>
@@ -112,7 +110,7 @@ export default function NewsFeed({ category }) {
                 </div>
             )}
 
-            <AdSlot position="Bottom Banner" />
+            {/* Bottom Banner delegated to parent page */}
         </div>
     );
 }

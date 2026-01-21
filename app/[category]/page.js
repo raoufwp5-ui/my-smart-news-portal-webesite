@@ -1,4 +1,5 @@
 import NewsFeed from '@/components/NewsFeed';
+import AdsterraSlot from '@/components/AdsterraSlot';
 import { redirect } from 'next/navigation';
 import categoryData from '@/data/categories.json';
 
@@ -100,7 +101,13 @@ export default function CategoryPage({ params }) {
             </header>
 
             <main>
+                <div className="mb-10">
+                    <AdsterraSlot type="banner" format="728x90" />
+                </div>
                 <NewsFeed category={category} />
+                <div className="mt-20">
+                    <AdsterraSlot type="native" />
+                </div>
             </main>
         </div>
     );
