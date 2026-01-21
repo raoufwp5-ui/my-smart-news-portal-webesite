@@ -245,7 +245,7 @@ export default async function ArticlePage({ params }) {
                 </div>
 
                 {/* Content Container */}
-                <div className="w-full max-w-[1920px] mx-auto px-4 -mt-24 relative z-10">
+                <div className="w-full max-w-[1920px] mx-auto px-8 md:px-12 -mt-24 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full mx-auto">
 
                         <div className="lg:col-span-9 bg-white dark:bg-gray-900 rounded-none md:rounded-3xl shadow-2xl px-2 py-6 md:px-6 md:py-8 border-x-0 md:border border-gray-100 dark:border-gray-800">
