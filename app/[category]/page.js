@@ -81,7 +81,7 @@ export default function CategoryPage({ params }) {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen container mx-auto px-4 py-8">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

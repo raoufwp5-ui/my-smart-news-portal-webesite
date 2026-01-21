@@ -245,8 +245,8 @@ export default async function ArticlePage({ params }) {
                 </div>
 
                 {/* Content Container */}
-                <div className="container mx-auto px-0 md:px-4 -mt-24 relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-screen-2xl mx-auto">
+                <div className="w-full max-w-[1920px] mx-auto px-4 -mt-24 relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full mx-auto">
 
                         <div className="lg:col-span-9 bg-white dark:bg-gray-900 rounded-none md:rounded-3xl shadow-2xl px-3 py-6 md:p-10 border-x-0 md:border border-gray-100 dark:border-gray-800">
                             <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-8 md:mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
