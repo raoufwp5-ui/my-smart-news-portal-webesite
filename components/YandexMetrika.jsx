@@ -17,11 +17,11 @@ export default function YandexMetrika() {
                     ym(106315967, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
                 `}
             </Script>
-            <noscript>
+            {/* <noscript>
                 <div>
                     <img src="https://mc.yandex.ru/watch/106315967" style={{ position: 'absolute', left: '-9999px' }} alt="" />
                 </div>
-            </noscript>
+            </noscript> */}
         </>
     );
 }
