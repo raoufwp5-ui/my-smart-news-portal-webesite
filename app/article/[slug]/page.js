@@ -248,7 +248,7 @@ export default async function ArticlePage({ params }) {
                 <div className="container mx-auto px-0 md:px-4 -mt-24 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
 
-                        <div className="lg:col-span-8 bg-white dark:bg-gray-900 rounded-none md:rounded-3xl shadow-2xl px-3 py-6 md:p-14 border-x-0 md:border border-gray-100 dark:border-gray-800">
+                        <div className="lg:col-span-9 bg-white dark:bg-gray-900 rounded-none md:rounded-3xl shadow-2xl px-3 py-6 md:p-14 border-x-0 md:border border-gray-100 dark:border-gray-800">
                             <Link href="/" className="inline-flex items-center text-red-600 hover:text-red-700 dark:text-red-400 mb-8 md:mb-12 font-bold group transition-all text-sm uppercase tracking-widest">
                                 <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-2 transition-transform" /> Back to Home
                             </Link>
@@ -391,7 +391,7 @@ export default async function ArticlePage({ params }) {
                         </div>
 
                         {/* Sidebar */}
-                        <div className="lg:col-span-4 space-y-8">
+                        <div className="lg:col-span-3 space-y-8">
                             {/* AD: Sticky Sidebar (Desktop Only) */}
                             {/* AD: Sticky Sidebar (Desktop Only) - Double MPU Strategy */}
                             <div className="hidden lg:flex flex-col gap-8 sticky top-24">
