@@ -6,14 +6,24 @@ export async function GET() {
     const baseUrl = 'https://global-brief.vercel.app';
     const { articles } = await getAllArticles(1, 1000);
 
-    // Filter articles from the last 48 hours
+    // Filter articles from the last 7 days (Google News limit is typically 2 days, but we extend for flexibility)
     const now = new Date();
-    const twoDaysAgo = new Date(now.getTime() - (48 * 60 * 60 * 1000));
+    const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
 
-    const recentArticles = articles.filter(article => {
-        const pubDate = new Date(article.pubDate || article.date);
-        return pubDate > twoDaysAgo && pubDate <= now;
-    });
+    const recentArticles = articles
+        .filter(article => {
+            // Only include published articles
+            if (article.status && article.status !== 'published') return false;
+            
+            const pubDate = new Date(article.pubDate || article.date || article.savedAt);
+            return pubDate > sevenDaysAgo && pubDate <= now;
+        })
+        .sort((a, b) => {
+            // Sort by publish date, newest first
+            const dateA = new Date(a.pubDate || a.date || a.savedAt);
+            const dateB = new Date(b.pubDate || b.date || b.savedAt);
+            return dateB - dateA;
+        });
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

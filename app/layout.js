@@ -4,6 +4,7 @@ import BreakingNews from '@/components/BreakingNews';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import YandexMetrika from '@/components/YandexMetrika';
+import WebsiteSchema from '@/components/WebsiteSchema';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -46,6 +47,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
+            <head>
+                <WebsiteSchema />
+            </head>
             <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 flex flex-col`}>
                 <YandexMetrika />
                 <BreakingNews />

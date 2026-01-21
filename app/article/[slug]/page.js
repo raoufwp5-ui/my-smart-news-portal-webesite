@@ -1,5 +1,5 @@
 import { getArticleBySlug, saveArticle, generateSlug, getRelatedArticles } from '@/lib/articleStore';
-import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import ArticleSchema from '@/components/ArticleSchema';
 import NewsCard from '@/components/NewsCard';
 import AdSlot from '@/components/AdSlot';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
@@ -137,15 +137,18 @@ export async function generateMetadata({ params }) {
         const description = article.metaDescription || article.meta_description || (article.tldr ? article.tldr[0] : article.title);
 
         return {
-            metadataBase: new URL('https://my-smart-news-portal-webesite.vercel.app'),
+            metadataBase: new URL('https://global-brief.vercel.app'),
             title: article.title,
             description: description.substring(0, 160),
             keywords: article.keywords?.join(', '),
+            alternates: {
+                canonical: `https://global-brief.vercel.app/article/${slug}`,
+            },
             openGraph: {
                 title: article.title,
                 description: description,
                 images: [article.image],
-                url: `https://my-smart-news-portal-webesite.vercel.app/article/${slug}`,
+                url: `https://global-brief.vercel.app/article/${slug}`,
             },
             twitter: {
                 card: 'summary_large_image',
@@ -404,33 +407,10 @@ export default async function ArticlePage({ params }) {
                 </div>
 
                 {/* JSON-LD Schema for E-E-A-T */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "NewsArticle",
-                            "headline": article.title,
-                            "image": [article.image],
-                            "datePublished": article.pubDate || article.savedAt,
-                            "dateModified": article.lastModified || article.savedAt,
-                            "author": [{
-                                "@type": "Person",
-                                "name": author ? author.name : "Global Brief Staff",
-                                "jobTitle": author ? author.role : "Journalist",
-                                "url": author ? `https://global-brief.vercel.app/author/${author.id}` : "https://global-brief.vercel.app"
-                            }],
-                            "publisher": {
-                                "@type": "Organization",
-                                "name": "Global Brief",
-                                "logo": {
-                                    "@type": "ImageObject",
-                                    "url": "https://global-brief.vercel.app/logo.png"
-                                }
-                            },
-                            "description": article.metaDescription || article.tldr?.[0]
-                        })
-                    }}
+                <ArticleSchema
+                    article={article}
+                    authorName={author ? author.name : "Global Brief Staff"}
+                    authorUrl={author ? `https://global-brief.vercel.app/author/${author.id}` : "https://global-brief.vercel.app"}
                 />
 
             </article>

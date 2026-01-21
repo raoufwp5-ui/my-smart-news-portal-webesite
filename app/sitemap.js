@@ -11,17 +11,56 @@ export default async function sitemap() {
             url: baseUrl,
             lastModified: currentDate,
             changeFrequency: 'hourly',
-            priority: 1,
+            priority: 1.0,
+        },
+        {
+            url: `${baseUrl}/about`,
+            lastModified: currentDate,
+            changeFrequency: 'monthly',
+            priority: 0.6,
+        },
+        {
+            url: `${baseUrl}/contact`,
+            lastModified: currentDate,
+            changeFrequency: 'monthly',
+            priority: 0.6,
+        },
+        {
+            url: `${baseUrl}/privacy-policy`,
+            lastModified: currentDate,
+            changeFrequency: 'yearly',
+            priority: 0.3,
+        },
+        {
+            url: `${baseUrl}/terms`,
+            lastModified: currentDate,
+            changeFrequency: 'yearly',
+            priority: 0.3,
+        },
+        {
+            url: `${baseUrl}/editorial-policy`,
+            lastModified: currentDate,
+            changeFrequency: 'yearly',
+            priority: 0.4,
         },
         {
             url: `${baseUrl}/authors`,
             lastModified: currentDate,
             changeFrequency: 'weekly',
-            priority: 0.8,
+            priority: 0.7,
         },
     ];
 
-    // 2. Dynamic Articles (from Index)
+    // 2. Category Routes
+    const categories = ['technology', 'business', 'sports', 'politics', 'health', 'science', 'economy', 'environment'];
+    const categoryRoutes = categories.map((category) => ({
+        url: `${baseUrl}/${category}`,
+        lastModified: currentDate,
+        changeFrequency: 'daily',
+        priority: 0.8,
+    }));
+
+    // 3. Dynamic Articles (from Index)
     let articleRoutes = [];
     try {
         const indexContent = fs.readFileSync(path.join(process.cwd(), 'data/articles-index.json'), 'utf8');
@@ -37,7 +76,7 @@ export default async function sitemap() {
         console.error('Sitemap Error (Articles):', e);
     }
 
-    // 3. Dynamic Authors
+    // 4. Dynamic Authors
     let authorRoutes = [];
     try {
         const authorsContent = fs.readFileSync(path.join(process.cwd(), 'data/authors.json'), 'utf8');
@@ -53,5 +92,5 @@ export default async function sitemap() {
         console.error('Sitemap Error (Authors):', e);
     }
 
-    return [...staticRoutes, ...articleRoutes, ...authorRoutes];
+    return [...staticRoutes, ...categoryRoutes, ...articleRoutes, ...authorRoutes];
 }
