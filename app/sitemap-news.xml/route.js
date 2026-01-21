@@ -1,6 +1,8 @@
 import { getAllArticles } from '@/lib/articleStore';
+import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
     const baseUrl = 'https://global-brief.vercel.app';
@@ -29,7 +31,6 @@ export async function GET() {
             return dateB - dateA;
         });
 
-    // XML Construction: Zero leading spaces/newlines strictly
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 ${recentArticles.map(article => `<url>
@@ -43,12 +44,16 @@ ${recentArticles.map(article => `<url>
 <news:title>${(article.title || 'Untitled').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')}</news:title>
 </news:news>
 </url>`).join('')}
-</urlset>`;
+</urlset>`.trim();
 
-    return new Response(xml.trim(), {
+    return new NextResponse(xml, {
+        status: 200,
         headers: {
             'Content-Type': 'application/xml; charset=utf-8',
-            'X-Content-Type-Options': 'nosniff' // Security header
+            'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+            'X-Content-Type-Options': 'nosniff'
         },
     });
 }
