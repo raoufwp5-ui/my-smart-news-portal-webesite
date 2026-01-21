@@ -1,46 +1,47 @@
-
 const fs = require('fs');
 const path = require('path');
 
-const articlesDir = path.join(process.cwd(), 'data', 'articles');
-const indexFile = path.join(process.cwd(), 'data', 'articles-index.json');
+const STORAGE_DIR = path.join(process.cwd(), 'data', 'articles');
+const INDEX_FILE = path.join(process.cwd(), 'data', 'articles-index.json');
 
-function rebuild() {
+function rebuildIndex() {
     try {
-        if (!fs.existsSync(articlesDir)) {
-            console.log("No articles directory found.");
-            return;
-        }
-
-        const files = fs.readdirSync(articlesDir).filter(file => file.endsWith('.json'));
+        const files = fs.readdirSync(STORAGE_DIR);
         const articles = [];
 
         files.forEach(file => {
-            const content = fs.readFileSync(path.join(articlesDir, file), 'utf8');
-            try {
-                const article = JSON.parse(content);
-                // Minify for index: keep only necessary fields
-                articles.push({
-                    title: article.title,
-                    slug: article.slug,
-                    category: article.category,
-                    image: article.image,
-                    pubDate: article.pubDate,
-                    description: article.metaDescription || article.title // Fallback
-                });
-            } catch (err) {
-                console.error(`Error parsing ${file}:`, err);
+            if (file.endsWith('.json')) {
+                try {
+                    const content = fs.readFileSync(path.join(STORAGE_DIR, file), 'utf-8');
+                    const data = JSON.parse(content);
+                    articles.push({
+                        slug: data.slug,
+                        title: data.title,
+                        category: data.category,
+                        image: data.image || '/default-news.jpg',
+                        tldr: data.tldr,
+                        savedAt: data.savedAt,
+                        pubDate: data.pubDate || data.savedAt,
+                        metaDescription: data.metaDescription || data.meta_description,
+                        status: data.status || 'published',
+                        scheduledFor: data.scheduledFor || null
+                    });
+                } catch (e) {
+                    console.error('Error parsing file:', file, e);
+                }
             }
         });
 
-        // Sort by date descending
-        articles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        // Sort Latest First
+        articles.sort((a, b) => new Date(b.pubDate || b.savedAt) - new Date(a.pubDate || a.savedAt));
 
-        fs.writeFileSync(indexFile, JSON.stringify({ articles }, null, 2));
-        console.log(`Index rebuilt with ${articles.length} articles.`);
+        const index = { articles: articles };
+        fs.writeFileSync(INDEX_FILE, JSON.stringify(index, null, 2));
+        console.log(`✅ Index Rebuilt: ${articles.length} articles found.`);
+
     } catch (error) {
-        console.error("Rebuild failed:", error);
+        console.error('🔴 Index Rebuild Failed:', error.message);
     }
 }
 
-rebuild();
+rebuildIndex();
