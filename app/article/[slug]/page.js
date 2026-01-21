@@ -281,10 +281,17 @@ export default async function ArticlePage({ params }) {
                                                         .replace(/^### (.*$)/gm, '<h3 class="text-2xl font-bold mt-10 mb-4">$1</h3>')
                                                 }} />
                                             ) : (
-                                                // Regular Paragraphs with markdown bold support
-                                                <p className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light">
-                                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>').replace(/<strong/g, '<span').replace(/<\/strong>/g, '</span>').split('\n').map((line, i) => <span key={i} className="block mb-2">{line}</span>)}
-                                                </p>
+                                                // Regular Paragraphs with HTML support
+                                                <div
+                                                    className="mb-8 text-gray-800 dark:text-gray-300 leading-relaxed text-xl font-light"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: paragraph
+                                                            .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>')
+                                                            .split('\n')
+                                                            .map(line => `<p class="mb-2">${line}</p>`)
+                                                            .join('')
+                                                    }}
+                                                />
                                             )}
 
                                             {showVideo && (
