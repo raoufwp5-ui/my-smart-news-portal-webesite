@@ -4,6 +4,7 @@ import BreakingNews from '@/components/BreakingNews';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import YandexMetrika from '@/components/YandexMetrika';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import WebsiteSchema from '@/components/WebsiteSchema';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
             </head>
             <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300 flex flex-col`}>
                 <YandexMetrika />
+                <GoogleAnalytics />
                 <BreakingNews />
                 <Navbar />
                 <main className="flex-grow">
