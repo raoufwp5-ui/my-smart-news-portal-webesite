@@ -1,4 +1,5 @@
 import NewsFeed from '@/components/NewsFeed';
+import AdsterraSlot from '@/components/AdsterraSlot';
 
 export const revalidate = 3600; // Hourly updates
 
@@ -14,7 +15,15 @@ export default function Home() {
                 </p>
             </header>
 
+            <div className="mb-10">
+                <AdsterraSlot type="banner" format="728x90" />
+            </div>
+
             <NewsFeed category="general" />
+
+            <div className="mt-20">
+                <AdsterraSlot type="native" />
+            </div>
         </div>
     );
 }

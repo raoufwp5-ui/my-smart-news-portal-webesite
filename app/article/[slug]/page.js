@@ -1,7 +1,7 @@
 import { getArticleBySlug, saveArticle, generateSlug, getRelatedArticles } from '@/lib/articleStore';
 import ArticleSchema from '@/components/ArticleSchema';
 import NewsCard from '@/components/NewsCard';
-import AdSlot from '@/components/AdSlot';
+import AdsterraSlot from '@/components/AdsterraSlot';
 import { fetchFeed, FEEDS } from '@/lib/fetchNews';
 import { model } from '@/lib/gemini';
 import Link from 'next/link';
@@ -254,7 +254,7 @@ export default async function ArticlePage({ params }) {
                             </Link>
 
                             {/* AD: Top Leaderboard (Above Title) */}
-                            <AdSlot adSlot="1234567890" className="mb-8" label="Sponsor" />
+                            <AdsterraSlot type="banner" format="728x90" className="mb-8" />
 
                             {/* Article Text Rendering with In-Content Ad & Smart Video Injection */}
                             <div className="prose prose-lg md:prose-xl dark:prose-invert max-w-none">
@@ -329,14 +329,14 @@ export default async function ArticlePage({ params }) {
                                                 </div>
                                             )}
 
-                                            {showAd && <AdSlot adSlot="9876543210" adFormat="article" label="Advertisement" className="my-8" />}
+                                            {showAd && <AdsterraSlot type="banner" format="300x250" className="my-8" />}
                                         </div>
                                     );
                                 }) : <p className="text-gray-500 italic">Processing full report...</p>}
                             </div>
 
-                            {/* AD: End of Article (The Farewell Ad) */}
-                            <AdSlot adSlot="5555555555" className="mt-12 mb-8" label="Sponsored" />
+                            {/* AD: End of Article (Native) */}
+                            <AdsterraSlot type="native" className="mt-12 mb-8" />
 
                             {/* SEO Tags */}
                             {article.keywords && (
@@ -394,12 +394,7 @@ export default async function ArticlePage({ params }) {
                         <div className="lg:col-span-4 space-y-8">
                             {/* AD: Sticky Sidebar (Desktop Only) */}
                             <div className="hidden lg:block sticky top-24">
-                                <AdSlot
-                                    adSlot="1122334455"
-                                    adFormat="vertical"
-                                    label="Partner"
-                                    className="min-h-[600px]"
-                                />
+                                <AdsterraSlot type="banner" format="160x600" className="min-h-[600px]" />
                             </div>
                         </div>
 
