@@ -393,8 +393,10 @@ export default async function ArticlePage({ params }) {
                         {/* Sidebar */}
                         <div className="lg:col-span-4 space-y-8">
                             {/* AD: Sticky Sidebar (Desktop Only) */}
-                            <div className="hidden lg:block sticky top-24">
-                                <AdsterraSlot type="banner" format="160x600" className="min-h-[600px]" />
+                            {/* AD: Sticky Sidebar (Desktop Only) - Double MPU Strategy */}
+                            <div className="hidden lg:flex flex-col gap-8 sticky top-24">
+                                <AdsterraSlot type="banner" format="300x250" className="min-h-[250px]" />
+                                <AdsterraSlot type="banner" format="300x250" className="min-h-[250px]" />
                             </div>
                         </div>
 
