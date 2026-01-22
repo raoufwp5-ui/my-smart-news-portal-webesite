@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import NewsCard from '@/components/NewsCard';
 import SkeletonLoader from '@/components/SkeletonLoader';
 import AdsterraSlot from '@/components/AdsterraSlot';

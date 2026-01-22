@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HeroNews({ article }) {
     if (!article) return null;
@@ -15,15 +16,16 @@ export default function HeroNews({ article }) {
 
             <div className="h-[500px] w-full bg-gray-200 dark:bg-gray-800 relative">
                 {image ? (
-                    <img
-                        src={image}
-                        alt={title}
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/default-news.jpg';
-                        }}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <div className="relative w-full h-full">
+                        <Image
+                            src={image}
+                            alt={title}
+                            fill
+                            priority
+                            sizes="100vw"
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                    </div>
                 ) : (
                     <div className="flex items-center justify-center h-full text-gray-400 bg-gray-800">
                         <span className="text-6xl">🌍</span>

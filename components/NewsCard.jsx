@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, ExternalLink, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
@@ -31,11 +32,12 @@ export default function NewsCard({ article }) {
     return (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col h-full group">
             <Link href={`/article/${slug}`} className="block relative aspect-video overflow-hidden">
-                <img
+                <Image
                     src={article.image || '/default-news.jpg'}
                     alt={article.title}
-                    onError={handleImageError}
-                    className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute top-2 right-2 bg-red-600/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-tight">
                     {article.originalSource || 'Global News'}
@@ -44,7 +46,7 @@ export default function NewsCard({ article }) {
 
             <div className="p-5 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-2 py-1 rounded-full uppercase tracking-wider">
+                    <span className="text-xs font-medium text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-2 py-1 rounded-full uppercase tracking-wider">
                         {new Date(article.pubDate || article.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                     </span>
                 </div>
