@@ -301,6 +301,66 @@
       "scheduledFor": null
     },
     {
+      "slug": "crispr-cure-genetic-blindness-approved-2026",
+      "title": "Light in the Darkness: First CRISPR Cure for Genetic Blindness Hits Global Market",
+      "category": "health",
+      "image": "/default-news.jpg",
+      "tldr": [
+        "The WHO and FDA have simultaneously approved 'Lumina-9', a one-time CRISPR gene therapy that restores sight in patients with hereditary blindness.",
+        "Clinical trials showed a 95% success rate in restoring functional vision to patients who had been blind since birth.",
+        "The treatment costs $1.5 million but is being subsidized by new global health initiatives."
+      ],
+      "pubDate": "2026-01-22T19:00:00Z",
+      "metaDescription": "Blindness is no longer a life sentence. The first commercial CRISPR therapy to restore sight has been approved. See how it works.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-22T19:00:00Z"
+    },
+    {
+      "slug": "mars-colony-ship-departure-2026",
+      "title": "Humanity's First Interplanetary Exodus: SpaceX 'Vanguard' Departs for Mars",
+      "category": "science",
+      "image": "/media/articles/mars_microbes_discovery_2026_1768992316824.png",
+      "tldr": [
+        "The SpaceX Starship 'Vanguard' has successfully launched with 100 colonists bound for the first permanent Martian settlement.",
+        "The mission, dubbed 'Red Dawn', carries critical infrastructure including 3D-printed habitat fabricators and nuclear micro-reactors.",
+        "NASA and SpaceX hail this as the most significant moment in human history since Apollo 11."
+      ],
+      "pubDate": "2026-01-22T16:00:00Z",
+      "metaDescription": "Goodbye, Earth. The SpaceX Vanguard has launched, carrying the first 100 humans to build a permanent colony on Mars.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-22T16:00:00Z"
+    },
+    {
+      "slug": "digital-euro-cbdc-full-launch-2026",
+      "title": "Cashless Continent: Digital Euro (CBDC) Replaces Physical Cash in 5 Nations Today",
+      "category": "business",
+      "image": "/media/articles/digital_currency_eu_2026_1768992428244.png",
+      "tldr": [
+        "The European Central Bank (ECB) has officially rolled out the Digital Euro, with five pilot nations phasing out physical cash.",
+        "Privacy advocates raise concerns over 'programmable money' that could restrict certain purchases.",
+        "The move aims to counter the dominance of decentralized cryptocurrencies and streamline cross-border payments."
+      ],
+      "pubDate": "2026-01-22T13:00:00Z",
+      "metaDescription": "The Digital Euro is here. As of today, 5 EU nations begin the transition away from physical cash. What does this mean for privacy and the economy?",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-22T13:00:00Z"
+    },
+    {
+      "slug": "humanoid-robot-workforce-regulation-2026",
+      "title": "EU Passes Historic Humanoid Robot Workforce Act: 'Silicon Rights' and Human Displacement Defined",
+      "category": "technology",
+      "image": "/media/articles/humanoid_robot_workforce_eu_parliament_1769087797768.png",
+      "tldr": [
+        "The European Parliament has ratified the 'Humanoid Workforce Integration Act', setting a 30% cap on robotic labor in service sectors.",
+        "The legislation mandates 'Silicon Taxes' for companies using humanoid workers, with revenue funding Universal Basic Income (UBI) pilots.",
+        "A controversial 'Right to Repair' clause grants advanced AI humanoids limited legal autonomy, sparking global ethical debates."
+      ],
+      "pubDate": "2026-01-22T10:00:00Z",
+      "metaDescription": "A turning point in history: The EU's new Humanoid Workforce Act balances automation with human labor rights, introducing the world's first 'robot tax'.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-22T10:00:00Z"
+    },
+    {
       "slug": "toyota-solid-state-battery-launch-2026",
       "title": "The End of Range Anxiety: Toyota Unveils 1,200km Solid-State Battery Car",
       "category": "technology",
@@ -354,17 +414,6 @@
       "metaDescription": "Novak Djokovic retires. The tennis GOAT announces the end of his career after the 2026 Australian Open. A look back at 26 Grand Slam titles.",
       "status": "scheduled",
       "scheduledFor": "2026-01-21T16:00:00Z"
-    },
-    {
-      "slug": "global-digital-currency-eu-2026",
-      "title": "Europe Goes Crypto: EU Officializes 'Digital Euro' and Bans Cash Transactions Over €3,000",
-      "category": "business",
-      "image": "/media/articles/global-digital-currency-eu-2026.png",
-      "tldr": "The European Central Bank (ECB) has officially rolled out the Digital Euro across the eurozone, simultaneously enacting a controversial ban on physical cash transactions exceeding €3,000. The move aims to combat tax evasion but has sparked protests in Berlin and Paris over privacy concerns.",
-      "pubDate": "2026-01-21T14:00:00Z",
-      "metaDescription": "EU launches Digital Euro and bans large cash payments. A historic shift in the European economy towards specialized blockchain finance.",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-21T14:00:00Z"
     },
     {
       "slug": "apple-vision-air-launch-2026",
@@ -626,6 +675,17 @@
       "metaDescription": "FIFA 2026 introduces fully AI referees. Explore the 'Omni-Ref' technology, the end of VAR delays, and the backlash from fans who miss human error.",
       "status": "scheduled",
       "scheduledFor": "2026-01-18T10:00:00.000Z"
+    },
+    {
+      "slug": "global-digital-currency-eu-2026",
+      "title": "Europe Goes Crypto: EU Officializes 'Digital Euro' and Bans Cash Transactions Over €3,000",
+      "category": "business",
+      "image": "/media/articles/global-digital-currency-eu-2026.png",
+      "tldr": "The European Central Bank (ECB) has officially rolled out the Digital Euro across the eurozone, simultaneously enacting a controversial ban on physical cash transactions exceeding €3,000. The move aims to combat tax evasion but has sparked protests in Berlin and Paris over privacy concerns.",
+      "pubDate": "2026-01-21T14:00:00Z",
+      "metaDescription": "EU launches Digital Euro and bans large cash payments. A historic shift in the European economy towards specialized blockchain finance.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-21T14:00:00Z"
     },
     {
       "slug": "mars-microbes-discovery-2026",
