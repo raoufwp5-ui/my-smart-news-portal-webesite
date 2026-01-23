@@ -301,6 +301,66 @@
       "scheduledFor": null
     },
     {
+      "slug": "apple-vision-air-sales-record-2026",
+      "title": "Apple 'Vision Air' Smart Glasses Break Sales Records: 10 Million Units in Week One",
+      "category": "technology",
+      "image": "/media/articles/apple_vision_air_store_launch_2026_1769174330333.png",
+      "tldr": [
+        "Apple's new lightweight AR glasses, the 'Vision Air', have sold out globally within 7 days of launch.",
+        "Priced at $1,499, the device is being hailed as the 'iPhone moment' for Augmented Reality.",
+        "Competitors like Meta and Samsung are scrambling to accelerate their own lightweight AR roadmaps."
+      ],
+      "pubDate": "2026-01-23T19:00:00Z",
+      "metaDescription": "The iPhone of AR is here. Apple's Vision Air breaks all expectations with 10 million units sold in its first week. Is the screen dead?",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-23T19:00:00Z"
+    },
+    {
+      "slug": "alcaraz-sinner-australian-open-semi-2026",
+      "title": "Alcaraz Survives 5-Set Thriller Against Sinner to Reach Australian Open Final",
+      "category": "sports",
+      "image": "/media/articles/alcaraz-drone-2026.jpg",
+      "tldr": [
+        "Carlos Alcaraz defeated Jannik Sinner in a 5-hour, 12-minute marathon (6-4, 5-7, 7-6, 4-6, 7-5) to reach his first Australian Open final.",
+        "The match featured a controversial 'Drone Intervention' during the 4th set that paused play for 10 minutes.",
+        "Alcaraz will face rising American star Ben Shelton in Sunday's final."
+      ],
+      "pubDate": "2026-01-23T16:00:00Z",
+      "metaDescription": "The rivalry of the decade continues. Carlos Alcaraz edges out Jannik Sinner in an Australian Open classic. Read the full match report.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-23T16:00:00Z"
+    },
+    {
+      "slug": "tesla-gigafactory-india-opening-2026",
+      "title": "Musk in Mumbai: Tesla Opens Gigafactory India with Goal of 5 Million EVs by 2030",
+      "category": "business",
+      "image": "/media/articles/1768682191583-Telsa_and_BYD_72e5bc6b-fef7-4742-877a-a4eb92517d25.webp",
+      "tldr": [
+        "Elon Musk has officially inaugurated 'Giga India' in Pune, Tesla's largest manufacturing hub outside of China.",
+        "The factory will produce the 'Model 2', a $25,000 budget EV designed specifically for the Southeast Asian market.",
+        "Tesla stock jumped 8% on the news, as competition with Chinese rival BYD heats up in the developing world."
+      ],
+      "pubDate": "2026-01-23T13:00:00Z",
+      "metaDescription": "Tesla has landed in India. The massive new Gigafactory in Pune aims to produce 500,000 budget EVs a year. Here's what it means for the market.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-23T13:00:00Z"
+    },
+    {
+      "slug": "cairo-water-summit-treaty-2026",
+      "title": "Historic Nile Treaty Signed in Cairo: Egypt, Ethiopia, and Sudan Agree to 'Shared Flow' Protocol",
+      "category": "politics",
+      "image": "/media/articles/cairo_water_summit_2026_1769174350749.png",
+      "tldr": [
+        "After a decade of tension, Egypt, Ethiopia, and Sudan have signed the '2026 Nile Shared Flow Accord' in Cairo.",
+        "The treaty establishes a real-time, AI-monitored water release schedule from the Grand Ethiopian Renaissance Dam (GERD).",
+        "The agreement unlocks $12 billion in World Bank green energy funding for the region, stabilizing geopolitical relations."
+      ],
+      "pubDate": "2026-01-23T10:00:00Z",
+      "metaDescription": "Peace flows on the Nile. Leaders from Egypt, Ethiopia, and Sudan have signed a historic treaty to manage water rights and the GERD dam.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-23T10:00:00Z"
+    },
+    {
       "slug": "crispr-cure-genetic-blindness-approved-2026",
       "title": "Light in the Darkness: First CRISPR Cure for Genetic Blindness Hits Global Market",
       "category": "technology",
@@ -329,21 +389,6 @@
       "metaDescription": "Goodbye, Earth. The SpaceX Vanguard has launched, carrying the first 100 humans to build a permanent colony on Mars.",
       "status": "scheduled",
       "scheduledFor": "2026-01-22T16:00:00Z"
-    },
-    {
-      "slug": "digital-euro-cbdc-full-launch-2026",
-      "title": "Cashless Continent: Digital Euro (CBDC) Replaces Physical Cash in 5 Nations Today",
-      "category": "business",
-      "image": "/media/articles/digital_currency_eu_2026_1768992428244.png",
-      "tldr": [
-        "The European Central Bank (ECB) has officially rolled out the Digital Euro, with five pilot nations phasing out physical cash.",
-        "Privacy advocates raise concerns over 'programmable money' that could restrict certain purchases.",
-        "The move aims to counter the dominance of decentralized cryptocurrencies and streamline cross-border payments."
-      ],
-      "pubDate": "2026-01-22T13:00:00Z",
-      "metaDescription": "The Digital Euro is here. As of today, 5 EU nations begin the transition away from physical cash. What does this mean for privacy and the economy?",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-22T13:00:00Z"
     },
     {
       "slug": "humanoid-robot-workforce-regulation-2026",
@@ -403,17 +448,6 @@
       "metaDescription": "US and China sign historic Geneva AI Accord banning killer robots. Analysis of the treaty terms and global reaction.",
       "status": "scheduled",
       "scheduledFor": "2026-01-21T17:00:00Z"
-    },
-    {
-      "slug": "djokovic-retirement-australian-open-2026",
-      "title": "The Last Dance: Novak Djokovic Announces Official Retirement After Australian Open Exodus",
-      "category": "sports",
-      "image": "/media/articles/djokovic-retirement-australian-open-2026.png",
-      "tldr": "It's the end of an era. Novak Djokovic, the most decorated male tennis player in history with 26 Grand Slams, has announced he will retire following his quarter-final exit at the 2026 Australian Open. The Serbian legend leaves behind a legacy that may never be surpassed.",
-      "pubDate": "2026-01-21T16:00:00Z",
-      "metaDescription": "Novak Djokovic retires. The tennis GOAT announces the end of his career after the 2026 Australian Open. A look back at 26 Grand Slam titles.",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-21T16:00:00Z"
     },
     {
       "slug": "apple-vision-air-launch-2026",
@@ -487,19 +521,33 @@
       "scheduledFor": "2026-01-20T10:00:00Z"
     },
     {
-      "slug": "remote-work-laws-2026-global",
-      "title": "The Right to Disconnect: New Remote Work Laws Sweeping the Globe in 2026",
-      "category": "business",
-      "image": "/media/articles/1768682845659-Gemini_Generated_Image_r4vzc6r4vzc6r4vz.png",
+      "slug": "ai-companions-mental-health-2026",
+      "title": "The Loneliness Epidemic: Why 1 in 3 People Have an AI 'Partner' in 2026",
+      "category": "technology",
+      "image": "/media/articles/1768682361457-2026-01-02-trends-emotional-connection_tcm7-345074.jpg",
       "tldr": [
-        "Australia's strict 'Disconnect' laws impose fines of up to $18,000 for employers who contact staff out of hours.",
-        "Draft legislation in California and New York aims to replicate the European model by late 2026.",
-        "Companies implement 'Email Caps' that prevent servers from delivering internal mail between 7 PM and 7 AM."
+        "A staggering 35% of adults under 30 now report having a 'significant emotional connection' with an AI entity, driven by advanced voice-mode capabilities.",
+        "Psychologists have coined the term 'Parasocial Atrophy' to describe the loss of ability to handle real human conflict due to addiction to compliant AI partners.",
+        "Japan and South Korea are piloting 'Social Prescribing' laws to combat the birth rate collapse caused by digital substitution."
       ],
-      "pubDate": "2026-01-20T09:15:00Z",
-      "metaDescription": "Your boss can no longer text you at 8 PM. In 2026, the 'Right to Disconnect' becomes law in the UK, Australia, and parts of the US. We explain what this means for your job.",
+      "pubDate": "2026-01-15T18:00:00Z",
+      "metaDescription": "Real love is hard. AI love is easy. In 2026, AI Companion apps are the most downloaded category. We explore the mental health crisis masking itself as a cure and the rise of 'Digi-Sexuals'.",
       "status": "published",
       "scheduledFor": null
+    },
+    {
+      "slug": "arctic-trade-route-2026",
+      "title": "The New Suez: Arctic Trade Route Opens Year-Round, Sparking Global Power Scramble",
+      "category": "politics",
+      "image": "/media/articles/arctic-ship.jpg",
+      "tldr": [
+        "The Northern Sea Route stays ice-free year-round for the first time, cutting Asia-Europe shipping times by 50%.",
+        "Russia and China solidify dominance over the route, establishing tolls and military infrastructure, while the West scrambles to catch up.",
+        "Environmentalists warn of a 'feedback loop' as ship emissions accelerate polar ice melt, despite the route's massive economic efficiency."
+      ],
+      "metaDescription": "The Arctic is open for business. In 2026, the Northern Sea Route reshapes global trade, cutting shipping times by half but fueling geopolitical tension.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-18T12:00:00.000Z"
     },
     {
       "slug": "quantum-internet-goes-live-2026",
@@ -532,51 +580,6 @@
       "scheduledFor": "2026-01-19T18:00:00Z"
     },
     {
-      "slug": "end-of-cash-digital-dollar-euro-2026",
-      "title": "The End of Cash: US Digital Dollar and Digital Euro Go to War in 2026",
-      "category": "business",
-      "image": "/media/articles/end-of-cash-2026.jpg",
-      "tldr": [
-        "The Federal Reserve officially launches the 'US Digital Dollar' (CBDC), phasing out paper bills in federal transactions.",
-        "Privacy advocates protest as the European Central Bank admits 'programmability' features could limit spending on high-carbon goods.",
-        "Underground 'Cashless Resistance' markets emerge, trading in silver coins and barter to escape surveillance."
-      ],
-      "savedAt": "2026-01-17T22:00:00.000Z",
-      "pubDate": "2026-01-17T22:00:00.000Z",
-      "metaDescription": "Paper money is dying. In 2026, the Titan clash between the Digital Dollar and Digital Euro reshapes the global economy, surveillance, and privacy forever.",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-17T22:00:00.000Z"
-    },
-    {
-      "slug": "ai-companions-mental-health-2026",
-      "title": "The Loneliness Epidemic: Why 1 in 3 People Have an AI 'Partner' in 2026",
-      "category": "technology",
-      "image": "/media/articles/1768682361457-2026-01-02-trends-emotional-connection_tcm7-345074.jpg",
-      "tldr": [
-        "A staggering 35% of adults under 30 now report having a 'significant emotional connection' with an AI entity, driven by advanced voice-mode capabilities.",
-        "Psychologists have coined the term 'Parasocial Atrophy' to describe the loss of ability to handle real human conflict due to addiction to compliant AI partners.",
-        "Japan and South Korea are piloting 'Social Prescribing' laws to combat the birth rate collapse caused by digital substitution."
-      ],
-      "pubDate": "2026-01-15T18:00:00Z",
-      "metaDescription": "Real love is hard. AI love is easy. In 2026, AI Companion apps are the most downloaded category. We explore the mental health crisis masking itself as a cure and the rise of 'Digi-Sexuals'.",
-      "status": "published",
-      "scheduledFor": null
-    },
-    {
-      "slug": "arctic-trade-route-2026",
-      "title": "The New Suez: Arctic Trade Route Opens Year-Round, Sparking Global Power Scramble",
-      "category": "politics",
-      "image": "/media/articles/arctic-ship.jpg",
-      "tldr": [
-        "The Northern Sea Route stays ice-free year-round for the first time, cutting Asia-Europe shipping times by 50%.",
-        "Russia and China solidify dominance over the route, establishing tolls and military infrastructure, while the West scrambles to catch up.",
-        "Environmentalists warn of a 'feedback loop' as ship emissions accelerate polar ice melt, despite the route's massive economic efficiency."
-      ],
-      "metaDescription": "The Arctic is open for business. In 2026, the Northern Sea Route reshapes global trade, cutting shipping times by half but fueling geopolitical tension.",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-18T12:00:00.000Z"
-    },
-    {
       "slug": "artemis-base-camp-moon-landing-2026",
       "title": "Artemis Base Camp: NASA and SpaceX Establish Humanity's First Permanent Lunar Outpost",
       "category": "technology",
@@ -603,6 +606,43 @@
       "metaDescription": "The age of chemotherapy is over. 2026 sees the first mass cure of cancer using mRNA vaccines. Explore the science, the cost, and the medical revolution.",
       "status": "scheduled",
       "scheduledFor": "2026-01-18T12:00:00.000Z"
+    },
+    {
+      "slug": "digital-euro-cbdc-full-launch-2026",
+      "title": "Cashless Continent: Digital Euro (CBDC) Replaces Physical Cash in 5 Nations Today",
+      "category": "business",
+      "image": "/media/articles/digital_currency_eu_2026_1768992428244.png",
+      "tldr": [
+        "The European Central Bank (ECB) has officially rolled out the Digital Euro, with five pilot nations phasing out physical cash.",
+        "Privacy advocates raise concerns over 'programmable money' that could restrict certain purchases.",
+        "The move aims to counter the dominance of decentralized cryptocurrencies and streamline cross-border payments."
+      ],
+      "pubDate": "2026-01-22T13:00:00Z",
+      "metaDescription": "The Digital Euro is here. As of today, 5 EU nations begin the transition away from physical cash. What does this mean for privacy and the economy?",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-22T13:00:00Z"
+    },
+    {
+      "slug": "djokovic-retirement-australian-open-2026",
+      "title": "The Last Dance: Novak Djokovic Announces Official Retirement After Australian Open Exodus",
+      "category": "sports",
+      "image": "/media/articles/djokovic-retirement-australian-open-2026.png",
+      "tldr": "It's the end of an era. Novak Djokovic, the most decorated male tennis player in history with 26 Grand Slams, has announced he will retire following his quarter-final exit at the 2026 Australian Open. The Serbian legend leaves behind a legacy that may never be surpassed.",
+      "pubDate": "2026-01-21T16:00:00Z",
+      "metaDescription": "Novak Djokovic retires. The tennis GOAT announces the end of his career after the 2026 Australian Open. A look back at 26 Grand Slam titles.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-21T16:00:00Z"
+    },
+    {
+      "slug": "global-digital-currency-eu-2026",
+      "title": "Europe Goes Crypto: EU Officializes 'Digital Euro' and Bans Cash Transactions Over €3,000",
+      "category": "business",
+      "image": "/media/articles/global-digital-currency-eu-2026.png",
+      "tldr": "The European Central Bank (ECB) has officially rolled out the Digital Euro across the eurozone, simultaneously enacting a controversial ban on physical cash transactions exceeding €3,000. The move aims to combat tax evasion but has sparked protests in Berlin and Paris over privacy concerns.",
+      "pubDate": "2026-01-21T14:00:00Z",
+      "metaDescription": "EU launches Digital Euro and bans large cash payments. A historic shift in the European economy towards specialized blockchain finance.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-21T14:00:00Z"
     },
     {
       "slug": "world-cup-2026-mexico-france-opener",
@@ -633,6 +673,22 @@
       "metaDescription": "Market Panic 2026: The Carbon Credit bubble has burst. Analysis of the VCM collapse, the whistleblower report, and what it means for the global economy.",
       "status": "scheduled",
       "scheduledFor": "2026-01-19T14:00:00Z"
+    },
+    {
+      "slug": "end-of-cash-digital-dollar-euro-2026",
+      "title": "The End of Cash: US Digital Dollar and Digital Euro Go to War in 2026",
+      "category": "business",
+      "image": "/media/articles/end-of-cash-2026.jpg",
+      "tldr": [
+        "The Federal Reserve officially launches the 'US Digital Dollar' (CBDC), phasing out paper bills in federal transactions.",
+        "Privacy advocates protest as the European Central Bank admits 'programmability' features could limit spending on high-carbon goods.",
+        "Underground 'Cashless Resistance' markets emerge, trading in silver coins and barter to escape surveillance."
+      ],
+      "savedAt": "2026-01-17T22:00:00.000Z",
+      "pubDate": "2026-01-17T22:00:00.000Z",
+      "metaDescription": "Paper money is dying. In 2026, the Titan clash between the Digital Dollar and Digital Euro reshapes the global economy, surveillance, and privacy forever.",
+      "status": "scheduled",
+      "scheduledFor": "2026-01-17T22:00:00.000Z"
     },
     {
       "slug": "end-of-cash-economy-2026",
@@ -675,17 +731,6 @@
       "metaDescription": "FIFA 2026 introduces fully AI referees. Explore the 'Omni-Ref' technology, the end of VAR delays, and the backlash from fans who miss human error.",
       "status": "scheduled",
       "scheduledFor": "2026-01-18T10:00:00.000Z"
-    },
-    {
-      "slug": "global-digital-currency-eu-2026",
-      "title": "Europe Goes Crypto: EU Officializes 'Digital Euro' and Bans Cash Transactions Over €3,000",
-      "category": "business",
-      "image": "/media/articles/global-digital-currency-eu-2026.png",
-      "tldr": "The European Central Bank (ECB) has officially rolled out the Digital Euro across the eurozone, simultaneously enacting a controversial ban on physical cash transactions exceeding €3,000. The move aims to combat tax evasion but has sparked protests in Berlin and Paris over privacy concerns.",
-      "pubDate": "2026-01-21T14:00:00Z",
-      "metaDescription": "EU launches Digital Euro and bans large cash payments. A historic shift in the European economy towards specialized blockchain finance.",
-      "status": "scheduled",
-      "scheduledFor": "2026-01-21T14:00:00Z"
     },
     {
       "slug": "mars-microbes-discovery-2026",
@@ -742,6 +787,21 @@
       "metaDescription": "Fusion power is real. The ITER reactor in France has achieved net energy gain for the first time. The age of unlimited clean energy has begun.",
       "status": "scheduled",
       "scheduledFor": "2026-01-20T14:00:00Z"
+    },
+    {
+      "slug": "remote-work-laws-2026-global",
+      "title": "The Right to Disconnect: New Remote Work Laws Sweeping the Globe in 2026",
+      "category": "business",
+      "image": "/media/articles/1768682845659-Gemini_Generated_Image_r4vzc6r4vzc6r4vz.png",
+      "tldr": [
+        "Australia's strict 'Disconnect' laws impose fines of up to $18,000 for employers who contact staff out of hours.",
+        "Draft legislation in California and New York aims to replicate the European model by late 2026.",
+        "Companies implement 'Email Caps' that prevent servers from delivering internal mail between 7 PM and 7 AM."
+      ],
+      "pubDate": "2026-01-20T09:15:00Z",
+      "metaDescription": "Your boss can no longer text you at 8 PM. In 2026, the 'Right to Disconnect' becomes law in the UK, Australia, and parts of the US. We explain what this means for your job.",
+      "status": "published",
+      "scheduledFor": null
     },
     {
       "slug": "neural-telepathy-prod-launch-2026",
